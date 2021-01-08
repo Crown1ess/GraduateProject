@@ -1,0 +1,5 @@
+C:\Users\davae\source\repos\Employees\ViewModel\bin\Debug\netcoreapp3.1\DataBase.dll
+C:\Users\davae\source\repos\Employees\ViewModel\bin\Debug\netcoreapp3.1\Models.dll
+C:\Users\davae\source\repos\Employees\ViewModel\obj\Debug\netcoreapp3.1\ViewModel.csprojAssemblyReference.cache
+C:\Users\davae\source\repos\Employees\ViewModel\obj\Debug\netcoreapp3.1\ViewModel.AssemblyInfoInputs.cache
+C:\Users\davae\source\repos\Employees\ViewModel\obj\Debug\netcoreapp3.1\ViewModel.AssemblyInfo.cs
