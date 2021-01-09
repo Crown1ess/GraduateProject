@@ -9,7 +9,7 @@
   <ItemGroup>
     <None Remove="images\exit.png" />
     <None Remove="images\Profile.png" />
-    <None Remove="images\user.jpg" />
+    <None Remove="images\user.png" />
     <None Remove="images\whiteExit.png" />
   </ItemGroup>
 
@@ -35,7 +35,7 @@
     <Resource Include="images\Profile.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="images\user.jpg">
+    <Resource Include="images\user.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="images\whiteExit.png">

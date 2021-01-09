@@ -26,5 +26,17 @@ namespace Employees
         {
             Environment.Exit(0);
         }
+
+        private void ButtonShowMenu_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonShowMenu.Visibility = Visibility.Collapsed;
+            ButtonHideMenu.Visibility = Visibility.Visible;
+        }
+
+        private void ButtonHideMenu_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonShowMenu.Visibility = Visibility.Visible;
+            ButtonHideMenu.Visibility = Visibility.Collapsed;
+        }
     }
 }

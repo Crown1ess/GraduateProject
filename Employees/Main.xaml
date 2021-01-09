@@ -11,17 +11,39 @@
     <Window.DataContext>
         <local:EmployeeViewModel/>
     </Window.DataContext>
+    
+    <Window.Resources>
+        <Storyboard x:Key="MenuOpen">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Opacity)"
+                                           Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0.5"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="MenuClose">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Opacity)"
+                                            Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0.5"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonShowMenu">
+            <BeginStoryboard Storyboard="{StaticResource MenuOpen}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonHideMenu">
+            <BeginStoryboard Storyboard="{StaticResource MenuClose}"/>
+        </EventTrigger>
+    </Window.Triggers>
 
     <Grid>
         <Button VerticalAlignment="Bottom" Style="{StaticResource ExitButton}" Click="Exit" Margin="403,0,7,466" Name="exit">
             <Image Style="{StaticResource ExitImage}"/>
         </Button>
-        <Button Height="40" Width="40" VerticalAlignment="Top" HorizontalAlignment="Left" Background="{x:Null}" BorderBrush="{x:Null}">
-            <Image Source="pack://application:,,,/images/user.jpg"/>
-        </Button>
-       
         <ListBox Name="lstEmployees" Margin="5" ItemsSource="{Binding Employees}" HorizontalContentAlignment="Center"
-                 VerticalAlignment="Bottom" BorderThickness="0">
+                 VerticalAlignment="Bottom" BorderThickness="0" Cursor="Hand">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Border Margin="5" BorderThickness="1" BorderBrush="SteelBlue" CornerRadius="4" Width="400">
@@ -56,6 +78,22 @@
             </ListBox.ItemTemplate>
 
         </ListBox>
+        <Grid x:Name="GridMenu" Height="200" Width="200" Margin="-41,-40,281,340" Opacity="0">
+            <Ellipse Height="200" Width="200" Fill="#dc143c"/>
+        </Grid>
+        
+        <Button Name="ButtonShowMenu" Height="40" Width="40" Background="{x:Null}" VerticalAlignment="Top"
+                Cursor="Hand" Style="{StaticResource CircleButton}" HorizontalAlignment="Left"
+                BorderBrush="{x:Null}" Click="ButtonShowMenu_Click">
+            <Image Source="pack://application:,,,/images/user.png"/>
+        </Button>
+        
+        <Button x:Name="ButtonHideMenu" Height="50" Width="50" VerticalAlignment="Top" HorizontalAlignment="Left"
+                Background="{x:Null}" Cursor="Hand" Style="{StaticResource CircleButton}"
+                BorderBrush="{x:Null}" Click="ButtonHideMenu_Click" Visibility="Collapsed">
+            <Image Source="pack://application:,,,/images/user.png" Height="auto" Width="auto"/>
+        </Button>
+
     </Grid>
 
 </Window>
