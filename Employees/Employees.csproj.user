@@ -7,18 +7,24 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Main.xaml.cs">
+    <Compile Update="Views\Windows\Main.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Windows\ManageEmployeeWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="MainWindow.xaml">
+    <Page Update="Views\Windows\MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Main.xaml">
+    <Page Update="Views\Windows\Main.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Style.xaml">
+    <Page Update="Services\Style.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Windows\ManageEmployeeWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

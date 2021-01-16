@@ -7,10 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="images\exit.png" />
-    <None Remove="images\Profile.png" />
-    <None Remove="images\user.png" />
-    <None Remove="images\whiteExit.png" />
+    <None Remove="Services\images\exit.png" />
+    <None Remove="Services\images\gear.png" />
+    <None Remove="Services\images\logout.png" />
+    <None Remove="Services\images\menu.png" />
+    <None Remove="Services\images\Profile.png" />
+    <None Remove="Services\images\user.png" />
+    <None Remove="Services\images\whiteExit.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,16 +32,25 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="images\exit.png">
+    <Resource Include="Services\images\exit.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="images\Profile.png">
+    <Resource Include="Services\images\gear.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="images\user.png">
+    <Resource Include="Services\images\logout.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="images\whiteExit.png">
+    <Resource Include="Services\images\menu.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Services\images\Profile.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Services\images\user.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Services\images\whiteExit.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

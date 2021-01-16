@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
-
+﻿using System;
 
 namespace Models
 {
@@ -34,13 +32,5 @@ namespace Models
             get { return rank; }
             set { rank = value; }
         }
-
-        //public event PropertyChangedEventHandler PropertyChanged;
-        //public void OnPropertyChanged([CallerMemberName]string properties = null)
-        //{
-        //    if (PropertyChanged != null)
-        //        PropertyChanged(this, new PropertyChangedEventArgs(properties));
-        //}
-
     }
 }
