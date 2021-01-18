@@ -2,35 +2,27 @@
 
 namespace Models
 {
-    public class User : NotifyPropertyChange
+    public class User
     {
         private string phoneNumber;
         public string PhoneNumber
         {
             get { return phoneNumber; }
-            set 
-            { 
-                phoneNumber = value;
-                OnPropertyChanged("PhoneNumber");
-            }
+            set => phoneNumber = value;
         }
 
         private string password;
         public string Password
         {
             get { return password; }
-            set 
-            { 
-                password = value;
-                OnPropertyChanged("Password");
-            }
+            set => password = value;
         }
 
         private string rank;
         public string Rank
         {
             get { return rank; }
-            set { rank = value; }
+            set => rank = value;
         }
     }
 }

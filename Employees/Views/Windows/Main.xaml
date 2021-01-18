@@ -4,13 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Employees"
+        xmlns:vm="clr-namespace:Employees.ViewModels"
         xmlns:cmd="clr-namespace:Employees.Commands"  
         mc:Ignorable="d"
         Title="Main" Height="500" Width="440" WindowStartupLocation="CenterScreen"
             WindowStyle="None" ResizeMode="NoResize">
 
     <Window.DataContext>
-        <local:EmployeeViewModel/>
+        <vm:EmployeeViewModel/>
     </Window.DataContext>
     
     <Window.Resources>

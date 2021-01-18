@@ -5,12 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:cmd ="clr-namespace:Employees.Commands"
         xmlns:local="clr-namespace:Employees"
+        xmlns:vm="clr-namespace:Employees.ViewModels"
         mc:Ignorable="d"
         Height="500" Width="400" ResizeMode="NoResize" WindowStyle="None"
         WindowStartupLocation="CenterScreen">
 
     <Window.DataContext>
-        <local:MainWindowViewModel/>
+        <vm:MainWindowViewModel/>
     </Window.DataContext>
     <Grid>
         <Button VerticalAlignment="Top" Style="{StaticResource ExitButton}" Margin="363,4,7,0" Name="exit">

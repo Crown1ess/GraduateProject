@@ -2,10 +2,11 @@
 using DataBase;
 using MySqlConnector;
 using System.Collections.ObjectModel;
+using Employees.ViewModels.Base;
 
-namespace Employees
+namespace Employees.ViewModels
 {
-    public class EmployeeViewModel : NotifyPropertyChange
+    internal class EmployeeViewModel : BaseViewModel
     {
         private readonly ConnectionString connectionString;
 
@@ -39,7 +40,7 @@ namespace Employees
             
 
         }
-         
+
         private void getEmployees()
         {
             string sqlInquiryString = $"SELECT * FROM employees";

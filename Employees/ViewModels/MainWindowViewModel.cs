@@ -6,15 +6,20 @@ using System.Windows.Controls;
 using System.Security;
 using System.Runtime.InteropServices;
 using System.Windows;
+using Employees.ViewModels.Base;
 
-namespace Employees
+namespace Employees.ViewModels
 {
-    public class MainWindowViewModel : NotifyPropertyChange
+    internal class MainWindowViewModel : BaseViewModel
     {
         private ConnectionString connectionString;
         private Main main;
         private User user;
 
+        #region Phone Number
+        /// <summary>
+        /// phone number property
+        /// </summary>
         private string phoneNumber;
 
         public string PhoneNumber
@@ -27,6 +32,7 @@ namespace Employees
             }
         }
 
+        #endregion
         public RelayCommand ExecuteLogin { get; private set; }
         public MainWindowViewModel()
         {
@@ -34,6 +40,14 @@ namespace Employees
             user = new User();
             ExecuteLogin = new RelayCommand(checkUser);
         }
+
+        #region Converter to unsecure string
+        /// <summary>
+        /// Convering secure password from password box
+        /// to unsecure string
+        /// </summary>
+        /// <param name="securePassword"></param>
+        /// <returns></returns>
 
         private string convertToUnsecureString(SecureString securePassword)
         {
@@ -53,6 +67,7 @@ namespace Employees
                 Marshal.ZeroFreeGlobalAllocUnicode(unmanagedString);
             }
         }
+        #endregion
 
         private void checkUser(object parameter)
         {
