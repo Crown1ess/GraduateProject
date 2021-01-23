@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
 
 namespace Employees.ViewModels.Base
 {
-    internal abstract class BaseViewModel : INotifyPropertyChanged, IDisposable
+    internal abstract class BaseViewModel : ClosableViewModel, INotifyPropertyChanged, IDisposable
     {
         #region INotifyPropertyChanged
         /// <summary>

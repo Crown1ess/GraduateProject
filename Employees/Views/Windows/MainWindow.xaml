@@ -33,7 +33,9 @@
             </StackPanel>
 
             <Button VerticalAlignment="Bottom" HorizontalAlignment="Center" Content="Login" 
-                    CommandParameter="{Binding ElementName=UserPassword}" Command="{Binding ExecuteLogin}"/>
+                    CommandParameter="{Binding ElementName=UserPassword}" 
+                    Command="{Binding OpenManageEmployeeWindowCommand}"
+                    Cursor="Hand"/>
         </Grid>
     </Grid>
 </Window>

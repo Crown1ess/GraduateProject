@@ -7,6 +7,8 @@ using System.Security;
 using System.Runtime.InteropServices;
 using System.Windows;
 using Employees.ViewModels.Base;
+using Employees.Services.WindowService;
+using Employees.Views.Windows;
 
 namespace Employees.ViewModels
 {
@@ -15,6 +17,7 @@ namespace Employees.ViewModels
         private ConnectionString connectionString;
         private Main main;
         private User user;
+        private WindowService windowService;
 
         #region Phone Number
         /// <summary>
@@ -33,13 +36,14 @@ namespace Employees.ViewModels
         }
 
         #endregion
-        public RelayCommand ExecuteLogin { get; private set; }
+
+        #region constructor
         public MainWindowViewModel()
         {
-            connectionString = new ConnectionString();
-            user = new User();
-            ExecuteLogin = new RelayCommand(checkUser);
+            openManageEmployeeWindowCommand = new RelayCommand(DisplayWindow, checkUser);
         }
+        
+        #endregion
 
         #region Converter to unsecure string
         /// <summary>
@@ -69,9 +73,29 @@ namespace Employees.ViewModels
         }
         #endregion
 
-        private void checkUser(object parameter)
+        #region Open manage employee window
+        /// <summary>
+        /// To open window where we can manage and see more information about employee
+        /// </summary>
+        private readonly RelayCommand openManageEmployeeWindowCommand;
+        public RelayCommand OpenManageEmployeeWindowCommand => openManageEmployeeWindowCommand;
+
+        private void DisplayWindow(object parameter)
         {
-            bool check = false;
+            windowService = new WindowService();
+            windowService.ShowWindow<Main>(new EmployeeViewModel());
+            OnClosingRequest();
+        }
+
+        /// <summary>
+        /// Checking authorization data
+        /// </summary>
+        /// <param name="parameter"></param>
+        /// <returns></returns>
+        bool checkUser(object parameter)
+        {
+            user = new User();
+            connectionString = new ConnectionString();
 
             user.PhoneNumber = PhoneNumber;
 
@@ -88,20 +112,11 @@ namespace Employees.ViewModels
             {
                 if (reader.Read())
                 {
-                    check = true;
+                    return true;
                 }
+                else return false;
             }
-
-            if (check == true)
-            {
-                //VM не должен запускать окна, это противоречит mvvm
-                main = new Main();
-                System.Windows.Application.Current.MainWindow.Close();
-                main.Show();
-            }
-            else
-                MessageBox.Show("Your password or login is not correct :D " + user.Password, "Display");
-
         }
+        #endregion
     }
 }

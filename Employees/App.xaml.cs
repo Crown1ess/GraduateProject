@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Employees.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,16 @@ namespace Employees
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+
+            Window window = new MainWindow();
+
+            var viewModel = new MainWindowViewModel();
+            window.DataContext = viewModel;
+            window.Show();
+            viewModel.ClosingRequest += delegate { window.Close(); };
+        }
     }
 }
