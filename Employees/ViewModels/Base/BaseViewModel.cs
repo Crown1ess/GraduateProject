@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Employees.ViewModels.Base
 {
-    internal abstract class BaseViewModel : ClosableViewModel, INotifyPropertyChanged, IDisposable
+    public abstract class BaseViewModel : INotifyPropertyChanged, IDisposable
     {
         #region INotifyPropertyChanged
         /// <summary>

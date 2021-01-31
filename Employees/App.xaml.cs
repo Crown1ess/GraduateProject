@@ -1,10 +1,5 @@
-﻿using Employees.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Employees.Services;
+using Employees.ViewModels;
 using System.Windows;
 
 namespace Employees
@@ -14,16 +9,44 @@ namespace Employees
     /// </summary>
     public partial class App : Application
     {
+
+        #region fields
+
+        private MainWindow mainWindow { get; set; }
+        private Main employeeWindow { get; set; }
+        private LoginViewModel loginViewModel { get; set; }
+        private MainWindowViewModel mainWindowViewModel { get; set; }
+
+        #endregion
+
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
 
-            Window window = new MainWindow();
+            loginViewModel = new LoginViewModel();
+            mainWindowViewModel = new MainWindowViewModel(loginViewModel);
+            loginViewModel.OnAuthorize += LoginViewModelOnOnAuthorize;
+            mainWindow = new MainWindow() { DataContext = mainWindowViewModel };
+            mainWindow.Show();
 
-            var viewModel = new MainWindowViewModel();
-            window.DataContext = viewModel;
-            window.Show();
-            viewModel.ClosingRequest += delegate { window.Close(); };
         }
+
+        #region methods
+        /// <summary>
+        /// method checks user authorized
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void LoginViewModelOnOnAuthorize(object sender, LoginEventArgs e)
+        {
+            if (e.IsAuthorized)
+            {
+                employeeWindow = new Main() { DataContext = new EmployeeViewModel() };
+                employeeWindow.Show();
+                mainWindow.Close();
+                return;
+            }
+        }
+        #endregion
     }
 }

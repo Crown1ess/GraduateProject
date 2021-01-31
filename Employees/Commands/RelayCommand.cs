@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Input;
 
 namespace Employees
@@ -18,17 +16,39 @@ namespace Employees
 
         public RelayCommand(Action<object> execute, Func<object, bool> canExecute = null)
         {
-            this.execute = execute;
+            this.execute = execute ?? throw new ArgumentNullException(nameof(execute));
             this.canExecute = canExecute;
         }
-        public bool CanExecute(object parameter)
-        {
-            return this.canExecute == null || this.canExecute(parameter);
-        }
+        public bool CanExecute(object parameter) => true;
+        //{
+        //    return this.canExecute == null || this.canExecute(parameter);
+        //}
 
         public void Execute(object parameter)
         {
             this.execute(parameter);
         }
+    }
+
+    public class RelayCommand<T> : ICommand
+    {
+        private Action<T> execute;
+        private Func<object, bool> canExecute;
+
+        public event EventHandler CanExecuteChanged
+        {
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
+        }
+
+        public RelayCommand(Action<T> execute, Func<object, bool> canExecute)
+        {
+            this.execute = execute ?? throw new ArgumentNullException(nameof(execute));
+            this.canExecute = canExecute;
+        }
+
+        public bool CanExecute(object parameter) => true;
+
+        public void Execute(object parameter) => this.execute((T)parameter);
     }
 }

@@ -1,5 +1,4 @@
-﻿using Employees.ViewModels;
-using System.Windows;
+﻿using System.Windows;
 
 namespace Employees
 {
@@ -25,5 +24,9 @@ namespace Employees
             ButtonHideMenu.Visibility = Visibility.Collapsed;
         }
 
+        private void DraggableWindow(object sender, RoutedEventArgs e)
+        {
+            this.DragMove();
+        }
     }
 }

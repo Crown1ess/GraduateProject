@@ -3,39 +3,22 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:cmd ="clr-namespace:Employees.Commands"
-        xmlns:local="clr-namespace:Employees"
         xmlns:vm="clr-namespace:Employees.ViewModels"
+        xmlns:v="clr-namespace:Employees.Views"
         mc:Ignorable="d"
+        MouseLeftButtonDown="DraggableWindow"
         Height="500" Width="400" ResizeMode="NoResize" WindowStyle="None"
         WindowStartupLocation="CenterScreen">
 
-    <Window.DataContext>
-        <vm:MainWindowViewModel/>
-    </Window.DataContext>
+
     <Grid>
-        <Button VerticalAlignment="Top" Style="{StaticResource ExitButton}" Margin="363,4,7,0" Name="exit">
-            <Button.Command>
-                <cmd:CloseApplicationCommand/>
-            </Button.Command>
-            <Image Style="{StaticResource ExitImage}"/>
-        </Button>
-        <Grid Height="300">
-            <Label HorizontalAlignment="Center" Content="Login" FontFamily="Times New Roman" FontWeight="Bold"
-                   FontSize="40" Margin="0,-16,0,250"/>
-
-            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Label Content="+7" Margin="0" Style="{StaticResource NumberLabel}"/>
-                    <TextBox x:Name="PhoneNumber" Text="{Binding PhoneNumber}" Margin="0"/>
-                </StackPanel>
-                <PasswordBox x:Name="UserPassword" MaxLength="25" Width="250"/>
-            </StackPanel>
-
-            <Button VerticalAlignment="Bottom" HorizontalAlignment="Center" Content="Login" 
-                    CommandParameter="{Binding ElementName=UserPassword}" 
-                    Command="{Binding OpenManageEmployeeWindowCommand}"
-                    Cursor="Hand"/>
-        </Grid>
+        <Grid.Resources>
+            <DataTemplate DataType="{x:Type vm:LoginViewModel}">
+                <v:LoginView/>
+            </DataTemplate>
+        </Grid.Resources>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <ContentPresenter Content="{Binding CurrentContent}"/>
+        </StackPanel>
     </Grid>
 </Window>

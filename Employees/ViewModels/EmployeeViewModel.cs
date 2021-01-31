@@ -8,28 +8,14 @@ namespace Employees.ViewModels
 {
     internal class EmployeeViewModel : BaseViewModel
     {
+
+        #region fields
         private readonly ConnectionString connectionString;
 
         public ObservableCollection<Employee> Employees { get; private set; }
+        #endregion
 
-        //private RelayCommand logOut;
-        //public RelayCommand LogOut
-        //{
-        //    get
-        //    {
-        //        return logOut ??
-        //            (logOut = new RelayCommand(obj =>
-        //            {
-        //                DialogResult checkLogOut = System.Windows.Forms.MessageBox.Show("Are you want to exit from your account?", "Exit", MessageBoxButtons.YesNo);
-        //                if (checkLogOut == DialogResult.Yes)
-        //                {
-        //                    //VM не должен запускать окна, это противоречит mvvm
-        //                }
-        //            }));
-
-        //    }
-        //}
-
+        #region constructor
         public EmployeeViewModel()
         {
             connectionString = new ConnectionString();
@@ -37,10 +23,13 @@ namespace Employees.ViewModels
             Employees = new ObservableCollection<Employee>();
 
             getEmployees();
-            
-
         }
+        #endregion
 
+        #region getting employees from db
+        /// <summary>
+        /// getting employees from db then showing it
+        /// </summary>
         private void getEmployees()
         {
             string sqlInquiryString = $"SELECT * FROM employees";
@@ -64,5 +53,6 @@ namespace Employees.ViewModels
                 }
             }
         }
+        #endregion
     }
 }
