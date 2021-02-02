@@ -14,7 +14,6 @@ namespace Employees
 
         private MainWindow mainWindow { get; set; }
         private Main employeeWindow { get; set; }
-        private LoginViewModel loginViewModel { get; set; }
         private MainWindowViewModel mainWindowViewModel { get; set; }
 
         #endregion
@@ -23,9 +22,8 @@ namespace Employees
         {
             base.OnStartup(e);
 
-            loginViewModel = new LoginViewModel();
-            mainWindowViewModel = new MainWindowViewModel(loginViewModel);
-            loginViewModel.OnAuthorize += LoginViewModelOnOnAuthorize;
+            mainWindowViewModel = new MainWindowViewModel();  
+            mainWindowViewModel.OnAuthorize += LoginViewModelOnOnAuthorize;
             mainWindow = new MainWindow() { DataContext = mainWindowViewModel };
             mainWindow.Show();
 

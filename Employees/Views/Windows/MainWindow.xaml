@@ -3,8 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:vm="clr-namespace:Employees.ViewModels"
-        xmlns:v="clr-namespace:Employees.Views"
+        xmlns:cmd="clr-namespace:Employees.Commands"
         mc:Ignorable="d"
         MouseLeftButtonDown="DraggableWindow"
         Height="500" Width="400" ResizeMode="NoResize" WindowStyle="None"
@@ -12,6 +11,32 @@
 
 
     <Grid>
+        <Button VerticalAlignment="Top" Style="{StaticResource ExitButton}" Name="exit"
+                HorizontalAlignment="Right">
+            <Button.Command>
+                <cmd:CloseApplicationCommand/>
+            </Button.Command>
+            <Image Style="{StaticResource ExitImage}"/>
+        </Button>
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label HorizontalAlignment="Center" Content="Login" FontFamily="Times New Roman" FontWeight="Bold"
+                   FontSize="40" Margin="0,-16,0,250"/>
+
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Label Content="+7" Margin="0" Style="{StaticResource NumberLabel}"/>
+                    <TextBox Text="{Binding PhoneNumber}" Margin="0"/>
+                </StackPanel>
+                <PasswordBox x:Name="UserPassword" MaxLength="25" Width="250"/>
+            </StackPanel>
+
+            <Button VerticalAlignment="Bottom" HorizontalAlignment="Center" Content="Login" 
+                    CommandParameter="{Binding ElementName=UserPassword}" 
+                    Command="{Binding OpenEmployeeWindowCommand}"
+                    Cursor="Hand"/>
+        </Grid>
+    </Grid>
+    <!--<Grid>
         <Grid.Resources>
             <DataTemplate DataType="{x:Type vm:LoginViewModel}">
                 <v:LoginView/>
@@ -20,5 +45,5 @@
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <ContentPresenter Content="{Binding CurrentContent}"/>
         </StackPanel>
-    </Grid>
+    </Grid>-->
 </Window>

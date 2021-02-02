@@ -8,8 +8,18 @@ namespace Employees.ViewModels
 {
     public class EmployeeListViewModel : BaseViewModel
     {
+        #region fields
+
         private readonly ConnectionString connectionString;
         public ObservableCollection<Employee> Employees { get; private set; }
+        #endregion
+
+        #region commands
+        private readonly RelayCommand logOut;
+        public RelayCommand LogOut => logOut;
+        #endregion
+
+        #region constructor
 
         public EmployeeListViewModel()
         {
@@ -18,8 +28,9 @@ namespace Employees.ViewModels
 
             getEmployees();
         }
+        #endregion
 
-        #region getting employees from db
+        #region methods
         /// <summary>
         /// getting employees from db then showing it
         /// </summary>
