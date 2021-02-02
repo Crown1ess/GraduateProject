@@ -1,29 +1,15 @@
-﻿<Window x:Class="Employees.Main"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:cmd="clr-namespace:Employees.Commands"  
-        xmlns:vm="clr-namespace:Employees.ViewModels"
-        xmlns:v="clr-namespace:Employees.Views"
-        mc:Ignorable="d"
-        MouseLeftButtonDown="DraggableWindow"
-        Title="Main" Height="500" Width="440" WindowStartupLocation="CenterScreen"
-            WindowStyle="None" ResizeMode="NoResize">
-
-    <Grid>
-        <Grid.Resources>
-            <DataTemplate DataType="{x:Type vm:EmployeeListViewModel}">
-                <v:EmployeeListView/>
-            </DataTemplate>
-            
-        </Grid.Resources>
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <ContentPresenter Content="{Binding CurrentContent}"/>
-        </StackPanel>
-    </Grid>
-
-    <!--<Window.Resources>
+﻿<UserControl x:Class="Employees.Views.EmployeeListView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Employees.Views"
+             xmlns:cmd="clr-namespace:Employees.Commands"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="440">
+    
+    
+    <UserControl.Resources>
         <Storyboard x:Key="MenuOpen">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Opacity)"
                                            Storyboard.TargetName="GridMenu">
@@ -38,16 +24,16 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
-    </Window.Resources>
+    </UserControl.Resources>
 
-    <Window.Triggers>
+    <UserControl.Triggers>
         <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonShowMenu">
             <BeginStoryboard Storyboard="{StaticResource MenuOpen}"/>
         </EventTrigger>
         <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonHideMenu">
             <BeginStoryboard Storyboard="{StaticResource MenuClose}"/>
         </EventTrigger>
-    </Window.Triggers>
+    </UserControl.Triggers>
 
     <Grid Background="#BCD2EE">
         <Button VerticalAlignment="Bottom" Style="{StaticResource ExitButton}" Margin="403,0,7,466" Name="exit">
@@ -62,7 +48,7 @@
                  VirtualizingPanel.IsVirtualizing="True"
                  VirtualizingPanel.VirtualizationMode="Recycling"
                  VirtualizingPanel.IsContainerVirtualizable="True">
-            
+
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <VirtualizingStackPanel/>
@@ -115,19 +101,18 @@
                 <Image Source="pack://application:,,,/Services/images/Profile.png"/>
             </Button>
         </Grid>
-        
+
         <Button Name="ButtonShowMenu" Height="40" Width="40" Background="{x:Null}" VerticalAlignment="Top"
                 Cursor="Hand" Style="{StaticResource CircleButton}" HorizontalAlignment="Left"
                 BorderBrush="{x:Null}" Click="ButtonShowMenu_Click">
             <Image Source="pack://application:,,,/Services/images/menu.png"/>
         </Button>
-        
+
         <Button x:Name="ButtonHideMenu" Height="50" Width="50" VerticalAlignment="Top" HorizontalAlignment="Left"
                 Background="{x:Null}" Cursor="Hand" Style="{StaticResource CircleButton}"
                 BorderBrush="{x:Null}" Click="ButtonHideMenu_Click" Visibility="Collapsed">
             <Image Source="pack://application:,,,/Services/images/menu.png" Height="auto" Width="auto"/>
         </Button>
 
-    </Grid>-->
-
-</Window>
+    </Grid>
+</UserControl>

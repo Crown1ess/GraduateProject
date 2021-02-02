@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
 C:\Users\davae\source\repos\Employees\Employees\App.xaml
-5-1538648566
+6233792166
 
-12-761583838
+14-334668625
 196-1069981330
-Services\Style.xaml;Views\LoginView.xaml;Views\Windows\Main.xaml;Views\Windows\MainWindow.xaml;Views\Windows\ManageEmployeeWindow.xaml;
+Services\Style.xaml;Views\EmployeeListView.xaml;Views\LoginView.xaml;Views\Windows\Main.xaml;Views\Windows\MainWindow.xaml;Views\Windows\ManageEmployeeWindow.xaml;
 
 False
 

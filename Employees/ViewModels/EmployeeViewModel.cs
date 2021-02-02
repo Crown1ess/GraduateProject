@@ -1,58 +1,36 @@
-﻿using Models;
-using DataBase;
-using MySqlConnector;
-using System.Collections.ObjectModel;
-using Employees.ViewModels.Base;
+﻿using Employees.ViewModels.Base;
 
 namespace Employees.ViewModels
 {
     internal class EmployeeViewModel : BaseViewModel
     {
-
         #region fields
-        private readonly ConnectionString connectionString;
 
-        public ObservableCollection<Employee> Employees { get; private set; }
+        private EmployeeListViewModel employeeListViewModel;
+        #endregion
+
+        #region properties
+        
+        private BaseViewModel currentContent;
+        public BaseViewModel CurrentContent
+        {
+            get => currentContent;
+            set
+            {
+                currentContent = value;
+                OnPropertyChanged("CurrentContent");
+            }
+        }
+
         #endregion
 
         #region constructor
         public EmployeeViewModel()
         {
-            connectionString = new ConnectionString();
-
-            Employees = new ObservableCollection<Employee>();
-
-            getEmployees();
+            employeeListViewModel = new EmployeeListViewModel();
+            currentContent = employeeListViewModel;
         }
         #endregion
 
-        #region getting employees from db
-        /// <summary>
-        /// getting employees from db then showing it
-        /// </summary>
-        private void getEmployees()
-        {
-            string sqlInquiryString = $"SELECT * FROM employees";
-            using var connection = new MySqlConnection(connectionString.StringOfConnection);
-            connection.Open();
-
-            MySqlCommand command = new MySqlCommand(sqlInquiryString, connection);
-
-            using(MySqlDataReader reader = command.ExecuteReader())
-            {
-                while(reader.Read())
-                {
-                    Employees.Add(new Employee
-                    {
-                        LastName = reader["first_name"].ToString(),
-                        FirstName = reader["last_name"].ToString(),
-                        Patronymic = reader["patronymic"].ToString(),
-                        PhoneNumber = reader["phone_number"].ToString(),
-                        PassportData = reader["passport_data"].ToString()
-                    });
-                }
-            }
-        }
-        #endregion
     }
 }

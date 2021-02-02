@@ -32,3 +32,5 @@ C:\Users\davae\source\repos\Employees\Employees\obj\Debug\netcoreapp3.1\Views\Wi
 C:\Users\davae\source\repos\Employees\Employees\obj\Debug\netcoreapp3.1\Views\Windows\ManageEmployeeWindow.baml
 C:\Users\davae\source\repos\Employees\Employees\obj\Debug\netcoreapp3.1\Views\LoginView.g.cs
 C:\Users\davae\source\repos\Employees\Employees\obj\Debug\netcoreapp3.1\Views\LoginView.baml
+C:\Users\davae\source\repos\Employees\Employees\obj\Debug\netcoreapp3.1\Views\EmployeeListView.g.cs
+C:\Users\davae\source\repos\Employees\Employees\obj\Debug\netcoreapp3.1\Views\EmployeeListView.baml

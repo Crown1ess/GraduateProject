@@ -1,9 +1,4 @@
-﻿using System;
-using Models;
-using DataBase;
-using MySqlConnector;
-using System.Windows.Controls;
-using Employees.ViewModels.Base;
+﻿using Employees.ViewModels.Base;
 
 namespace Employees.ViewModels
 {
