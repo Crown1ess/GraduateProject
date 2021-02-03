@@ -11,7 +11,7 @@ namespace Employees.ViewModels
         #region fields
 
         private readonly ConnectionString connectionString;
-        public ObservableCollection<Employee> Employees { get; private set; }
+        public ObservableCollection<Employee> Employees;
         #endregion
 
         #region commands

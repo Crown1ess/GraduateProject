@@ -12,9 +12,9 @@ namespace Employees
 
         #region fields
 
-        private MainWindow mainWindow { get; set; }
-        private Main employeeWindow { get; set; }
-        private MainWindowViewModel mainWindowViewModel { get; set; }
+        private MainWindow mainWindow;
+        private Main employeeWindow;
+        private MainWindowViewModel mainWindowViewModel;
 
         #endregion
 
