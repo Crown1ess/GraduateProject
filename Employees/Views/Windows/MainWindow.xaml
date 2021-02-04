@@ -9,7 +9,6 @@
         Height="500" Width="400" ResizeMode="NoResize" WindowStyle="None"
         WindowStartupLocation="CenterScreen">
 
-
     <Grid>
         <Button VerticalAlignment="Top" Style="{StaticResource ExitButton}" Name="exit"
                 HorizontalAlignment="Right">
@@ -36,14 +35,4 @@
                     Cursor="Hand"/>
         </Grid>
     </Grid>
-    <!--<Grid>
-        <Grid.Resources>
-            <DataTemplate DataType="{x:Type vm:LoginViewModel}">
-                <v:LoginView/>
-            </DataTemplate>
-        </Grid.Resources>
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <ContentPresenter Content="{Binding CurrentContent}"/>
-        </StackPanel>
-    </Grid>-->
 </Window>

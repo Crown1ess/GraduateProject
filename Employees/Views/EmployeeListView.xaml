@@ -3,45 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Employees.Views"
-             xmlns:cmd="clr-namespace:Employees.Commands"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="440">
     
-    
-    <UserControl.Resources>
-        <Storyboard x:Key="MenuOpen">
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Opacity)"
-                                           Storyboard.TargetName="GridMenu">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0.5"/>
-            </DoubleAnimationUsingKeyFrames>
-        </Storyboard>
-        <Storyboard x:Key="MenuClose">
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Opacity)"
-                                            Storyboard.TargetName="GridMenu">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0.5"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
-            </DoubleAnimationUsingKeyFrames>
-        </Storyboard>
-    </UserControl.Resources>
-
-    <UserControl.Triggers>
-        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonShowMenu">
-            <BeginStoryboard Storyboard="{StaticResource MenuOpen}"/>
-        </EventTrigger>
-        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonHideMenu">
-            <BeginStoryboard Storyboard="{StaticResource MenuClose}"/>
-        </EventTrigger>
-    </UserControl.Triggers>
-
-    <Grid Background="#BCD2EE">
-        <Button VerticalAlignment="Bottom" Style="{StaticResource ExitButton}" Margin="403,0,7,466" Name="exit">
-            <Button.Command>
-                <cmd:CloseApplicationCommand/>
-            </Button.Command>
-            <Image Style="{StaticResource ExitImage}"/>
-        </Button>
+    <Grid>
+        
         <ListBox Name="lstEmployees" Margin="5" ItemsSource="{Binding Employees}" HorizontalContentAlignment="Center"
                  VerticalAlignment="Bottom" BorderThickness="0" Cursor="Hand" Background="Transparent"
                  ItemContainerStyle="{StaticResource EmployeeListBoxItems}" 
@@ -88,31 +54,7 @@
             </ListBox.ItemTemplate>
 
         </ListBox>
-        <Grid x:Name="GridMenu" Height="150" Width="150" Margin="-50,-55,340,405" Opacity="0">
-            <Ellipse Height="150" Width="150" Fill="#dc143c"/>
-            <Button x:Name="Settings" Style="{StaticResource CircleButton}" Height="25" Width="25" Cursor="Hand" Margin="96,104,28,20">
-                <Image Source="pack://application:,,,/Services/images/gear.png"/>
-            </Button>
-            <Button x:Name="LogOut" Style="{StaticResource CircleButton}" Height="25" Width="25" Cursor="Hand" Margin="50,112,74,12"
-                    Command="{Binding LogOut}">
-                <Image Source="pack://application:,,,/Services/images/logout.png"/>
-            </Button>
-            <Button x:Name="Profile" Style="{StaticResource CircleButton}" Height="25" Width="25" Cursor="Hand" Margin="116,58,8,66">
-                <Image Source="pack://application:,,,/Services/images/Profile.png"/>
-            </Button>
-        </Grid>
-
-        <Button Name="ButtonShowMenu" Height="40" Width="40" Background="{x:Null}" VerticalAlignment="Top"
-                Cursor="Hand" Style="{StaticResource CircleButton}" HorizontalAlignment="Left"
-                BorderBrush="{x:Null}" Click="ButtonShowMenu_Click">
-            <Image Source="pack://application:,,,/Services/images/menu.png"/>
-        </Button>
-
-        <Button x:Name="ButtonHideMenu" Height="50" Width="50" VerticalAlignment="Top" HorizontalAlignment="Left"
-                Background="{x:Null}" Cursor="Hand" Style="{StaticResource CircleButton}"
-                BorderBrush="{x:Null}" Click="ButtonHideMenu_Click" Visibility="Collapsed">
-            <Image Source="pack://application:,,,/Services/images/menu.png" Height="auto" Width="auto"/>
-        </Button>
+        
 
     </Grid>
 </UserControl>

@@ -10,15 +10,21 @@
     <Compile Update="Views\EmployeeListView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\ManageEmployeeView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Windows\Main.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Windows\ManageEmployeeWindow.xaml.cs">
+    <Compile Update="Views\Windows\EmployeeInformationWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Views\EmployeeListView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ManageEmployeeView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Windows\MainWindow.xaml">
@@ -30,7 +36,7 @@
     <Page Update="Services\Style.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Windows\ManageEmployeeWindow.xaml">
+    <Page Update="Views\Windows\EmployeeInformationWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

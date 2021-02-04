@@ -14,15 +14,13 @@ using System.Windows.Shapes;
 namespace Employees.Views
 {
     /// <summary>
-    /// Interaction logic for EmployeeListView.xaml
+    /// Interaction logic for ManageEmployeeView.xaml
     /// </summary>
-    public partial class EmployeeListView : UserControl
+    public partial class ManageEmployeeView : UserControl
     {
-        public EmployeeListView()
+        public ManageEmployeeView()
         {
             InitializeComponent();
         }
-
-        
     }
 }

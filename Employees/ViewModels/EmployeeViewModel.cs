@@ -4,10 +4,6 @@ namespace Employees.ViewModels
 {
     internal class EmployeeViewModel : BaseViewModel
     {
-        #region fields
-
-        private EmployeeListViewModel employeeListViewModel;
-        #endregion
 
         #region properties
         
@@ -24,11 +20,36 @@ namespace Employees.ViewModels
 
         #endregion
 
+        #region commands
+        private readonly RelayCommand jumpToManageEmployeeView;
+        public RelayCommand JumpToManageEmployeeView => jumpToManageEmployeeView;
+
+        private readonly RelayCommand jumpToMainView;
+        public RelayCommand JumpToMainView => jumpToMainView;
+        //{
+        //    get
+        //    {
+        //        return jumpToManageEmployeeView ??
+        //            (jumpToManageEmployeeView = new RelayCommand(p => changeViewMode(new ManageEmployeeViewModel())));
+        //    }
+        //}
+
+        #endregion
+
         #region constructor
         public EmployeeViewModel()
         {
-            employeeListViewModel = new EmployeeListViewModel();
-            currentContent = employeeListViewModel;
+            currentContent = new EmployeeListViewModel();
+
+            jumpToManageEmployeeView = new RelayCommand(p => changeViewMode(new ManageEmployeeViewModel()));
+            jumpToMainView = new RelayCommand(p => changeViewMode(new EmployeeListViewModel()));
+        }
+        #endregion
+
+        #region methods
+        private void changeViewMode(BaseViewModel viewModel)
+        {
+            CurrentContent = viewModel;
         }
         #endregion
 
