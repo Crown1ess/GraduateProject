@@ -1,14 +1,19 @@
 ﻿using Employees.ViewModels.Base;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Employees.ViewModels
 {
     public class ManageEmployeeViewModel : BaseViewModel
     {
-        #region constructor
+        #region commands
+        private readonly RelayCommand addNewEmployeeCommand;
+        public RelayCommand AddNewEmployeeCommand => addNewEmployeeCommand;
+        #endregion
 
+        #region constructor
+        public ManageEmployeeViewModel()
+        {
+            
+        }
         #endregion
     }
 }

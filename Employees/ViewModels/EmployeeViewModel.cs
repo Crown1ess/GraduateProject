@@ -26,13 +26,6 @@ namespace Employees.ViewModels
 
         private readonly RelayCommand jumpToMainView;
         public RelayCommand JumpToMainView => jumpToMainView;
-        //{
-        //    get
-        //    {
-        //        return jumpToManageEmployeeView ??
-        //            (jumpToManageEmployeeView = new RelayCommand(p => changeViewMode(new ManageEmployeeViewModel())));
-        //    }
-        //}
 
         #endregion
 

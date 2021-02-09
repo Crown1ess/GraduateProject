@@ -50,6 +50,12 @@
         </Style.Triggers>
     </Style>
 
+    <Style x:Key="RegistrationLabel" TargetType="Label">
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+    
     <Style x:Key="NumberLabel">
         <Setter Property="Control.Height" Value="50" />
         <Setter Property="Control.Width" Value="50" />

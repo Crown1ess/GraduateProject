@@ -48,8 +48,8 @@ namespace Employees.ViewModels
                 {
                     Employees.Add(new Employee
                     {
-                        LastName = reader["first_name"].ToString(),
-                        FirstName = reader["last_name"].ToString(),
+                        LastName = reader["last_name"].ToString(),
+                        FirstName = reader["first_name"].ToString(),
                         Patronymic = reader["patronymic"].ToString(),
                         PhoneNumber = reader["phone_number"].ToString(),
                         PassportData = reader["passport_data"].ToString()

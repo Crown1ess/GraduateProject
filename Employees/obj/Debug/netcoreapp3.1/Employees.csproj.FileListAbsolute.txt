@@ -31,6 +31,6 @@ C:\Users\davae\source\repos\Employees\Employees\obj\Debug\netcoreapp3.1\Views\Wi
 C:\Users\davae\source\repos\Employees\Employees\obj\Debug\netcoreapp3.1\Views\EmployeeListView.g.cs
 C:\Users\davae\source\repos\Employees\Employees\obj\Debug\netcoreapp3.1\Views\EmployeeListView.baml
 C:\Users\davae\source\repos\Employees\Employees\obj\Debug\netcoreapp3.1\Views\ManageEmployeeView.g.cs
-C:\Users\davae\source\repos\Employees\Employees\obj\Debug\netcoreapp3.1\Views\Windows\EmployeeInformationWindow.g.cs
 C:\Users\davae\source\repos\Employees\Employees\obj\Debug\netcoreapp3.1\Views\ManageEmployeeView.baml
-C:\Users\davae\source\repos\Employees\Employees\obj\Debug\netcoreapp3.1\Views\Windows\EmployeeInformationWindow.baml
+C:\Users\davae\source\repos\Employees\Employees\obj\Debug\netcoreapp3.1\Views\Windows\AddEmployeeWindow.g.cs
+C:\Users\davae\source\repos\Employees\Employees\obj\Debug\netcoreapp3.1\Views\Windows\AddEmployeeWindow.baml

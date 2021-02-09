@@ -15,9 +15,9 @@ namespace Employees.Views.Windows
     /// <summary>
     /// Interaction logic for ManageEmployeeWindow.xaml
     /// </summary>
-    public partial class ManageEmployeeWindow : Window
+    public partial class AddEmployeeWindow : Window
     {
-        public ManageEmployeeWindow()
+        public AddEmployeeWindow()
         {
             InitializeComponent();
         }

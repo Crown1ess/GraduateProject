@@ -18,8 +18,8 @@
             <Image Style="{StaticResource ExitImage}"/>
         </Button>
         <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Label HorizontalAlignment="Center" Content="Login" FontFamily="Times New Roman" FontWeight="Bold"
-                   FontSize="40" Margin="0,-16,0,250"/>
+            <Label HorizontalAlignment="Center" Content="Авторизация" FontFamily="Times New Roman"
+                   FontWeight="Bold" FontSize="40" Margin="0,-16,0,250"/>
 
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
@@ -29,7 +29,7 @@
                 <PasswordBox x:Name="UserPassword" MaxLength="25" Width="250"/>
             </StackPanel>
 
-            <Button VerticalAlignment="Bottom" HorizontalAlignment="Center" Content="Login" 
+            <Button VerticalAlignment="Bottom" HorizontalAlignment="Center" Content="Войти" 
                     CommandParameter="{Binding ElementName=UserPassword}" 
                     Command="{Binding OpenEmployeeWindowCommand}"
                     Cursor="Hand"/>
