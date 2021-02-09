@@ -1,5 +1,7 @@
 ﻿using Employees.Services;
 using Employees.ViewModels;
+using Employees.Views.Windows;
+using System;
 using System.Windows;
 
 namespace Employees
@@ -15,6 +17,7 @@ namespace Employees
         private MainWindow mainWindow;
         private Main employeeWindow;
         private MainWindowViewModel mainWindowViewModel;
+        private AddEmployeeWindow window;
 
         #endregion
 

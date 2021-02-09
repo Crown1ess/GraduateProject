@@ -5,80 +5,95 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:cmd="clr-namespace:Employees.Commands"
         mc:Ignorable="d"
-        Title="ManageEmployeeWindow" Height="650" Width="550"
+        Title="ManageEmployeeWindow" Height="500" Width="500"
         WindowStartupLocation="CenterScreen"
-        WindowStyle="None">
-    
-    <Grid>
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        MouseLeftButtonDown="DraggableWindow">
+
+    <Grid >
         <Button Style="{StaticResource ExitButton}" HorizontalAlignment="Right"
                 VerticalAlignment="Top" Name="exit">
             <Button.Command>
                 <cmd:CloseApplicationCommand/>
             </Button.Command>
-            
+
             <Image Style="{StaticResource ExitImage}"/>
         </Button>
         <Label Content="Регистрация сотрудника" HorizontalAlignment="Center"
-               FontFamily="Times New Roman" FontWeight="Bold" FontSize="40"/>
-        <StackPanel HorizontalAlignment="Center" Height="580"
-                    VerticalAlignment="Bottom" Width="500">
+               FontFamily="Times New Roman" FontWeight="Bold" FontSize="25"/>
+        <StackPanel HorizontalAlignment="Center" Height="528"
+                    VerticalAlignment="Top" Width="500" Margin="0,40,0,0">
             <StackPanel Orientation="Horizontal">
                 <Label Content="Фамилия" Style="{StaticResource RegistrationLabel}"
                        Margin="20 0 90 0"/>
                 <Label Content="Имя" Style="{StaticResource RegistrationLabel}"
-                       Margin="70 0 0 0"/>
+                       Margin="40 0 100 0"/>
+                <Label Content="ИНН" Style="{StaticResource RegistrationLabel}"
+                       Margin="20 0 50 0"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBox Text="{Binding LastName}" Height="40" Width="250"/>
-                <TextBox Text="{Binding FirstName}" Height="40"/>
+                <TextBox Text="{Binding LastName}" Style="{StaticResource RegistrationTextBox}"
+                         Height="40" Width="180"/>
+                <TextBox Text="{Binding FirstName}" Style="{StaticResource RegistrationTextBox}"
+                         Height="40" Width="150"/>
+                <TextBox Text="{Binding INN}" Style="{StaticResource RegistrationTextBox}"
+                         Height="40" Width="100"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Отчество" Style="{StaticResource RegistrationLabel}"
                        Margin="20 0 90 0"/>
                 <Label Content="Номер телефона" Style="{StaticResource RegistrationLabel}"
-                       Margin="75 0 0 0"/>
+                       Margin="35 0 0 0"/>
+                <Label Content="СНИЛС" Style="{StaticResource RegistrationLabel}"
+                       Margin="35 0 0 0"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBox Text="{Binding SecondName}" Height="40" Width="250"/>
-                <TextBox Text="{Binding SecondName}" Height="40"/>
+                <TextBox Text="{Binding SecondName}" Style="{StaticResource RegistrationTextBox}"
+                         Height="40" Width="180" Margin="10 0 25 0"/>
+                <Label Content="+7" Margin="0" Style="{StaticResource NumberLabel}"
+                       Height="40" Width="30" FontSize="15"/>
+                <TextBox Text="{Binding SecondName}" Style="{StaticResource RegistrationTextBox}"
+                         Height="40" Width="110" Margin="2 0 7 0"/>
+                <TextBox Text="{Binding SNILS}" Style="{StaticResource RegistrationTextBox}"
+                         Height="40" Width="105"/>
             </StackPanel>
-            <StackPanel>
+            <StackPanel Orientation="Horizontal">
                 <Label Content="Адрес регистрации" Style="{StaticResource RegistrationLabel}"
-                       Margin="20 0 0 0"/>
-                <TextBox Text="{Binding Address}" Height="40" Width="470"
+                       Margin="20 0 120 0"/>
+                <Label Content="Паспорт" Style="{StaticResource RegistrationLabel}"
+                       Margin="100 0 0 0"/>
+                
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBox Text="{Binding Address}" Style="{StaticResource RegistrationTextBox}"
+                         Height="40" Width="350"
                          HorizontalAlignment="Left"/>
+                <TextBox Text="{Binding Passport}" Style="{StaticResource RegistrationTextBox}"
+                         Height="40" Width="105" Margin="5 0 0 0"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Профессия" Style="{StaticResource RegistrationLabel}" 
-                       Margin="20 0 0 0"/>
+                       Margin="20 0 20 0"/>
                 <Label Content="Фотография" Style="{StaticResource RegistrationLabel}" 
-                       Margin="60 0 0 0"/>
+                       Margin="120 0 0 0"/>
                 <Label Content="Дата Рождения" Style="{StaticResource RegistrationLabel}" 
                        Margin="10 0 40 0"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBox Text="{Binding Profession}" Height="40" Width="240"/>
-                <Button Content="...." Height="40" Width="70"/>
-                <TextBox Text="{Binding BirthDate}" Height="40" Width="145"/>
+                <TextBox Text="{Binding Profession}" Style="{StaticResource RegistrationTextBox}"
+                         Height="40" Width="250"/>
+                <Button Content="...." Height="40" Width="60" Margin="20 0 30 0"
+                        Cursor="Hand"/>
+                <DatePicker Text="{Binding BirthDate}" Height="40" Width="100"
+                                Margin="0 0 0 0" FontSize="15" Cursor="Hand"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="ИНН" Style="{StaticResource RegistrationLabel}"
-                       Margin="20 0 70 0"/>
-                <Label Content="СНИЛС" Style="{StaticResource RegistrationLabel}"
-                       Margin="30 0 70 0"/>
-                <Label Content="Паспорт" Style="{StaticResource RegistrationLabel}"
-                       Margin="20 0 0 0"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBox Text="{Binding INN}" Height="40" Width="145"/>
-                <TextBox Text="{Binding SNILS}" Height="40" Width="145"/>
-                <TextBox Text="{Binding Passport}" Height="40" Width="145"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
-                <Button Content="Регистрация" Height="60" Width="200"
-                        Margin="90 0 40 0"/>
-                <Button Content="Отмена" Width="110" Background="White"
-                        Foreground="Black"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 20 0 0">
+                <Button Content="Регистрация" Height="50" Width="100"
+                        Margin="90 0 20 0" Cursor="Hand" FontSize="14"/>
+                <Button Content="Отмена" Width="60" Background="White"
+                        Foreground="Black" Cursor="Hand" Height="40"
+                        FontSize="15"/>
             </StackPanel>
         </StackPanel>
 

@@ -16,6 +16,19 @@
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Padding" Value="10"/>
     </Style>
+    
+    <Style x:Key="RegistrationTextBox" TargetType="TextBox">
+        <Setter Property="Height" Value="50" />
+        <Setter Property="Width" Value="200" />
+        <Setter Property="Background" Value="#264653"/>
+        <Setter Property="Margin" Value="10" />
+        <Setter Property="FontFamily" Value="Times New Roman" />
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="Foreground" Value="#e9c46a" />
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="10"/>
+    </Style>
 
     <Style x:Key="CircleButton" TargetType="Button">
         <Setter Property="Control.SnapsToDevicePixels" Value="True"/>
@@ -51,7 +64,7 @@
     </Style>
 
     <Style x:Key="RegistrationLabel" TargetType="Label">
-        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontSize" Value="15"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="FontWeight" Value="Bold"/>
     </Style>

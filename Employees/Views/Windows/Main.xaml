@@ -66,11 +66,11 @@
             <Ellipse Height="150" Width="150" Fill="#dc143c" Margin="-30,8,30,-8"/>
 
             <Button x:Name="Settings" Style="{StaticResource CircleButton}" Height="25" Width="25" 
-                    Cursor="Hand" Margin="70,104,54,20" Command="{Binding JumpToManageEmployeeView}">
+                    Cursor="Hand" Margin="76,110,48,14" Command="{Binding JumpToManageEmployeeView}">
                 <Image Source="pack://application:,,,/Services/images/gear.png"/>
             </Button>
             <Button x:Name="LogOut" Style="{StaticResource CircleButton}" Height="25" Width="25" 
-                    Cursor="Hand" Margin="34,122,90,2"
+                    Cursor="Hand" Margin="34,126,90,-2"
                     Command="{Binding LogOut}">
                 <Image Source="pack://application:,,,/Services/images/logout.png"/>
             </Button>
