@@ -2,7 +2,6 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Employees">
 
-
     <Style TargetType="TextBox">
         <Setter Property="Height" Value="50" />
         <Setter Property="Width" Value="200" />
@@ -18,7 +17,7 @@
     </Style>
     
     <Style x:Key="RegistrationTextBox" TargetType="TextBox">
-        <Setter Property="Height" Value="50" />
+        <Setter Property="Height" Value="40" />
         <Setter Property="Width" Value="200" />
         <Setter Property="Background" Value="#264653"/>
         <Setter Property="Margin" Value="10" />
@@ -134,4 +133,6 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+    
 </ResourceDictionary>

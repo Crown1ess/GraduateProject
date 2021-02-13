@@ -5,8 +5,6 @@ namespace Employees.ViewModels
 {
     public class ManageEmployeeViewModel : BaseViewModel
     {
-        public event EventHandler OnAdd;
-
         #region commands
         #endregion
 

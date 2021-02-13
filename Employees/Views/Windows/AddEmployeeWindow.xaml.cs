@@ -16,5 +16,14 @@ namespace Employees.Views.Windows
         {
             this.DragMove();
         }
+
+        private void CloseWindow_Click(object sender, RoutedEventArgs e)
+        {
+            var dialogResult =  MessageBox.Show(messageBoxText: "Вы действительно хотите закрыть окно регистрации,", "Alert", MessageBoxButton.YesNo);
+            if(dialogResult == MessageBoxResult.Yes)
+            {
+                this.Close();
+            }
+        }
     }
 }
