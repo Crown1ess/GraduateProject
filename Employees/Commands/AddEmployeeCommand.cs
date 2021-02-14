@@ -1,4 +1,5 @@
-﻿using Employees.Views.Windows;
+﻿using Employees.ViewModels;
+using Employees.Views.Windows;
 using System;
 using System.Windows;
 using System.Windows.Input;
@@ -20,6 +21,7 @@ namespace Employees.Commands
         {
             var window = new AddEmployeeWindow
             {
+                DataContext = new AddEmployeeWindowViewModel(),
                 Owner = Application.Current.MainWindow
             };
 

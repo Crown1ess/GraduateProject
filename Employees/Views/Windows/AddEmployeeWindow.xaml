@@ -99,7 +99,7 @@
                 <TextBox Text="{Binding Profession}" Style="{StaticResource RegistrationTextBox}"
                           Width="250"/>
                 <Button Content="...." Height="40" Width="60" Margin="20 0 30 0"
-                        Cursor="Hand"/>
+                        Cursor="Hand" Command="{Binding OpenFileCommand}"/>
                 <DatePicker Text="{Binding BirthDate}" Height="40" Width="100"
                                 Margin="0 0 0 0" FontSize="15" Cursor="Hand"/>
             </StackPanel>
