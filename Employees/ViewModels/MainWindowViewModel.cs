@@ -96,11 +96,16 @@ namespace Employees.ViewModels
             var passwordContainer = (parameter as PasswordBox).SecurePassword;
             password = passwordContainer != null ? convertToUnsecureString(passwordContainer) : password = null;
 
-            string sqlInquiryString = $"SELECT * FROM users WHERE phone_number = '{PhoneNumber}' AND password = '{password}'";
+            string sqlInquiryString = "authorization";
+
             using var connection = new MySqlConnection(connectionString.StringOfConnection);
             connection.Open();
 
             MySqlCommand command = new MySqlCommand(sqlInquiryString, connection);
+            command.CommandType = System.Data.CommandType.StoredProcedure;
+            command.Parameters.Add("@login", MySqlDbType.VarChar).Value = PhoneNumber;
+            command.Parameters.Add("@user_password", MySqlDbType.VarChar).Value = password;
+            
             using (MySqlDataReader reader = command.ExecuteReader())
             {
                 if (reader.Read())

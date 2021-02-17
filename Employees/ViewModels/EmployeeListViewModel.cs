@@ -52,7 +52,7 @@ namespace Employees.ViewModels
                         FirstName = reader["first_name"].ToString(),
                         Patronymic = reader["patronymic"].ToString(),
                         PhoneNumber = reader["phone_number"].ToString(),
-                        PassportData = reader["passport_data"].ToString()
+                        //PassportData = reader["passport_data"].ToString()
                     });
                 }
             }
