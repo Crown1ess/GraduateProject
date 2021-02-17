@@ -33,7 +33,7 @@
                                 </Grid.ColumnDefinitions>
                                 <StackPanel Orientation="Horizontal">
                                     <Image Grid.RowSpan="2" Width="100" Height="75" Margin="6" 
-                                       Source="pack://application:,,,/images/Profile.png"/>
+                                       Source="{Binding ImagePath}"/>
                                     <StackPanel Orientation="Vertical">
                                         <StackPanel Orientation="Horizontal">
                                             <Label FontWeight="Medium" Content="{Binding LastName}"/>

@@ -15,8 +15,6 @@ namespace Employees.ViewModels
         #endregion
 
         #region commands
-        private readonly RelayCommand logOut;
-        public RelayCommand LogOut => logOut;
         #endregion
 
         #region constructor
@@ -36,26 +34,31 @@ namespace Employees.ViewModels
         /// </summary>
         private void getEmployees()
         {
-            string sqlInquiryString = $"SELECT * FROM employees";
-            using var connection = new MySqlConnection(connectionString.StringOfConnection);
-            connection.Open();
-
-            MySqlCommand command = new MySqlCommand(sqlInquiryString, connection);
-
-            using (MySqlDataReader reader = command.ExecuteReader())
+            string sqlInquiryString = "get_employees_main_information";
+            using (MySqlConnection connection = new MySqlConnection(connectionString.StringOfConnection))
             {
-                while (reader.Read())
+                connection.Open();
+
+                MySqlCommand command = new MySqlCommand(sqlInquiryString, connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                using (MySqlDataReader reader = command.ExecuteReader())
                 {
-                    Employees.Add(new Employee
+                    while (reader.Read())
                     {
-                        LastName = reader["last_name"].ToString(),
-                        FirstName = reader["first_name"].ToString(),
-                        Patronymic = reader["patronymic"].ToString(),
-                        PhoneNumber = reader["phone_number"].ToString(),
-                        //PassportData = reader["passport_data"].ToString()
-                    });
+                        Employees.Add(new Employee
+                        {
+                            LastName = reader["last_name"].ToString(),
+                            FirstName = reader["first_name"].ToString(),
+                            Patronymic = reader["patronymic"].ToString(),
+                            PhoneNumber = reader["phone_number"].ToString(),
+                            PassportData = reader["passport"].ToString(),
+                            ImagePath = reader["image_path"].ToString()
+                        });
+                    }
                 }
             }
+            
         }
         #endregion
     }

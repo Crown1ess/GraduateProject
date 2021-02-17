@@ -44,6 +44,11 @@ namespace Models
             set => phoneNumber = value;
         }
 
-
+        private string imagePath;
+        public string ImagePath
+        {
+            get { return imagePath; }
+            set => imagePath = value;
+        }
     }
 }

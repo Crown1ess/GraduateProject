@@ -98,26 +98,27 @@ namespace Employees.ViewModels
 
             string sqlInquiryString = "authorization";
 
-            using var connection = new MySqlConnection(connectionString.StringOfConnection);
-            connection.Open();
-
-            MySqlCommand command = new MySqlCommand(sqlInquiryString, connection);
-            command.CommandType = System.Data.CommandType.StoredProcedure;
-            command.Parameters.Add("@login", MySqlDbType.VarChar).Value = PhoneNumber;
-            command.Parameters.Add("@user_password", MySqlDbType.VarChar).Value = password;
-            
-            using (MySqlDataReader reader = command.ExecuteReader())
+            using (MySqlConnection connection = new MySqlConnection(connectionString.StringOfConnection))
             {
-                if (reader.Read())
-                {
-                    OnAuthorize?.Invoke(this, new LoginEventArgs(PhoneNumber, true));
-                }
-                else
-                {
-                    OnAuthorize?.Invoke(this, new LoginEventArgs(PhoneNumber, false));
-                }
-            }
+                connection.Open();
 
+                MySqlCommand command = new MySqlCommand(sqlInquiryString, connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.Parameters.Add("@login", MySqlDbType.VarChar).Value = PhoneNumber;
+                command.Parameters.Add("@user_password", MySqlDbType.VarChar).Value = password;
+
+                using (MySqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        OnAuthorize?.Invoke(this, new LoginEventArgs(PhoneNumber, true));
+                    }
+                    else
+                    {
+                        OnAuthorize?.Invoke(this, new LoginEventArgs(PhoneNumber, false));
+                    }
+                }
+            }             
         }
 
         #endregion
