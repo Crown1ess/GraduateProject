@@ -1,6 +1,11 @@
-﻿using Employees.Services.DialogService;
+﻿using DataBase;
+using Employees.Services;
+using Employees.Services.DialogService;
 using Employees.ViewModels.Base;
+using Models;
+using MySqlConnector;
 using System;
+using System.Collections.ObjectModel;
 using System.IO;
 
 namespace Employees.ViewModels
@@ -8,10 +13,13 @@ namespace Employees.ViewModels
     public class AddEmployeeWindowViewModel : BaseViewModel
     {
         #region fields
+        
         IDialogService dialogService;
         IFileService fileService;
         private string imagePath;
-
+        public event EventHandler<CheckEventArgs> OnCheckedDriveLicense;
+        private ConnectionString connectionString;
+        private string drivingLicense;
         #endregion
 
         #region properties
@@ -49,8 +57,8 @@ namespace Employees.ViewModels
             }
         }
 
-        private int _SNILS;
-        public int SNILS
+        private string _SNILS;
+        public string SNILS
         {
             get => _SNILS;
             set
@@ -60,8 +68,8 @@ namespace Employees.ViewModels
             }
         }
 
-        private int _INN;
-        public int INN
+        private string _INN;
+        public string INN
         {
             get => _INN;
             set
@@ -71,8 +79,8 @@ namespace Employees.ViewModels
             }
         }
 
-        private int phoneNumber;
-        public int PhoneNumber
+        private string phoneNumber;
+        public string PhoneNumber
         {
             get => phoneNumber;
             set
@@ -125,18 +133,18 @@ namespace Employees.ViewModels
                 OnPropertyChanged("GettingDate");
             }
         }
+        public ObservableCollection<string> Professions { get; private set; }
 
-        private string profession;
-        public string Professin 
+        private string selectedProfession;
+        public string SelectedProfession
         {
-            get => profession;
+            get => selectedProfession;
             set
             {
-                profession = value;
-                OnPropertyChanged("Profession");
+                selectedProfession = value;
+                OnPropertyChanged("SelectedProfession");
             }
         }
-
         private string birthDate;
         public string BirthDate
         {
@@ -147,7 +155,7 @@ namespace Employees.ViewModels
                 OnPropertyChanged("BirthDate");
             }
         }
-        //надо сделать float, потому что в string могут все что угодно вписать
+        //надо, наверно, сделать float, потому что в string могут все что угодно вписать
         private string workExperience;
         public string WorkExperience
         {
@@ -159,19 +167,192 @@ namespace Employees.ViewModels
             }
         }
 
+        private ObservableCollection<DrivingLicense> drivingLicenses;
+        public ObservableCollection<DrivingLicense> DrivingLicenses
+        {
+            get => drivingLicenses;
+            set
+            {
+                drivingLicenses = value;
+                OnPropertyChanged("DrivingLicense");
+            }
+        }
+        private ObservableCollection<string> maritalStatuses;
+        public ObservableCollection<string> MaritalStatuses
+        {
+            get => maritalStatuses;
+            set
+            {
+                maritalStatuses = value;
+                OnPropertyChanged("MaritalStatuses");
+            }
+        }
+
+        private string selectedMaritalStatus;
+        public string SelectedMaritalStatus
+        {
+            get => selectedMaritalStatus;
+            set
+            {
+                selectedMaritalStatus = value;
+                OnPropertyChanged("SelectedMaritalStatus");
+            }
+        }
+
         #endregion
 
         #region commands
         private readonly RelayCommand openFileCommand;
         public RelayCommand OpenFileCommand => openFileCommand;
+
+        private readonly RelayCommand radioButtonCommand;
+        public RelayCommand RadioButtonCommand => radioButtonCommand;
+
+        private readonly RelayCommand registrateCommand;
+        public RelayCommand RegistrateCommand => registrateCommand;
         #endregion
 
+        #region constructor
         public AddEmployeeWindowViewModel()
         {
-            
-            openFileCommand = new RelayCommand(c => openFile(), c => true); 
+
+            openFileCommand = new RelayCommand(c => openFile(), c => true);
+
+            setProfessions();
+
+            //-------must change 
+            MaritalStatuses = new ObservableCollection<string>();
+            addMaritalStatuses();
+
+            DrivingLicenses = new ObservableCollection<DrivingLicense>();
+
+            radioButtonCommand = new RelayCommand(radioButtonChosen, p => true);
+
+            registrateCommand = new RelayCommand(p => executeRegistration());
+        }
+        #endregion
+
+        #region methods
+        /// <summary>
+        /// add marital statuses to combobox for choice
+        /// </summary>
+        private void addMaritalStatuses()
+        {
+            if(maritalStatuses.Count < 1)
+            {
+                maritalStatuses.Add("Не замужем/Не женат");
+                maritalStatuses.Add("Разведена/Разведен");
+                maritalStatuses.Add("Замужем/Женат");
+                maritalStatuses.Add("Гражданский брак");
+            }
+        }
+    
+        /// <summary>
+        /// add options of driving licenses after chosen "I have driving license" and "I don't have"
+        /// </summary>
+        /// <param name="parameter"></param>
+        private void radioButtonChosen(object parameter)
+        {
+            if((string)parameter == "DoNotHaveLicense")
+            {
+                if(drivingLicenses.Count < 1)
+                {
+                    DrivingLicenses.Add(new DrivingLicense
+                    {
+                        Text = "Нет",
+                        IsSelected = false
+                    });
+                }
+                else if(drivingLicenses.Count > 1)
+                {
+                    drivingLicenses.Clear();
+
+                    drivingLicenses.Add(new DrivingLicense
+                    {
+                        Text = "Нет",
+                        IsSelected = false
+                    });
+                }
+                OnCheckedDriveLicense?.Invoke(this, new CheckEventArgs(true));
+            }
+            else if((string)parameter == "HaveLicense")
+            {
+                if (drivingLicenses.Count < 1)
+                {
+                    DrivingLicenses.Add(new DrivingLicense
+                    {
+                        Text = "B",
+                        IsSelected = false
+                    });
+                    DrivingLicenses.Add(new DrivingLicense
+                    {
+                        Text = "BE",
+                        IsSelected = false
+                    });
+                    DrivingLicenses.Add(new DrivingLicense
+                    {
+                        Text = "C",
+                        IsSelected = false
+                    });
+                    DrivingLicenses.Add(new DrivingLicense
+                    {
+                        Text = "CE",
+                        IsSelected = false
+                    });
+                    DrivingLicenses.Add(new DrivingLicense
+                    {
+                        Text = "D",
+                        IsSelected = false
+                    });
+                    DrivingLicenses.Add(new DrivingLicense
+                    {
+                        Text = "DE",
+                        IsSelected = false
+                    });
+                }
+                else if (drivingLicenses.Count == 1)
+                {
+                    drivingLicenses.Clear();
+
+                    DrivingLicenses.Add(new DrivingLicense
+                    {
+                        Text = "B",
+                        IsSelected = false
+                    });
+                    DrivingLicenses.Add(new DrivingLicense
+                    {
+                        Text = "BE",
+                        IsSelected = false
+                    });
+                    DrivingLicenses.Add(new DrivingLicense
+                    {
+                        Text = "C",
+                        IsSelected = false
+                    });
+                    DrivingLicenses.Add(new DrivingLicense
+                    {
+                        Text = "CE",
+                        IsSelected = false
+                    });
+                    DrivingLicenses.Add(new DrivingLicense
+                    {
+                        Text = "D",
+                        IsSelected = false
+                    });
+                    DrivingLicenses.Add(new DrivingLicense
+                    {
+                        Text = "DE",
+                        IsSelected = false
+                    });
+                }
+
+                OnCheckedDriveLicense?.Invoke(this, new CheckEventArgs(true));
+            }
         }
 
+        /// <summary>
+        /// get open file path for employees' image
+        /// </summary>
         private void openFile()
         {
             dialogService = new DefaultDialogService();
@@ -189,6 +370,64 @@ namespace Employees.ViewModels
             {
                 dialogService.ShowMessage(ex.Message);
             }
-        } 
+        }
+        private void getDrivingLicenses()
+        {
+            for(int i = 0; i < DrivingLicenses.Count; i++)
+            {
+                if(DrivingLicenses[i].IsSelected)
+                {
+                    drivingLicense += DrivingLicenses[i].Text;
+                }
+            }
+        }
+        private void setProfessions()
+        {
+            connectionString = new ConnectionString();
+
+            Professions = new ObservableCollection<string>();
+
+            string sqlInquiryString = "SELECT name FROM professions";
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString.StringOfConnection))
+            {
+                connection.Open();
+
+                using(MySqlCommand command = new MySqlCommand(sqlInquiryString,connection))
+                {
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while(reader.Read())
+                        {
+                            Professions.Add(reader["name"].ToString());
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// insert all data to database
+        /// </summary>
+        private void executeRegistration()
+        {
+            getDrivingLicenses();
+
+            connectionString = new ConnectionString();
+
+            string sqlInquiryString = $"INSERT INTO employees VALUES" +
+                $"({LastName}, {FirstName}, {SecondName}, {PhoneNumber};" +
+                                     $"INSERT INTO employees_detailed_information VALUES" +
+                $"({INN},{SNILS},{Address},{Passport}, {GettingPlace}, {GettingDate}, {SelectedMaritalStatus},{imagePath}, {BirthDate}, {WorkExperience}, {drivingLicense}" ;
+            
+            using(MySqlConnection connection = new MySqlConnection(connectionString.StringOfConnection))
+            {
+                connection.Open();
+
+                MySqlCommand command = new MySqlCommand(sqlInquiryString, connection);
+
+            }
+        }
+        #endregion
     }
 }

@@ -17,7 +17,8 @@ namespace Employees
         private MainWindow mainWindow;
         private Main employeeWindow;
         private MainWindowViewModel mainWindowViewModel;
-        private AddEmployeeWindow window;
+        private AddEmployeeWindow addEmployeeWindow;
+        private AddEmployeeWindowViewModel addEmployeeWindowViewModel;
 
         #endregion
 
@@ -25,10 +26,16 @@ namespace Employees
         {
             base.OnStartup(e);
 
+            addEmployeeWindowViewModel = new AddEmployeeWindowViewModel();
+            addEmployeeWindowViewModel.OnCheckedDriveLicense += EnableDrivingLicenseCombobox;
+
             mainWindowViewModel = new MainWindowViewModel();  
             mainWindowViewModel.OnAuthorize += LoginViewModelOnOnAuthorize;
             mainWindow = new MainWindow() { DataContext = mainWindowViewModel };
             mainWindow.Show();
+
+            
+            
 
         }
 
@@ -48,6 +55,18 @@ namespace Employees
                 return;
             }
         }
+        //проработать
+        private void EnableDrivingLicenseCombobox(object sender, CheckEventArgs e)
+        {
+            addEmployeeWindow = new AddEmployeeWindow();
+            if (e.IsChecked)
+            {
+                addEmployeeWindow.DrivingLicensesComboBox.IsEnabled = true;
+                MessageBox.Show("you fucked up, looser", "for looser");
+            }
+            MessageBox.Show("You are looser", "letter for looser");   
+        }
+
         #endregion
     }
 }

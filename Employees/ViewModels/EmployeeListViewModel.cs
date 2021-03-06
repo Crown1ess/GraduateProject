@@ -1,8 +1,11 @@
 ﻿using DataBase;
+using Employees.Services;
 using Employees.ViewModels.Base;
 using Models;
 using MySqlConnector;
+using System;
 using System.Collections.ObjectModel;
+using System.Windows;
 
 namespace Employees.ViewModels
 {
@@ -12,9 +15,27 @@ namespace Employees.ViewModels
 
         private readonly ConnectionString connectionString;
         public ObservableCollection<Employee> Employees { get; private set; }
+
+        public event EventHandler<CheckEmployeeSelected> OnOpenDetailedInformation;
+        #endregion
+
+        #region properties
+        private int selectedEmployee;
+        public int SelectedEmployee
+        {
+            get => selectedEmployee;
+            set
+            {
+                selectedEmployee = value;
+                OnPropertyChanged("SelectedEmployee");
+            }
+        }
         #endregion
 
         #region commands
+
+        private readonly RelayCommand openEmployeeDetailedInformation;
+        public RelayCommand OpenEmployeeDetailedInformation => openEmployeeDetailedInformation;
         #endregion
 
         #region constructor
@@ -22,13 +43,30 @@ namespace Employees.ViewModels
         public EmployeeListViewModel()
         {
             connectionString = new ConnectionString();
+
             Employees = new ObservableCollection<Employee>();
 
             getEmployees();
+
+
+            openEmployeeDetailedInformation = new RelayCommand(p => OnOpenEmployeeDetailedInformation(), p => true);  
         }
         #endregion
 
         #region methods
+        private void OnOpenEmployeeDetailedInformation()
+        {
+            if(OnOpenDetailedInformation!=null)
+            {
+                OnOpenDetailedInformation(this, new CheckEmployeeSelected(true, SelectedEmployee));
+            }
+            else
+            {
+                MessageBox.Show("You are looser", "LOOSER");
+            }
+            //OnOpenDetailedInformation?.Invoke(this, new CheckEmployeeSelected(true, SelectedEmployee));
+        }
+
         /// <summary>
         /// getting employees from db then showing it
         /// </summary>

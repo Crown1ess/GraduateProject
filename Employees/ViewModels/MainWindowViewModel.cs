@@ -116,6 +116,7 @@ namespace Employees.ViewModels
                     else
                     {
                         OnAuthorize?.Invoke(this, new LoginEventArgs(PhoneNumber, false));
+                        //либо вызываем тут самодельный popup или же просто в app открывает messagebox
                     }
                 }
             }             

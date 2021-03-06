@@ -45,7 +45,9 @@
             <DataTemplate DataType="{x:Type vm:ManageEmployeeViewModel}">
                 <v:ManageEmployeeView/>
             </DataTemplate>
-
+            <DataTemplate DataType="{x:Type vm:EmployeeDetailedInformationViewModel}">
+                <v:EmployeeDetailedInformationView/>
+            </DataTemplate>
         </Grid.Resources>
 
         <StackPanel Height="450" HorizontalAlignment="Center" VerticalAlignment="Bottom">
