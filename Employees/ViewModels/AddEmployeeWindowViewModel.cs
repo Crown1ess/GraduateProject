@@ -122,15 +122,24 @@ namespace Employees.ViewModels
                 OnPropertyChanged("GettingPlace");
             }
         }
-
-        private string gettingDate;
-        public string GettingDate 
+        
+        private DateTime gettingDate = DateTime.Now;
+        public DateTime GettingDate 
         {
             get => gettingDate;
             set
             {
                 gettingDate = value;
                 OnPropertyChanged("GettingDate");
+                //if (value <= DateTime.Now)
+                //{
+                   
+                //}
+                //else
+                //{
+                //    //some event
+                //}
+                
             }
         }
         public ObservableCollection<string> Professions { get; private set; }
@@ -145,28 +154,26 @@ namespace Employees.ViewModels
                 OnPropertyChanged("SelectedProfession");
             }
         }
-        private string birthDate;
-        public string BirthDate
+        private DateTime birthDate = DateTime.Now;
+        public DateTime BirthDate
         {
             get => birthDate;
             set
             {
                 birthDate = value;
                 OnPropertyChanged("BirthDate");
+                //if (value < DateTime.Now)
+                //{
+                   
+                //}
+                //else
+                //{
+                //    //some event
+                //}
+                
             }
         }
-        //надо, наверно, сделать float, потому что в string могут все что угодно вписать
-        private string workExperience;
-        public string WorkExperience
-        {
-            get => workExperience;
-            set
-            {
-                workExperience = value;
-                OnPropertyChanged("WorkExperience");
-            }
-        }
-
+        
         private ObservableCollection<DrivingLicense> drivingLicenses;
         public ObservableCollection<DrivingLicense> DrivingLicenses
         {
@@ -199,6 +206,29 @@ namespace Employees.ViewModels
             }
         }
 
+        private int selectedWorkYearExperience;
+        public int SelectedWorkYearExperience
+        {
+            get => selectedWorkYearExperience;
+            set
+            {
+                selectedWorkYearExperience = value;
+                OnPropertyChanged("SelectedWorkYearExperience");
+            }
+        }
+
+        private int selectedWorkMonthExperience;
+        public int SelectedWorkMonthExperience
+        {
+            get => selectedWorkMonthExperience;
+            set
+            {
+                selectedWorkMonthExperience = value;
+                OnPropertyChanged("SelectedWorkMonthExperience");
+            }
+        }
+        public ObservableCollection<int> WorkYears { get; private set; }
+        public ObservableCollection<int> WorkMonths { get; private set; }
         #endregion
 
         #region commands
@@ -210,6 +240,7 @@ namespace Employees.ViewModels
 
         private readonly RelayCommand registrateCommand;
         public RelayCommand RegistrateCommand => registrateCommand;
+
         #endregion
 
         #region constructor
@@ -217,6 +248,9 @@ namespace Employees.ViewModels
         {
 
             openFileCommand = new RelayCommand(c => openFile(), c => true);
+
+            setWorkYears();
+            setWorkMonths();
 
             setProfessions();
 
@@ -228,7 +262,7 @@ namespace Employees.ViewModels
 
             radioButtonCommand = new RelayCommand(radioButtonChosen, p => true);
 
-            registrateCommand = new RelayCommand(p => executeRegistration());
+            registrateCommand = new RelayCommand(p => executeEmployeeRegistration());
         }
         #endregion
 
@@ -405,27 +439,66 @@ namespace Employees.ViewModels
                 }
             }
         }
+        private void setWorkYears()
+        {
+            WorkYears = new ObservableCollection<int>();
+            for(int i = 1; i <= 100; i++)
+            {
+                WorkYears.Add(i);
+            }
+        }
+        private void setWorkMonths()
+        {
+            WorkMonths = new ObservableCollection<int>();
 
+            for(int i = 1; i <= 12; i++)
+            {
+                WorkMonths.Add(i);
+            }
+        }
         /// <summary>
         /// insert all data to database
         /// </summary>
-        private void executeRegistration()
+        private void executeEmployeeRegistration()
         {
             getDrivingLicenses();
 
             connectionString = new ConnectionString();
 
-            string sqlInquiryString = $"INSERT INTO employees VALUES" +
-                $"({LastName}, {FirstName}, {SecondName}, {PhoneNumber};" +
-                                     $"INSERT INTO employees_detailed_information VALUES" +
-                $"({INN},{SNILS},{Address},{Passport}, {GettingPlace}, {GettingDate}, {SelectedMaritalStatus},{imagePath}, {BirthDate}, {WorkExperience}, {drivingLicense}" ;
+            string sqlInquiryString = "insert_employee_data";
+            //string sqlInquiryString = $"INSERT INTO employees VALUES" +
+            //    $"({LastName}, {FirstName}, {SecondName}, {PhoneNumber};" +
+            //                         $"INSERT INTO employees_detailed_information VALUES" +
+            //    $"({INN},{SNILS},{Address},{Passport}, {GettingPlace}, {GettingDate}, {SelectedMaritalStatus}," +
+            //    $"{imagePath}, {BirthDate}, {SelectedWorkYearExperience},{SelectedWorkMonthExperience}, {drivingLicense};" ;
             
             using(MySqlConnection connection = new MySqlConnection(connectionString.StringOfConnection))
             {
                 connection.Open();
 
                 MySqlCommand command = new MySqlCommand(sqlInquiryString, connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.Parameters.Add("@last_name", MySqlDbType.VarChar).Value = LastName;
+                command.Parameters.Add("@first_name", MySqlDbType.VarChar).Value = FirstName;
+                command.Parameters.Add("@second_name", MySqlDbType.VarChar).Value = SecondName;
+                command.Parameters.Add("@phone_number", MySqlDbType.VarChar).Value = PhoneNumber;
+                command.Parameters.Add("@inn", MySqlDbType.VarChar).Value = INN;
+                command.Parameters.Add("@snils", MySqlDbType.VarChar).Value = SNILS;
+                command.Parameters.Add("@address", MySqlDbType.VarChar).Value = Address;
+                command.Parameters.Add("@passport", MySqlDbType.VarChar).Value = Passport;
+                command.Parameters.Add("@getting_place", MySqlDbType.VarChar).Value = GettingPlace;
+                command.Parameters.Add("@getting_date", MySqlDbType.Date).Value = GettingDate;
+                command.Parameters.Add("@marital_status", MySqlDbType.VarChar).Value = SelectedMaritalStatus;
+                command.Parameters.Add("@image_path", MySqlDbType.VarChar).Value = imagePath;
+                command.Parameters.Add("@birth_date", MySqlDbType.Date).Value = BirthDate;
+                command.Parameters.Add("@work_year_experience", MySqlDbType.Int32).Value = SelectedWorkYearExperience;
+                command.Parameters.Add("@work_month_experience", MySqlDbType.Int32).Value = SelectedWorkMonthExperience;
+                command.Parameters.Add("@driving_license", MySqlDbType.VarChar).Value = drivingLicense;
 
+                command.ExecuteNonQuery();
+
+                dialogService.ShowMessage("Сотрудник был внесен в базу данных");
+                //MessageBox.Show("Data has inserted");
             }
         }
         #endregion

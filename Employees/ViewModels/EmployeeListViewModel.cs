@@ -79,7 +79,7 @@ namespace Employees.ViewModels
 
                 MySqlCommand command = new MySqlCommand(sqlInquiryString, connection);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
-
+ 
                 using (MySqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
