@@ -411,7 +411,7 @@ namespace Employees.ViewModels
             {
                 if(DrivingLicenses[i].IsSelected)
                 {
-                    drivingLicense += DrivingLicenses[i].Text;
+                    drivingLicense += DrivingLicenses[i].Text + ",";
                 }
             }
         }

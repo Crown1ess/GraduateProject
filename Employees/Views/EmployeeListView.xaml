@@ -50,11 +50,13 @@
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal">
                                             <Label Content="Passport:"/>
-                                            <TextBlock VerticalAlignment="Center" Text="{Binding PassportData}"/>
+                                            <TextBlock x:Name="passport"
+                                                VerticalAlignment="Center" Text="{Binding PassportData}"/>
                                         </StackPanel>
                                         <Button Content="Подробнее" 
                                                 Command="{Binding Path=DataContext.OpenEmployeeDetailedInformation,
                                             ElementName=listEmployees}"
+                                                CommandParameter="passport"
                                                 Height="20" Width="150"
                                                 Background="Transparent"
                                                 FontSize="7"

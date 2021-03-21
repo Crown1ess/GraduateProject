@@ -1,4 +1,5 @@
 ﻿using Employees.Services;
+using Employees.Services.ChangeContent;
 using Employees.ViewModels;
 using Employees.Views.Windows;
 using System;
@@ -13,7 +14,7 @@ namespace Employees
     {
 
         #region fields
-
+        private ChangeContent changeContent;
         private MainWindow mainWindow;
         private Main employeeWindow;
         private MainWindowViewModel mainWindowViewModel;
@@ -47,15 +48,16 @@ namespace Employees
         /// <param name="e"></param>
         private void LoginViewModelOnOnAuthorize(object sender, LoginEventArgs e)
         {
+            changeContent = new ChangeContent();
             if (e.IsAuthorized)
             {
-                employeeWindow = new Main() { DataContext = new EmployeeViewModel() };
+                employeeWindow = new Main() { DataContext = new EmployeeViewModel(changeContent) };
                 employeeWindow.Show();
                 mainWindow.Close();
                 return;
             }
         }
-        //проработать
+        //не работает
         private void EnableDrivingLicenseCombobox(object sender, CheckEventArgs e)
         {
             addEmployeeWindow = new AddEmployeeWindow();

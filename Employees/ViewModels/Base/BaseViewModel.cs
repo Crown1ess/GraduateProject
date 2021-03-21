@@ -6,6 +6,7 @@ namespace Employees.ViewModels.Base
 {
     public abstract class BaseViewModel : INotifyPropertyChanged, IDisposable
     {
+
         #region INotifyPropertyChanged
         /// <summary>
         /// Уведомления

@@ -1,5 +1,7 @@
 ﻿using Employees.Services;
+using Employees.Services.ChangeContent;
 using Employees.ViewModels.Base;
+using System;
 using System.Windows;
 
 namespace Employees.ViewModels
@@ -8,6 +10,7 @@ namespace Employees.ViewModels
     {
         #region fields
         private EmployeeListViewModel employeeListViewModel;
+        private IChangeContent changeContent;
         #endregion
 
         #region properties
@@ -19,7 +22,7 @@ namespace Employees.ViewModels
             set
             {
                 currentContent = value;
-                OnPropertyChanged("CurrentContent");
+                OnPropertyChanged(nameof(CurrentContent));
             }
         }
 
@@ -37,30 +40,36 @@ namespace Employees.ViewModels
         #endregion
 
         #region constructor
-        public EmployeeViewModel()
+        public EmployeeViewModel(ChangeContent changeContent)
         {
-            currentContent = new EmployeeListViewModel();
+            this.changeContent = changeContent;
+            currentContent = new EmployeeListViewModel(changeContent);
 
             jumpToManageEmployeeView = new RelayCommand(p => changeViewModel(new ManageEmployeeViewModel()));
-            jumpToMainView = new RelayCommand(p => changeViewModel(new EmployeeListViewModel()));
+            jumpToMainView = new RelayCommand(p => changeViewModel(new EmployeeListViewModel(changeContent)));
 
-            employeeListViewModel = new EmployeeListViewModel();
+            employeeListViewModel = new EmployeeListViewModel(changeContent);
 
-            //logOut = new RelayCommand(p => changeViewModel(new EmployeeDetailedInformationViewModel()));
+            changeContent.OnSelectedEmployee += OnJumpToEmployeeDetailedInformation;
 
-            employeeListViewModel.OnOpenDetailedInformation += OnJumpToEmployeeDetailedInformation;
+
 
         }
         #endregion
 
         #region methods
+        private void ExecuteLogOut()
+        {
+            //вызов popup или же можно будет обойтись messagebox
+            //проверка результатов выбора
+        }
         private void OnJumpToEmployeeDetailedInformation(object sender, CheckEmployeeSelected e)
         {
             if (e.IsSelected)
             {
-                //почему-то не работает, надо разобраться с событиями
-                MessageBox.Show("you're good", "letter for mAn");
+                CurrentContent = e.ViewModel;
             }
+            MessageBox.Show("you're good", "letter for mAn");
         }
         private void changeViewModel(BaseViewModel viewModel)
         {

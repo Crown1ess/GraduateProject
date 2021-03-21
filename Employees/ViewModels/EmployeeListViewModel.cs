@@ -1,22 +1,20 @@
 ﻿using DataBase;
 using Employees.Services;
+using Employees.Services.ChangeContent;
 using Employees.ViewModels.Base;
 using Models;
 using MySqlConnector;
 using System;
 using System.Collections.ObjectModel;
-using System.Windows;
 
 namespace Employees.ViewModels
 {
     public class EmployeeListViewModel : BaseViewModel
     {
         #region fields
-
+        private IChangeContent changeContent;
         private readonly ConnectionString connectionString;
         public ObservableCollection<Employee> Employees { get; private set; }
-
-        public event EventHandler<CheckEmployeeSelected> OnOpenDetailedInformation;
         #endregion
 
         #region properties
@@ -40,7 +38,7 @@ namespace Employees.ViewModels
 
         #region constructor
 
-        public EmployeeListViewModel()
+        public EmployeeListViewModel(ChangeContent changeContent)
         {
             connectionString = new ConnectionString();
 
@@ -48,23 +46,17 @@ namespace Employees.ViewModels
 
             getEmployees();
 
+            this.changeContent = changeContent;
 
-            openEmployeeDetailedInformation = new RelayCommand(p => OnOpenEmployeeDetailedInformation(), p => true);  
+
+            openEmployeeDetailedInformation = new RelayCommand(OnOpenEmployeeDetailedInformation, p => true);  
         }
         #endregion
 
         #region methods
-        private void OnOpenEmployeeDetailedInformation()
+        private void OnOpenEmployeeDetailedInformation(object parameter)
         {
-            if(OnOpenDetailedInformation!=null)
-            {
-                OnOpenDetailedInformation(this, new CheckEmployeeSelected(true, SelectedEmployee));
-            }
-            else
-            {
-                MessageBox.Show("You are looser", "LOOSER");
-            }
-            //OnOpenDetailedInformation?.Invoke(this, new CheckEmployeeSelected(true, SelectedEmployee));
+            changeContent.ChangeViewModel(new EmployeeDetailedInformationViewModel(), SelectedEmployee);
         }
 
         /// <summary>

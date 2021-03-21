@@ -66,7 +66,7 @@ namespace Employees.ViewModels
             set
             {
                 phoneNumber = value;
-                OnPropertyChanged("PhoneNumber");
+                OnPropertyChanged(nameof(PhoneNumber));
             }
         }
 
