@@ -6,6 +6,7 @@ using Models;
 using MySqlConnector;
 using System;
 using System.Collections.ObjectModel;
+using System.Windows;
 
 namespace Employees.ViewModels
 {
@@ -25,7 +26,7 @@ namespace Employees.ViewModels
             set
             {
                 selectedEmployee = value;
-                OnPropertyChanged("SelectedEmployee");
+                OnPropertyChanged(nameof(SelectedEmployee));
             }
         }
         #endregion
@@ -56,7 +57,7 @@ namespace Employees.ViewModels
         #region methods
         private void OnOpenEmployeeDetailedInformation(object parameter)
         {
-            changeContent.ChangeViewModel(new EmployeeDetailedInformationViewModel(), SelectedEmployee);
+            changeContent.ChangeViewModel(new EmployeeDetailedInformationViewModel(SelectedEmployee + 1));
         }
 
         /// <summary>

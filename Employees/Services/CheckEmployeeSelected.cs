@@ -7,13 +7,11 @@ namespace Employees.Services
     {
         public bool IsSelected;
 
-        public int SelectedEmployee;
         public BaseViewModel ViewModel;
 
-        public CheckEmployeeSelected(bool isSelected, int selectedEmployee, BaseViewModel viewModel)
+        public CheckEmployeeSelected(bool isSelected, BaseViewModel viewModel)
         {
             this.IsSelected = isSelected;
-            this.SelectedEmployee = selectedEmployee;
             this.ViewModel = viewModel;
         }
     }

@@ -10,9 +10,9 @@ namespace Employees.Services.ChangeContent
         #endregion
 
         #region methods
-        public void ChangeViewModel(BaseViewModel viewModel, int selectedEmployeeNumber)
+        public void ChangeViewModel(BaseViewModel viewModel)
         {
-            OnSelectedEmployee?.Invoke(this, new CheckEmployeeSelected(true, selectedEmployeeNumber, viewModel));
+            OnSelectedEmployee?.Invoke(this, new CheckEmployeeSelected(true, viewModel));
         }
         #endregion
     }

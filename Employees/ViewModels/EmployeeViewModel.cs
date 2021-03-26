@@ -11,6 +11,7 @@ namespace Employees.ViewModels
         #region fields
         private EmployeeListViewModel employeeListViewModel;
         private IChangeContent changeContent;
+        public event EventHandler<CheckEventArgs> OnLogOut;
         #endregion
 
         #region properties
@@ -52,14 +53,20 @@ namespace Employees.ViewModels
 
             changeContent.OnSelectedEmployee += OnJumpToEmployeeDetailedInformation;
 
-
+            logOut = new RelayCommand(p => executeLogOut());
 
         }
         #endregion
 
         #region methods
-        private void ExecuteLogOut()
+        private void executeLogOut()
         {
+            var choise = MessageBox.Show("Вы точно хотите выйти из аккаунта?", "Выход из учетной записи", MessageBoxButton.YesNo);//надо будет заменить
+
+            if(choise == MessageBoxResult.Yes)
+            {
+                OnLogOut?.Invoke(this, new CheckEventArgs(true));
+            }
             //вызов popup или же можно будет обойтись messagebox
             //проверка результатов выбора
         }
@@ -69,7 +76,6 @@ namespace Employees.ViewModels
             {
                 CurrentContent = e.ViewModel;
             }
-            MessageBox.Show("you're good", "letter for mAn");
         }
         private void changeViewModel(BaseViewModel viewModel)
         {

@@ -14,6 +14,7 @@ namespace Employees
     {
 
         #region fields
+        private EmployeeViewModel employeeViewModel;
         private ChangeContent changeContent;
         private MainWindow mainWindow;
         private Main employeeWindow;
@@ -35,8 +36,9 @@ namespace Employees
             mainWindow = new MainWindow() { DataContext = mainWindowViewModel };
             mainWindow.Show();
 
-            
-            
+            changeContent = new ChangeContent();
+            employeeViewModel = new EmployeeViewModel(changeContent);
+            employeeViewModel.OnLogOut += LogOut;
 
         }
 
@@ -48,12 +50,22 @@ namespace Employees
         /// <param name="e"></param>
         private void LoginViewModelOnOnAuthorize(object sender, LoginEventArgs e)
         {
-            changeContent = new ChangeContent();
             if (e.IsAuthorized)
             {
-                employeeWindow = new Main() { DataContext = new EmployeeViewModel(changeContent) };
+                employeeWindow = new Main() { DataContext = employeeViewModel };
                 employeeWindow.Show();
                 mainWindow.Close();
+                return;
+            }
+        }
+
+        private void LogOut(object sender, CheckEventArgs e)
+        {
+            if(e.IsChecked)
+            {
+                mainWindow = new MainWindow() { DataContext = mainWindowViewModel };
+                mainWindow.Show();
+                employeeWindow.Close();
                 return;
             }
         }

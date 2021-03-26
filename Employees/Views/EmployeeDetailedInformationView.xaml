@@ -8,82 +8,96 @@
              d:DesignHeight="450" d:DesignWidth="440">
     <Grid>
         <StackPanel >
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Width="200"
+                        Height="150"
+                            VerticalAlignment="Center">
+                    <Image Source="{Binding ImagePath}"
+                           Height="150"
+                           Width="150"/>
+
+                </StackPanel>
+                <StackPanel Width="240"
+                        Height="200"
+                        HorizontalAlignment="Right">
+                    <Label Content="Фамилия"
+                       Style="{StaticResource RegistrationLabel}"
+                           HorizontalAlignment="Center"/>
+                    <TextBlock Text="{Binding LastName}"
+                               Width="150"
+                               Height="30"
+                               Background="Gray"/>
+                    <Label Content="Имя"
+                       Style="{StaticResource RegistrationLabel}"
+                       HorizontalAlignment="Center"/>
+                    <TextBlock Text="{Binding FirstName}"
+                           Width="70"
+                           Height="30"
+                           Background="Gray"
+                           Margin="20 0 20 0"/>
+                    <Label Content="Отчество"
+                       Style="{StaticResource RegistrationLabel}"
+                           HorizontalAlignment="Center"/>
+                    <TextBlock Text="{Binding SecondName}"
+                           Width="150"
+                           Height="30"
+                           Background="Gray"/>
+
+                </StackPanel>
+            </StackPanel>
+            
+            
             <StackPanel Orientation="Horizontal"
                     Height="40">
-                <Label Content="Фамилия"
+                <Label Content="Паспорт"
+                   Style="{StaticResource RegistrationLabel}"/>
+                <Label Content="Сегодня отработано часов"
+                   Style="{StaticResource RegistrationLabel}"/>
+                <Label Content="номер телеофна"
+                   Style="{StaticResource RegistrationLabel}"/>
+
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                    Height="40">
+                <TextBlock Text="{Binding Passport}"
+                           Width="150"
+                           Height="30"
+                           Background="Gray"
+                           Margin="10 0 10 0"/>
+                <TextBox Text="{Binding TodayWorkHours}"
+                           Width="70"
+                           Height="30"
+                           Background="Gray"
+                           Margin="20 0 20 0"/>
+                <TextBlock Text="{Binding PhoneNumber}"
+                           Width="150"
+                           Height="30"
+                           Background="Gray"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                    Height="40">
+                <Label Content="Статус"
+                   Style="{StaticResource RegistrationLabel}"
+                       Margin="30 0 60 0"/>
+                <Label Content="Общих часов"
+                   Style="{StaticResource RegistrationLabel}"/>
+                <Label Content="Переработок"
                    Style="{StaticResource RegistrationLabel}"
                        Margin="30 0 0 0"/>
-                <Label Content="Имя"
-                   Style="{StaticResource RegistrationLabel}"
-                       Margin="70 0 70 0"/>
-                <Label Content="Отчество"
-                   Style="{StaticResource RegistrationLabel}"/>
 
             </StackPanel>
             <StackPanel Orientation="Horizontal"
-                    Height="40">
-                <TextBlock Text="{Binding LastName}"
+                    Height="50">
+                <TextBox Text="{Binding EmployeeStatus}"
                            Width="150"
                            Height="30"
                            Background="Gray"/>
-                <TextBlock Text="{Binding FirstName}"
+                <TextBlock Text="{Binding MonthWorkHours}"
                            Width="70"
                            Height="30"
                            Background="Gray"
                            Margin="20 0 20 0"/>
-                <TextBlock Text="{Binding SecondName}"
-                           Width="150"
-                           Height="30"
-                           Background="Gray"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal"
-                    Height="40">
-                <Label Content="Час работы"
-                   Style="{StaticResource RegistrationLabel}"/>
-                <Label Content="Статус"
-                   Style="{StaticResource RegistrationLabel}"/>
-                <Label Content="Больничный"
-                   Style="{StaticResource RegistrationLabel}"/>
-
-            </StackPanel>
-            <StackPanel Orientation="Horizontal"
-                    Height="40">
-                <TextBlock Text="{Binding LastName}"
-                           Width="150"
-                           Height="30"
-                           Background="Gray"/>
-                <TextBlock Text="{Binding FirstName}"
-                           Width="70"
-                           Height="30"
-                           Background="Gray"
-                           Margin="20 0 20 0"/>
-                <TextBlock Text="{Binding SecondName}"
-                           Width="150"
-                           Height="30"
-                           Background="Gray"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal"
-                    Height="40">
-                <Label Content="Фамилия"
-                   Style="{StaticResource RegistrationLabel}"/>
-                <Label Content="Имя"
-                   Style="{StaticResource RegistrationLabel}"/>
-                <Label Content="Отчество"
-                   Style="{StaticResource RegistrationLabel}"/>
-
-            </StackPanel>
-            <StackPanel Orientation="Horizontal"
-                    Height="40">
-                <TextBlock Text="{Binding LastName}"
-                           Width="150"
-                           Height="30"
-                           Background="Gray"/>
-                <TextBlock Text="{Binding FirstName}"
-                           Width="70"
-                           Height="30"
-                           Background="Gray"
-                           Margin="20 0 20 0"/>
-                <TextBlock Text="{Binding SecondName}"
+                <TextBlock Text="{Binding OverworkHours}"
                            Width="150"
                            Height="30"
                            Background="Gray"/>

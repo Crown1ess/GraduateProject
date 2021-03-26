@@ -4,6 +4,6 @@ namespace Employees.Services.ChangeContent
 {
     public interface IChangeContent
     {
-        void ChangeViewModel(BaseViewModel viewModel, int selectedEmployeeNumber);
+        void ChangeViewModel(BaseViewModel viewModel);
     }
 }

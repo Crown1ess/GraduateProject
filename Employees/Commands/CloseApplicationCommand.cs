@@ -17,7 +17,13 @@ namespace Employees.Commands
 
         public void Execute(object parameter)
         {
-            Application.Current.Shutdown();
+            var choice = MessageBox.Show("Вы точно хотите закрыть приложение?", "Закрытие приложения", MessageBoxButton.YesNo);
+
+            if(choice == MessageBoxResult.Yes)
+            {
+                Application.Current.Shutdown();
+            }
+            
         }
     }
 }
