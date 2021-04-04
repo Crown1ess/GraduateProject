@@ -1,12 +1,10 @@
 ﻿using DataBase;
-using Employees.Services;
 using Employees.Services.ChangeContent;
 using Employees.ViewModels.Base;
 using Models;
 using MySqlConnector;
 using System;
 using System.Collections.ObjectModel;
-using System.Windows;
 
 namespace Employees.ViewModels
 {

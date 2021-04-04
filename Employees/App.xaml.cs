@@ -52,7 +52,7 @@ namespace Employees
         {
             if (e.IsAuthorized)
             {
-                employeeWindow = new Main() { DataContext = employeeViewModel };
+                employeeWindow = new Main() { DataContext = new EmployeeViewModel(e.User, changeContent, e.IsAuthorized) };
                 employeeWindow.Show();
                 mainWindow.Close();
                 return;

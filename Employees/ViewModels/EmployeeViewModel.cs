@@ -46,7 +46,7 @@ namespace Employees.ViewModels
             this.changeContent = changeContent;
             currentContent = new EmployeeListViewModel(changeContent);
 
-            jumpToManageEmployeeView = new RelayCommand(p => changeViewModel(new ManageEmployeeViewModel()));
+            
             jumpToMainView = new RelayCommand(p => changeViewModel(new EmployeeListViewModel(changeContent)));
 
             employeeListViewModel = new EmployeeListViewModel(changeContent);
@@ -55,6 +55,24 @@ namespace Employees.ViewModels
 
             logOut = new RelayCommand(p => executeLogOut());
 
+        }
+
+        public EmployeeViewModel(object user, ChangeContent changeContent, bool isAuthorized)
+        {
+            
+            jumpToManageEmployeeView = new RelayCommand(p => changeViewModel(new ManageEmployeeViewModel(user)));
+
+            this.changeContent = changeContent;
+            currentContent = new EmployeeListViewModel(changeContent);
+
+
+            jumpToMainView = new RelayCommand(p => changeViewModel(new EmployeeListViewModel(changeContent)));
+
+            employeeListViewModel = new EmployeeListViewModel(changeContent);
+
+            changeContent.OnSelectedEmployee += OnJumpToEmployeeDetailedInformation;
+
+            logOut = new RelayCommand(p => executeLogOut());
         }
         #endregion
 

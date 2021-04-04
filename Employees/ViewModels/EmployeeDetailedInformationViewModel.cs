@@ -1,13 +1,7 @@
-﻿using Employees.Services;
-using Employees.ViewModels.Base;
+﻿using Employees.ViewModels.Base;
 using Models;
 using MySqlConnector;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
 using DataBase;
-using System.Windows;
 
 namespace Employees.ViewModels
 {
@@ -20,16 +14,6 @@ namespace Employees.ViewModels
 
         #region properties
 
-        //private ObservableCollection<Employee> employees;
-        //public ObservableCollection<Employee> Employees
-        //{
-        //    get => employees;
-        //    set
-        //    {
-        //        employees = value;
-        //        OnPropertyChanged(nameof(Employees));
-        //    }
-        //}
         private string lastName;
         public string LastName
         {
@@ -101,10 +85,8 @@ namespace Employees.ViewModels
         public EmployeeDetailedInformationViewModel(int selectedEmployee)
         {
             this.selectedEmployee = selectedEmployee;
-            MessageBox.Show(selectedEmployee.ToString());
 
             gettingEmployeeInformation();
-            //создаем метод для выборки данных о работнике из базы данных и сравнивая его с
         }
         #endregion
 

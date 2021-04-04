@@ -3,6 +3,7 @@ using Employees.Services;
 using Employees.ViewModels.Base;
 using MySqlConnector;
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Security;
 using System.Windows.Controls;
@@ -15,14 +16,17 @@ namespace Employees.ViewModels
         public MainWindowViewModel()
         {  
             openEmployeeWindowCommand = new RelayCommand(Authorize, p => true);
+
         }
 
         #endregion
 
         #region fields
+        //если не будет использован атрибут номер телефона, то надо будет заменить loginEventArgs на checkEventArgs
         public event EventHandler<LoginEventArgs> OnAuthorize;
 
         private ConnectionString connectionString;
+
         #endregion
 
 
@@ -123,5 +127,7 @@ namespace Employees.ViewModels
         }
 
         #endregion
+
+        
     }
 }

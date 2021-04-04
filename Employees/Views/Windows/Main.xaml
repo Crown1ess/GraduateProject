@@ -50,8 +50,10 @@
             </DataTemplate>
         </Grid.Resources>
 
-        <StackPanel Height="450" HorizontalAlignment="Center" VerticalAlignment="Bottom">
-            <ContentPresenter Content="{Binding CurrentContent}"/>
+        <StackPanel Height="450" HorizontalAlignment="Center" 
+                    VerticalAlignment="Bottom"
+                    Width="440">
+            <ContentControl Content="{Binding CurrentContent}"/>
         </StackPanel>
 
         <Button Style="{StaticResource ExitButton}" HorizontalAlignment="Right"
