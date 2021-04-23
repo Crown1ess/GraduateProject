@@ -17,7 +17,7 @@ namespace Employees.ViewModels
         IDialogService dialogService;
         IFileService fileService;
         private string imagePath;
-        public event EventHandler<CheckEventArgs> OnCheckedDriveLicense;
+        public event EventHandler<SecondCheckEventArgs> OnCheckedDriveLicense;
         private ConnectionString connectionString;
         private string drivingLicense;
         #endregion
@@ -307,7 +307,7 @@ namespace Employees.ViewModels
                         IsSelected = false
                     });
                 }
-                OnCheckedDriveLicense?.Invoke(this, new CheckEventArgs(true));
+                OnCheckedDriveLicense?.Invoke(this, new SecondCheckEventArgs(true));
             }
             else if((string)parameter == "HaveLicense")
             {
@@ -380,7 +380,7 @@ namespace Employees.ViewModels
                     });
                 }
 
-                OnCheckedDriveLicense?.Invoke(this, new CheckEventArgs(true));
+                OnCheckedDriveLicense?.Invoke(this, new SecondCheckEventArgs(true));
             }
         }
 

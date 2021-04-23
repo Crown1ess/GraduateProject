@@ -53,15 +53,28 @@
                                             <TextBlock x:Name="passport"
                                                 VerticalAlignment="Center" Text="{Binding PassportData}"/>
                                         </StackPanel>
-                                        <Button Content="Подробнее" 
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Content="Подробнее" 
                                                 Command="{Binding Path=DataContext.OpenEmployeeDetailedInformation,
-                                            ElementName=listEmployees}"
+                                                 ElementName=listEmployees}"
                                                 CommandParameter="passport"
                                                 Height="20" Width="150"
                                                 Background="Transparent"
                                                 FontSize="7"
                                                 Foreground="Black"
                                                 Cursor="Arrow"/>
+                                            <Button Content="Удалить"
+                                                    Command="{Binding Path=DataContext.RemoveEmployeeCommand,
+                                                    ElementName=listEmployees}"
+                                                    CommandParameter="passport"
+                                                    Height="20" Width="70"
+                                                    Background="Transparent"
+                                                    FontSize="7"
+                                                    Foreground="Red"
+                                                    Cursor="Arrow"
+                                                    Margin="10 0 0 0"/>
+                                        </StackPanel>
+                                        
                                     </StackPanel>
                                 </StackPanel>
 

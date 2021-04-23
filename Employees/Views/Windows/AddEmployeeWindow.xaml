@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="ManageEmployeeWindow" Height="640" Width="500"
         WindowStartupLocation="CenterScreen"
-        WindowStyle="None"
-        ResizeMode="NoResize"
+        WindowStyle="None" Style="{DynamicResource WindowStyle}"
+        ResizeMode="NoResize" 
         MouseLeftButtonDown="DraggableWindow">
 
     <Grid >

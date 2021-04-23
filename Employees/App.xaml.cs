@@ -28,8 +28,8 @@ namespace Employees
         {
             base.OnStartup(e);
 
-            addEmployeeWindowViewModel = new AddEmployeeWindowViewModel();
-            addEmployeeWindowViewModel.OnCheckedDriveLicense += EnableDrivingLicenseCombobox;
+            //addEmployeeWindowViewModel = new AddEmployeeWindowViewModel();
+            //addEmployeeWindowViewModel.OnCheckedDriveLicense += EnableDrivingLicenseCombobox;
 
             mainWindowViewModel = new MainWindowViewModel();  
             mainWindowViewModel.OnAuthorize += LoginViewModelOnOnAuthorize;
@@ -38,7 +38,7 @@ namespace Employees
 
             changeContent = new ChangeContent();
             employeeViewModel = new EmployeeViewModel(changeContent);
-            employeeViewModel.OnLogOut += LogOut;
+            employeeViewModel.OnLogOut += LogingOut;
 
         }
 
@@ -57,9 +57,13 @@ namespace Employees
                 mainWindow.Close();
                 return;
             }
+            else
+            {
+                MessageBox.Show("Неправильный логин или пароль, попробуйте ввести корректные данные!", "Ошибка авторизации");
+            }
         }
 
-        private void LogOut(object sender, CheckEventArgs e)
+        private void LogingOut(object sender, CheckEventArgs e)
         {
             if(e.IsChecked)
             {
@@ -68,9 +72,10 @@ namespace Employees
                 employeeWindow.Close();
                 return;
             }
+            
         }
         //не работает
-        private void EnableDrivingLicenseCombobox(object sender, CheckEventArgs e)
+        private void EnableDrivingLicenseCombobox(object sender, SecondCheckEventArgs e)
         {
             addEmployeeWindow = new AddEmployeeWindow();
             if (e.IsChecked)

@@ -7,8 +7,17 @@
         mc:Ignorable="d"
         MouseLeftButtonDown="DraggableWindow"
         Height="500" Width="400" ResizeMode="NoResize" WindowStyle="None"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen" Style="{DynamicResource WindowStyle}">
 
+    <Window.Resources>
+        <ControlTemplate x:Key="ValidationFailed">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Foreground="Red" FontSize="20" 
+                           FontWeight="Bold"
+                           Text="!"/>
+            </StackPanel>
+        </ControlTemplate>
+    </Window.Resources>
     <Grid>
         <Button VerticalAlignment="Top" Style="{StaticResource ExitButton}" Name="exit"
                 HorizontalAlignment="Right">
@@ -18,13 +27,16 @@
             <Image Style="{StaticResource ExitImage}"/>
         </Button>
         <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Label HorizontalAlignment="Center" Content="Авторизация" FontFamily="Times New Roman"
-                   FontWeight="Bold" FontSize="40" Margin="0,-16,0,250"/>
+            <Label HorizontalAlignment="Center" Content="Авторизация" 
+                   FontFamily="Times New Roman"
+                   FontWeight="Bold" FontSize="40" 
+                   Margin="0,-16,0,250"/>
 
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                     <Label Content="+7" Margin="0" Style="{StaticResource NumberLabel}"/>
-                    <TextBox Text="{Binding PhoneNumber}" Margin="0"/>
+                    <TextBox Margin="0" Text="{Binding Path=PhoneNumber}"
+                             MaxLength="10"/>
                 </StackPanel>
                 <PasswordBox x:Name="UserPassword" MaxLength="25" Width="250"/>
             </StackPanel>

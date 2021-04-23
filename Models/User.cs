@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 
 namespace Models
 {
@@ -16,13 +17,6 @@ namespace Models
         {
             get { return password; }
             set => password = value;
-        }
-
-        private string rank;
-        public string Rank
-        {
-            get { return rank; }
-            set => rank = value;
         }
     }
 }

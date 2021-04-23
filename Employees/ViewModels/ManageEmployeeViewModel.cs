@@ -4,7 +4,6 @@ using System.Windows;
 using System.Windows.Input;
 using DataBase;
 using MySqlConnector;
-using Employees.Services;
 
 namespace Employees.ViewModels
 {
@@ -78,6 +77,7 @@ namespace Employees.ViewModels
 
         private readonly ICommand aboutCommand;
         public ICommand AboutCommand => aboutCommand;
+
         #endregion
 
         #region constructor
@@ -86,10 +86,16 @@ namespace Employees.ViewModels
             aboutCommand = new RelayCommand(p => showAboutInformation());
             getUserInformation(user);
         }
+
         #endregion
 
         #region methods
-
+        
+        
+        /// <summary>
+        /// getting user information for application settings.
+        /// </summary>
+        /// <param name="user"></param>
         private void getUserInformation(object user)
         {
             connectionString = new ConnectionString();

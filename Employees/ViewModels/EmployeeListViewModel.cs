@@ -5,6 +5,8 @@ using Models;
 using MySqlConnector;
 using System;
 using System.Collections.ObjectModel;
+using System.Windows;
+using System.Windows.Input;
 
 namespace Employees.ViewModels
 {
@@ -23,7 +25,7 @@ namespace Employees.ViewModels
             get => selectedEmployee;
             set
             {
-                selectedEmployee = value;
+                selectedEmployee = value + 1;
                 OnPropertyChanged(nameof(SelectedEmployee));
             }
         }
@@ -33,6 +35,10 @@ namespace Employees.ViewModels
 
         private readonly RelayCommand openEmployeeDetailedInformation;
         public RelayCommand OpenEmployeeDetailedInformation => openEmployeeDetailedInformation;
+
+        private readonly ICommand removeEmployeeCommand;
+        public ICommand RemoveEmployeeCommand => removeEmployeeCommand;
+
         #endregion
 
         #region constructor
@@ -47,12 +53,49 @@ namespace Employees.ViewModels
 
             this.changeContent = changeContent;
 
+            openEmployeeDetailedInformation = new RelayCommand(OnOpenEmployeeDetailedInformation, p => true);
 
-            openEmployeeDetailedInformation = new RelayCommand(OnOpenEmployeeDetailedInformation, p => true);  
+            removeEmployeeCommand = new RelayCommand(p=>removeEmployee());
         }
         #endregion
 
         #region methods
+
+        /// <summary>
+        /// remove employee data after fired
+        /// </summary>
+        private void removeEmployee()
+        {
+            var removeChoice = MessageBox.Show("Вы точно хотите удалить данные", "Предупреждение", MessageBoxButton.YesNo);
+
+            if(removeChoice == MessageBoxResult.Yes)
+            {
+               
+                string sqlInquiryString = "remove_employee";
+
+                using (MySqlConnection connection = new MySqlConnection(connectionString.StringOfConnection))
+                {
+                    connection.Open();
+
+                    MySqlCommand command = new MySqlCommand(sqlInquiryString, connection);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.Add("@employee_id", MySqlDbType.Int32).Value = SelectedEmployee;
+                    
+                    using(MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        if(reader.Read())
+                        {
+                            if((bool)reader[0])
+                                MessageBox.Show("Данные о сотруднике были удалены!", "Уведомление");
+                            else
+                                MessageBox.Show("Невозможно удалить данные о директоре!", "Ошибка");
+                        }
+
+                    }
+                }   
+            }
+        }
+
         private void OnOpenEmployeeDetailedInformation(object parameter)
         {
             changeContent.ChangeViewModel(new EmployeeDetailedInformationViewModel(SelectedEmployee + 1));

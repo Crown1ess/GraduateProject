@@ -25,7 +25,6 @@ C:\Users\davae\source\repos\Employees\Employees\bin\Debug\netcoreapp3.1\DataBase
 C:\Users\davae\source\repos\Employees\Employees\bin\Debug\netcoreapp3.1\Models.pdb
 C:\Users\davae\source\repos\Employees\Employees\obj\Debug\netcoreapp3.1\Views\Windows\Main.g.cs
 C:\Users\davae\source\repos\Employees\Employees\obj\Debug\netcoreapp3.1\Views\Windows\MainWindow.g.cs
-C:\Users\davae\source\repos\Employees\Employees\obj\Debug\netcoreapp3.1\Services\Style.baml
 C:\Users\davae\source\repos\Employees\Employees\obj\Debug\netcoreapp3.1\Views\Windows\Main.baml
 C:\Users\davae\source\repos\Employees\Employees\obj\Debug\netcoreapp3.1\Views\Windows\MainWindow.baml
 C:\Users\davae\source\repos\Employees\Employees\obj\Debug\netcoreapp3.1\Views\EmployeeListView.g.cs
@@ -36,3 +35,6 @@ C:\Users\davae\source\repos\Employees\Employees\obj\Debug\netcoreapp3.1\Views\Wi
 C:\Users\davae\source\repos\Employees\Employees\obj\Debug\netcoreapp3.1\Views\Windows\AddEmployeeWindow.baml
 C:\Users\davae\source\repos\Employees\Employees\obj\Debug\netcoreapp3.1\Views\EmployeeDetailedInformationView.g.cs
 C:\Users\davae\source\repos\Employees\Employees\obj\Debug\netcoreapp3.1\Views\EmployeeDetailedInformationView.baml
+C:\Users\davae\source\repos\Employees\Employees\obj\Debug\netcoreapp3.1\Services\Styles\Style.baml
+C:\Users\davae\source\repos\Employees\Employees\obj\Debug\netcoreapp3.1\Services\Styles\Dark.baml
+C:\Users\davae\source\repos\Employees\Employees\obj\Debug\netcoreapp3.1\Services\Styles\Light.baml

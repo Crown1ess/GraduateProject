@@ -24,6 +24,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Services\Styles\Dark.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Services\Styles\Light.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\EmployeeDetailedInformationView.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -39,7 +45,7 @@
     <Page Update="Views\Windows\Main.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Services\Style.xaml">
+    <Page Update="Services\Styles\Style.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Windows\AddEmployeeWindow.xaml">

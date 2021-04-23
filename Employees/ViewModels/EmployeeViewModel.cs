@@ -52,7 +52,7 @@ namespace Employees.ViewModels
             employeeListViewModel = new EmployeeListViewModel(changeContent);
 
             changeContent.OnSelectedEmployee += OnJumpToEmployeeDetailedInformation;
-
+            //doesn't work
             logOut = new RelayCommand(p => executeLogOut());
 
         }
@@ -71,20 +71,30 @@ namespace Employees.ViewModels
             employeeListViewModel = new EmployeeListViewModel(changeContent);
 
             changeContent.OnSelectedEmployee += OnJumpToEmployeeDetailedInformation;
-
+            //doesn't work
             logOut = new RelayCommand(p => executeLogOut());
         }
         #endregion
 
         #region methods
+        //doesn't work
         private void executeLogOut()
         {
-            var choise = MessageBox.Show("Вы точно хотите выйти из аккаунта?", "Выход из учетной записи", MessageBoxButton.YesNo);//надо будет заменить
+            var someChoice = MessageBox.Show("Вы точно хотите выйти из аккаунта?", "Выход из учетной записи", MessageBoxButton.YesNo);//надо будет заменить
 
-            if(choise == MessageBoxResult.Yes)
+            if (someChoice == MessageBoxResult.Yes)
             {
-                OnLogOut?.Invoke(this, new CheckEventArgs(true));
+                if(OnLogOut != null)
+                {
+                    OnLogOut?.Invoke(this, new CheckEventArgs(true));
+                }
+                else
+                {
+                    MessageBox.Show("You are looser");
+                }
             }
+            
+            
             //вызов popup или же можно будет обойтись messagebox
             //проверка результатов выбора
         }

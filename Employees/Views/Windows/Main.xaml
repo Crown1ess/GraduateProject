@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         MouseLeftButtonDown="DraggableWindow"
         Title="Main" Height="500" Width="440" WindowStartupLocation="CenterScreen"
-            WindowStyle="None" ResizeMode="NoResize">
+        WindowStyle="None" ResizeMode="NoResize" Style="{DynamicResource WindowStyle}">
 
     <Window.Resources>
         <Storyboard x:Key="MenuOpen">

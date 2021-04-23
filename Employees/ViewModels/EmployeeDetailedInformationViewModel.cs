@@ -2,6 +2,10 @@
 using Models;
 using MySqlConnector;
 using DataBase;
+using System.Linq;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System;
 
 namespace Employees.ViewModels
 {
@@ -79,6 +83,83 @@ namespace Employees.ViewModels
                 OnPropertyChanged(nameof(ImagePath));
             }
         }
+
+        private string month;
+        public string Month
+        {
+            get => month;
+            set
+            {
+                month = value;
+                OnPropertyChanged(nameof(month));
+            }
+        }
+
+        private string profession;
+        public string Profession 
+        {
+            get => profession;
+            set
+            {
+                profession = value;
+                OnPropertyChanged(nameof(Profession));
+            }
+        }
+
+        private int businessTravelDays;
+        public int BusinessTravelDays 
+        {
+            get => businessTravelDays;
+            set
+            {
+                businessTravelDays = value;
+                OnPropertyChanged(nameof(BusinessTravelDays));
+            }
+        }
+
+        private int workingHours;
+        public int WorkingHours
+        {
+            get => workingHours;
+            set
+            {
+                workingHours = value;
+                OnPropertyChanged(nameof(WorkingHours));
+            }
+        }
+
+        private int sickLeave;
+        public int SickLeave
+        {
+            get => sickLeave;
+            set
+            {
+                sickLeave = value;
+                OnPropertyChanged(nameof(SickLeave));
+            }
+        }
+
+        private int vacationLeave;
+        public int VacationLeave
+        {
+            get => vacationLeave;
+            set
+            {
+                vacationLeave = value;
+                OnPropertyChanged(nameof(vacationLeave));
+            }
+        }
+
+        private ObservableCollection<EmployeeSchedule> employeeSchedules;
+        public ObservableCollection<EmployeeSchedule> EmployeeSchedules
+        {
+            get => employeeSchedules;
+            set
+            {
+                employeeSchedules = value;
+                OnPropertyChanged(nameof(EmployeeSchedules));
+            }
+        }
         #endregion
 
         #region constructor
@@ -87,10 +168,31 @@ namespace Employees.ViewModels
             this.selectedEmployee = selectedEmployee;
 
             gettingEmployeeInformation();
+
+            fillSchedule();
+
+            //Days = new List<int>(Enumerable.Range(1, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month)).ToList());
+
+            Month = DateTime.Now.ToString("MMM");
         }
         #endregion
 
         #region methods
+        private void fillSchedule()
+        {
+            EmployeeSchedules = new ObservableCollection<EmployeeSchedule>();
+
+            int daysInMonth = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
+            for (int i = 1; i <= daysInMonth; i++)
+            {
+                EmployeeSchedules.Add(new EmployeeSchedule
+                {
+                    Days = i,
+                    ActionOnDay = i.ToString()
+                });
+            }
+        }
+
         private void gettingEmployeeInformation()
         {
             connectionString = new ConnectionString();
@@ -114,7 +216,11 @@ namespace Employees.ViewModels
                         PhoneNumber = reader["phone_number"].ToString();
                         Passport = reader["passport"].ToString();
                         ImagePath = reader["image_path"].ToString();
-                        
+                        Profession = reader["name"].ToString();
+                        BusinessTravelDays = (int)reader["business_travel_days"];
+                        WorkingHours = (int)reader["working_hours"];
+                        SickLeave = (int)reader["sick_leave"];
+                        VacationLeave = (int)reader["vacation_leave"];
                     }
                 }
             }
