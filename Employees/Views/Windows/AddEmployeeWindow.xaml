@@ -12,14 +12,7 @@
         MouseLeftButtonDown="DraggableWindow">
 
     <Grid >
-        <Button Style="{StaticResource ExitButton}" HorizontalAlignment="Right"
-                VerticalAlignment="Top" Name="exit">
-            <Button.Command>
-                <cmd:CloseApplicationCommand/>
-            </Button.Command>
-
-            <Image Style="{StaticResource ExitImage}"/>
-        </Button>
+        
         <Label Content="Регистрация сотрудника" HorizontalAlignment="Center"
                FontFamily="Times New Roman" FontWeight="Bold" FontSize="25"/>
         <StackPanel HorizontalAlignment="Center" Height="600"

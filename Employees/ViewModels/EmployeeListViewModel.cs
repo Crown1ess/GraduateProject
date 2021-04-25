@@ -1,5 +1,6 @@
 ﻿using DataBase;
 using Employees.Services.ChangeContent;
+using Employees.Services.DialogService;
 using Employees.ViewModels.Base;
 using Models;
 using MySqlConnector;
@@ -16,6 +17,7 @@ namespace Employees.ViewModels
         private IChangeContent changeContent;
         private readonly ConnectionString connectionString;
         public ObservableCollection<Employee> Employees { get; private set; }
+        private DefaultDialogService dialogService;
         #endregion
 
         #region properties
@@ -56,6 +58,8 @@ namespace Employees.ViewModels
             openEmployeeDetailedInformation = new RelayCommand(OnOpenEmployeeDetailedInformation, p => true);
 
             removeEmployeeCommand = new RelayCommand(p=>removeEmployee());
+
+            dialogService = new DefaultDialogService();
         }
         #endregion
 
@@ -85,10 +89,10 @@ namespace Employees.ViewModels
                     {
                         if(reader.Read())
                         {
-                            if((bool)reader[0])
-                                MessageBox.Show("Данные о сотруднике были удалены!", "Уведомление");
+                            if ((bool)reader[0])
+                                dialogService.ShowMessage("Данные о сотруднике были удалены!", "Уведомление");
                             else
-                                MessageBox.Show("Невозможно удалить данные о директоре!", "Ошибка");
+                                dialogService.ShowMessage("Невозможно удалить данные о директоре!", "Ошибка");
                         }
 
                     }

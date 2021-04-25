@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "9kjrO6FaU+qA84kJ/hK+mcwZlw4LyRV3Bt9IHQ53hK0ByLch/pTL97rsa6QIroCcnpJ2fwFyuvzo762Q2kQnzQ==",
+  "dgSpecHash": "N/tEyzi+Rqy4oDg1SgdJXXYQC4XokowADdXmFtlT/9UXmLkWkkvhof5ZLtacg4KCh5fE3IIuI5rs+qiEEM2QWA==",
   "success": true,
   "projectFilePath": "C:\\Users\\davae\\source\\repos\\Employees\\Employees\\Employees.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\davae\\.nuget\\packages\\mysqlconnector\\1.2.1\\mysqlconnector.1.2.1.nupkg.sha512"
+    "C:\\Users\\davae\\.nuget\\packages\\mysqlconnector\\1.3.7\\mysqlconnector.1.3.7.nupkg.sha512"
   ],
   "logs": []
 }

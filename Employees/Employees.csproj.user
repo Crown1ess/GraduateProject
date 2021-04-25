@@ -27,9 +27,6 @@
     <Page Update="Services\Styles\Dark.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Services\Styles\Light.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Views\EmployeeDetailedInformationView.xaml">
       <SubType>Designer</SubType>
     </Page>

@@ -41,21 +41,6 @@ namespace Employees.ViewModels
         #endregion
 
         #region constructor
-        public EmployeeViewModel(ChangeContent changeContent)
-        {
-            this.changeContent = changeContent;
-            currentContent = new EmployeeListViewModel(changeContent);
-
-            
-            jumpToMainView = new RelayCommand(p => changeViewModel(new EmployeeListViewModel(changeContent)));
-
-            employeeListViewModel = new EmployeeListViewModel(changeContent);
-
-            changeContent.OnSelectedEmployee += OnJumpToEmployeeDetailedInformation;
-            //doesn't work
-            logOut = new RelayCommand(p => executeLogOut());
-
-        }
 
         public EmployeeViewModel(object user, ChangeContent changeContent, bool isAuthorized)
         {
@@ -71,30 +56,22 @@ namespace Employees.ViewModels
             employeeListViewModel = new EmployeeListViewModel(changeContent);
 
             changeContent.OnSelectedEmployee += OnJumpToEmployeeDetailedInformation;
-            //doesn't work
-            logOut = new RelayCommand(p => executeLogOut());
+
+            logOut = new RelayCommand(p => executeLogOut(), p => true);
         }
         #endregion
 
-        #region methods
-        //doesn't work
-        private void executeLogOut()
+        #region methods 
+
+        private async void executeLogOut()
         {
             var someChoice = MessageBox.Show("Вы точно хотите выйти из аккаунта?", "Выход из учетной записи", MessageBoxButton.YesNo);//надо будет заменить
 
             if (someChoice == MessageBoxResult.Yes)
             {
-                if(OnLogOut != null)
-                {
-                    OnLogOut?.Invoke(this, new CheckEventArgs(true));
-                }
-                else
-                {
-                    MessageBox.Show("You are looser");
-                }
+                OnLogOut?.Invoke(this, new CheckEventArgs(true));
             }
-            
-            
+
             //вызов popup или же можно будет обойтись messagebox
             //проверка результатов выбора
         }

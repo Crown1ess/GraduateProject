@@ -37,4 +37,3 @@ C:\Users\davae\source\repos\Employees\Employees\obj\Debug\netcoreapp3.1\Views\Em
 C:\Users\davae\source\repos\Employees\Employees\obj\Debug\netcoreapp3.1\Views\EmployeeDetailedInformationView.baml
 C:\Users\davae\source\repos\Employees\Employees\obj\Debug\netcoreapp3.1\Services\Styles\Style.baml
 C:\Users\davae\source\repos\Employees\Employees\obj\Debug\netcoreapp3.1\Services\Styles\Dark.baml
-C:\Users\davae\source\repos\Employees\Employees\obj\Debug\netcoreapp3.1\Services\Styles\Light.baml

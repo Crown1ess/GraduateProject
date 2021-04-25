@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v3.1": {
-      "MySqlConnector/1.2.1": {
+      "MySqlConnector/1.3.7": {
         "type": "package",
         "compile": {
           "lib/netcoreapp3.1/MySqlConnector.dll": {}
@@ -34,13 +34,14 @@
     }
   },
   "libraries": {
-    "MySqlConnector/1.2.1": {
-      "sha512": "B+uQUXBhWibjQBaOe+GXXTEm573HGQU2M2NR8BKdyEEBxzGui8OVTL+dtW5Jg4FwovvW4Y1uMOKeBdmI5tQltA==",
+    "MySqlConnector/1.3.7": {
+      "sha512": "cceT5xpMPgInT8sVnmhZ62aouEux6dWJjOaMSsYW0TmLvK+gwG0eKw8J9NklTw+Q5Cch9Sd04OBux3GSITvABw==",
       "type": "package",
-      "path": "mysqlconnector/1.2.1",
+      "path": "mysqlconnector/1.3.7",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
+        "README.md",
         "lib/net45/MySqlConnector.dll",
         "lib/net45/MySqlConnector.xml",
         "lib/net461/MySqlConnector.dll",
@@ -60,7 +61,7 @@
         "lib/netstandard2.1/MySqlConnector.dll",
         "lib/netstandard2.1/MySqlConnector.xml",
         "logo.png",
-        "mysqlconnector.1.2.1.nupkg.sha512",
+        "mysqlconnector.1.3.7.nupkg.sha512",
         "mysqlconnector.nuspec"
       ]
     },
@@ -79,7 +80,7 @@
     ".NETCoreApp,Version=v3.1": [
       "DataBase >= 1.0.0",
       "Models >= 1.0.0",
-      "MySqlConnector >= 1.2.1"
+      "MySqlConnector >= 1.3.7"
     ]
   },
   "packageFolders": {
@@ -135,7 +136,7 @@
         "dependencies": {
           "MySqlConnector": {
             "target": "Package",
-            "version": "[1.2.1, )"
+            "version": "[1.3.7, )"
           }
         },
         "imports": [

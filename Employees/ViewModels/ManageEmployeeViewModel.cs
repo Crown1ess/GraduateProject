@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Input;
 using DataBase;
 using MySqlConnector;
+using Employees.Services.DialogService;
 
 namespace Employees.ViewModels
 {
@@ -11,6 +12,7 @@ namespace Employees.ViewModels
     {
         #region fields
         private ConnectionString connectionString;
+        private DefaultDialogService dialogService;
         #endregion
 
         #region properties
@@ -129,8 +131,7 @@ namespace Employees.ViewModels
         }
         private void showAboutInformation()
         {
-            //remove that thing
-            MessageBox.Show("This is Johny!!!", "About");
+            dialogService.ShowMessage("This is Johny!!!", "About");
         }
 
         #endregion

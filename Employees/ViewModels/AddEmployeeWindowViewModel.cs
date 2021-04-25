@@ -397,12 +397,12 @@ namespace Employees.ViewModels
                 if (dialogService.OpenFileDialog())
                 {
                     imagePath = Path.GetFullPath(fileService.Open(dialogService.FilePath));
-                    dialogService.ShowMessage("Image selected");
+                    dialogService.ShowMessage("Image selected", "Уведомление");
                 }
             }
             catch (Exception ex)
             {
-                dialogService.ShowMessage(ex.Message);
+                dialogService.ShowMessage(ex.Message, "Ошибка");
             }
         }
         private void getDrivingLicenses()
@@ -466,11 +466,6 @@ namespace Employees.ViewModels
             connectionString = new ConnectionString();
 
             string sqlInquiryString = "insert_employee_data";
-            //string sqlInquiryString = $"INSERT INTO employees VALUES" +
-            //    $"({LastName}, {FirstName}, {SecondName}, {PhoneNumber};" +
-            //                         $"INSERT INTO employees_detailed_information VALUES" +
-            //    $"({INN},{SNILS},{Address},{Passport}, {GettingPlace}, {GettingDate}, {SelectedMaritalStatus}," +
-            //    $"{imagePath}, {BirthDate}, {SelectedWorkYearExperience},{SelectedWorkMonthExperience}, {drivingLicense};" ;
             
             using(MySqlConnection connection = new MySqlConnection(connectionString.StringOfConnection))
             {
@@ -497,8 +492,7 @@ namespace Employees.ViewModels
 
                 command.ExecuteNonQuery();
 
-                dialogService.ShowMessage("Сотрудник был внесен в базу данных");
-                //MessageBox.Show("Data has inserted");
+                dialogService.ShowMessage("Сотрудник был внесен в базу данных", "Уведомление");
             }
         }
         #endregion

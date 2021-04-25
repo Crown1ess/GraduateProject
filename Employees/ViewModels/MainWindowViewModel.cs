@@ -1,9 +1,9 @@
 ﻿using DataBase;
 using Employees.Services;
+using Employees.Services.DialogService;
 using Employees.ViewModels.Base;
 using MySqlConnector;
 using System;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Security;
 using System.Windows.Controls;
@@ -26,6 +26,8 @@ namespace Employees.ViewModels
         public event EventHandler<LoginEventArgs> OnAuthorize;
 
         private ConnectionString connectionString;
+
+        private DefaultDialogService dialogService;
 
         #endregion
 
@@ -120,6 +122,8 @@ namespace Employees.ViewModels
                     else
                     {
                         OnAuthorize?.Invoke(this, new LoginEventArgs(PhoneNumber, false));
+                        dialogService = new DefaultDialogService();
+                        dialogService.ShowMessage("Неправильный логин или пароль, попробуйте ввести корректные данные!", "Ошибка");
                     }
                 }
             }             

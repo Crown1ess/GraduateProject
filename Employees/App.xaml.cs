@@ -19,17 +19,11 @@ namespace Employees
         private MainWindow mainWindow;
         private Main employeeWindow;
         private MainWindowViewModel mainWindowViewModel;
-        private AddEmployeeWindow addEmployeeWindow;
-        private AddEmployeeWindowViewModel addEmployeeWindowViewModel;
-
         #endregion
 
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-
-            //addEmployeeWindowViewModel = new AddEmployeeWindowViewModel();
-            //addEmployeeWindowViewModel.OnCheckedDriveLicense += EnableDrivingLicenseCombobox;
 
             mainWindowViewModel = new MainWindowViewModel();  
             mainWindowViewModel.OnAuthorize += LoginViewModelOnOnAuthorize;
@@ -37,8 +31,6 @@ namespace Employees
             mainWindow.Show();
 
             changeContent = new ChangeContent();
-            employeeViewModel = new EmployeeViewModel(changeContent);
-            employeeViewModel.OnLogOut += LogingOut;
 
         }
 
@@ -50,16 +42,17 @@ namespace Employees
         /// <param name="e"></param>
         private void LoginViewModelOnOnAuthorize(object sender, LoginEventArgs e)
         {
-            if (e.IsAuthorized)
+            if(e.IsAuthorized)
             {
-                employeeWindow = new Main() { DataContext = new EmployeeViewModel(e.User, changeContent, e.IsAuthorized) };
+                employeeViewModel = new EmployeeViewModel(e.User, changeContent, e.IsAuthorized);
+                employeeWindow = new Main()
+                {
+                    DataContext = employeeViewModel
+                };
+                employeeViewModel.OnLogOut += LogingOut;
                 employeeWindow.Show();
                 mainWindow.Close();
                 return;
-            }
-            else
-            {
-                MessageBox.Show("Неправильный логин или пароль, попробуйте ввести корректные данные!", "Ошибка авторизации");
             }
         }
 
@@ -74,18 +67,7 @@ namespace Employees
             }
             
         }
-        //не работает
-        private void EnableDrivingLicenseCombobox(object sender, SecondCheckEventArgs e)
-        {
-            addEmployeeWindow = new AddEmployeeWindow();
-            if (e.IsChecked)
-            {
-                addEmployeeWindow.DrivingLicensesComboBox.IsEnabled = true;
-                MessageBox.Show("you fucked up, looser", "for looser");
-            }
-            MessageBox.Show("You are looser", "letter for looser");   
-        }
-
+        
         #endregion
     }
 }

@@ -6,7 +6,7 @@ namespace Employees.Services.DialogService
 {
     public interface IDialogService
     {
-        void ShowMessage(string message);
+        void ShowMessage(string message, string caption);
         string FilePath { get; set; }
         bool OpenFileDialog();
     }

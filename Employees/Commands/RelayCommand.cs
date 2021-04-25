@@ -19,10 +19,11 @@ namespace Employees
             this.execute = execute ?? throw new ArgumentNullException(nameof(execute));
             this.canExecute = canExecute;
         }
-        public bool CanExecute(object parameter) => true;
-        //{
-        //    return this.canExecute == null || this.canExecute(parameter);
-        //}
+        public bool CanExecute(object parameter)
+        {
+            return canExecute == null || canExecute(parameter);
+        }
+        
 
         public void Execute(object parameter)
         {

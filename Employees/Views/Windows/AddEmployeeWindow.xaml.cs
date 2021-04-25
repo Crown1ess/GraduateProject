@@ -19,7 +19,7 @@ namespace Employees.Views.Windows
 
         private void CloseWindow_Click(object sender, RoutedEventArgs e)
         {
-            var dialogResult =  MessageBox.Show(messageBoxText: "Вы действительно хотите закрыть окно регистрации?", "Alert", MessageBoxButton.OKCancel);
+            var dialogResult =  MessageBox.Show(messageBoxText: "Вы действительно хотите закрыть окно регистрации?", "Уведомление", MessageBoxButton.OKCancel);
             if(dialogResult == MessageBoxResult.OK)
             {
                 this.Close();
