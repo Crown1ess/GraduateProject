@@ -4,9 +4,7 @@ using Employees.Services.DialogService;
 using Employees.ViewModels.Base;
 using Models;
 using MySqlConnector;
-using System;
 using System.Collections.ObjectModel;
-using System.Windows;
 using System.Windows.Input;
 
 namespace Employees.ViewModels
@@ -70,9 +68,9 @@ namespace Employees.ViewModels
         /// </summary>
         private void removeEmployee()
         {
-            var removeChoice = MessageBox.Show("Вы точно хотите удалить данные", "Предупреждение", MessageBoxButton.YesNo);
+            bool removeChoice = dialogService.ChoosePopup("Вы точно хотите удалить данные", "Предупреждение");
 
-            if(removeChoice == MessageBoxResult.Yes)
+            if(removeChoice)
             {
                
                 string sqlInquiryString = "remove_employee";

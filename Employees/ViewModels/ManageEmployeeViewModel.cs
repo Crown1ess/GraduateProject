@@ -1,6 +1,4 @@
 ﻿using Employees.ViewModels.Base;
-using System;
-using System.Windows;
 using System.Windows.Input;
 using DataBase;
 using MySqlConnector;
@@ -106,7 +104,6 @@ namespace Employees.ViewModels
             using (MySqlConnection connection = new MySqlConnection(connectionString.StringOfConnection))
             {
                 connection.Open();
-                //think how to get phone number from another window (registration window)
                 string sqlInquiryString = "get_user";
 
                 MySqlCommand command = new MySqlCommand(sqlInquiryString, connection);

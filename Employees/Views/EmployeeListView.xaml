@@ -10,13 +10,14 @@
         <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="auto"
                       CanContentScroll="False" Width="auto" Height="450">
             <ListBox Name="listEmployees" Margin="5" ItemsSource="{Binding Employees}" 
-                 HorizontalContentAlignment="Center"
-                 VerticalAlignment="Top" BorderThickness="0" Cursor="Hand" 
-                 Background="Transparent"
-                 ItemContainerStyle="{StaticResource EmployeeListBoxItems}" 
-                 VirtualizingPanel.IsVirtualizing="True"
-                 VirtualizingPanel.VirtualizationMode="Recycling"
-                 VirtualizingPanel.IsContainerVirtualizable="True"
+                     HorizontalContentAlignment="Center"
+                     VerticalAlignment="Top" BorderThickness="0" Cursor="Hand" 
+                     Background="Transparent"
+                     ItemContainerStyle="{StaticResource EmployeeListBoxItems}" 
+                     VirtualizingPanel.IsVirtualizing="True"
+                     VirtualizingPanel.VirtualizationMode="Recycling"
+                     VirtualizingPanel.IsContainerVirtualizable="True"
+                     ScrollViewer.IsDeferredScrollingEnabled="True"
                      SelectedIndex="{Binding SelectedEmployee}">
 
                 <ListBox.ItemsPanel>

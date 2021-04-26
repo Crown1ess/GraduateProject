@@ -28,5 +28,14 @@ namespace Employees.Services.DialogService
             MessageBox.Show(message, caption);
         }
        
+        public bool ChoosePopup(string message, string caption)
+        {
+            var chooseResult = MessageBox.Show(message, caption, MessageBoxButton.YesNo);
+
+            if (chooseResult == MessageBoxResult.Yes)
+                return true;
+            else
+                return false;
+        }
     }
 }

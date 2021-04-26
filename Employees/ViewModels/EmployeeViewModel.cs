@@ -1,8 +1,9 @@
 ﻿using Employees.Services;
 using Employees.Services.ChangeContent;
+using Employees.Services.DialogService;
 using Employees.ViewModels.Base;
 using System;
-using System.Windows;
+using System.Threading.Tasks;
 
 namespace Employees.ViewModels
 {
@@ -12,6 +13,7 @@ namespace Employees.ViewModels
         private EmployeeListViewModel employeeListViewModel;
         private IChangeContent changeContent;
         public event EventHandler<CheckEventArgs> OnLogOut;
+        private DefaultDialogService dialogService;
         #endregion
 
         #region properties
@@ -63,11 +65,13 @@ namespace Employees.ViewModels
 
         #region methods 
 
-        private async void executeLogOut()
+        private void executeLogOut()
         {
-            var someChoice = MessageBox.Show("Вы точно хотите выйти из аккаунта?", "Выход из учетной записи", MessageBoxButton.YesNo);//надо будет заменить
+            dialogService = new DefaultDialogService();
 
-            if (someChoice == MessageBoxResult.Yes)
+            bool exitChoice = dialogService.ChoosePopup("Вы точно хотите выйти из аккаунта?", "Выход из учетной записи");
+
+            if (exitChoice)
             {
                 OnLogOut?.Invoke(this, new CheckEventArgs(true));
             }
