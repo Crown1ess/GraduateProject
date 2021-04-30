@@ -7,18 +7,22 @@
              d:DesignHeight="450" d:DesignWidth="440">
     
     <Grid>
-        <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="auto"
-                      CanContentScroll="False" Width="auto" Height="450">
+        
+        <ScrollViewer HorizontalScrollBarVisibility="Hidden" 
+                      VerticalScrollBarVisibility="auto"
+                      CanContentScroll="True" 
+                      Width="auto"
+                      Height="450">
             <ListBox Name="listEmployees" Margin="5" ItemsSource="{Binding Employees}" 
                      HorizontalContentAlignment="Center"
-                     VerticalAlignment="Top" BorderThickness="0" Cursor="Hand" 
-                     Background="Transparent"
+                     VerticalAlignment="Top" BorderThickness="0" Cursor="Hand"
                      ItemContainerStyle="{StaticResource EmployeeListBoxItems}" 
                      VirtualizingPanel.IsVirtualizing="True"
                      VirtualizingPanel.VirtualizationMode="Recycling"
                      VirtualizingPanel.IsContainerVirtualizable="True"
                      ScrollViewer.IsDeferredScrollingEnabled="True"
-                     SelectedIndex="{Binding SelectedEmployee}">
+                     SelectedIndex="{Binding SelectedEmployee}"
+                     Style="{StaticResource DefaultListBoxBox}">
 
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -28,9 +32,9 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Border Margin="5" BorderThickness="1"
-                                    BorderBrush="#344152" 
-                                    CornerRadius="4"
-                                    Width="400">
+                                BorderBrush="#344152" 
+                                CornerRadius="4"
+                                Width="400">
                             <Grid Margin="3">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
@@ -38,7 +42,7 @@
                                 </Grid.ColumnDefinitions>
                                 <StackPanel Orientation="Horizontal">
                                     <Image Grid.RowSpan="2" Width="100" Height="75" Margin="6" 
-                                       Source="{Binding ImagePath}"/>
+                                           Source="{Binding ImagePath}"/>
                                     <StackPanel Orientation="Vertical">
                                         <StackPanel Orientation="Horizontal">
                                             <Label FontWeight="Medium" Content="{Binding LastName}"/>
@@ -52,30 +56,34 @@
                                         <StackPanel Orientation="Horizontal">
                                             <Label Content="Passport:"/>
                                             <TextBlock x:Name="passport"
-                                                VerticalAlignment="Center" Text="{Binding PassportData}"/>
+                                                       VerticalAlignment="Center" Text="{Binding PassportData}"/>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal">
                                             <Button Content="Подробнее" 
-                                                Command="{Binding Path=DataContext.OpenEmployeeDetailedInformation,
-                                                 ElementName=listEmployees}"
-                                                CommandParameter="passport"
-                                                Height="20" Width="150"
-                                                Background="Transparent"
-                                                FontSize="7"
-                                                Foreground="Black"
-                                                Cursor="Arrow"/>
+                                                    Command="{Binding Path=DataContext.OpenEmployeeDetailedInformation,
+                                                     ElementName=listEmployees}"
+                                                    CommandParameter="passport"
+                                                    Height="20" Width="150"
+                                                    Background="Transparent"
+                                                    FontSize="9"
+                                                    Foreground="Black"
+                                                    Cursor="Arrow"
+                                                    Style="{DynamicResource Default}"
+                                                    BorderBrush="Black"/>
                                             <Button Content="Удалить"
                                                     Command="{Binding Path=DataContext.RemoveEmployeeCommand,
                                                     ElementName=listEmployees}"
                                                     CommandParameter="passport"
                                                     Height="20" Width="70"
                                                     Background="Transparent"
-                                                    FontSize="7"
+                                                    FontSize="9"
                                                     Foreground="Red"
                                                     Cursor="Arrow"
-                                                    Margin="10 0 0 0"/>
+                                                    Margin="10 0 0 0"
+                                                    Style="{DynamicResource Default}"
+                                                    BorderBrush="Black"/>
                                         </StackPanel>
-                                        
+
                                     </StackPanel>
                                 </StackPanel>
 
@@ -83,8 +91,9 @@
                         </Border>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
-                
+
             </ListBox>
+
         </ScrollViewer>
     </Grid>
 </UserControl>

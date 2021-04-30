@@ -85,6 +85,7 @@ namespace Employees.ViewModels
         {
             aboutCommand = new RelayCommand(p => showAboutInformation());
             getUserInformation(user);
+            dialogService = new DefaultDialogService();
         }
 
         #endregion

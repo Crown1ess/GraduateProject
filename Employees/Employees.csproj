@@ -4,12 +4,14 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Services\images\AlissLogo.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="Services\images\exit.png" />
     <None Remove="Services\images\gear.png" />
     <None Remove="Services\images\logout.png" />
+    <None Remove="Services\images\menu.png" />
     <None Remove="Services\images\Profile.png" />
     <None Remove="Services\images\user.png" />
     <None Remove="Services\images\whiteExit.png" />
@@ -38,6 +40,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Services\images\logout.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Services\images\menu.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Services\images\Profile.png">

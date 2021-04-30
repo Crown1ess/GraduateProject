@@ -5,133 +5,251 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:cmd="clr-namespace:Employees.Commands"
         mc:Ignorable="d"
-        Title="ManageEmployeeWindow" Height="640" Width="500"
+        Title="ManageEmployeeWindow"
+        Height="550" 
+        Width="500"
         WindowStartupLocation="CenterScreen"
-        WindowStyle="None" Style="{DynamicResource WindowStyle}"
+        WindowStyle="None" 
+        Style="{DynamicResource WindowStyle}"
         ResizeMode="NoResize" 
         MouseLeftButtonDown="DraggableWindow">
 
     <Grid >
         
-        <Label Content="Регистрация сотрудника" HorizontalAlignment="Center"
-               FontFamily="Times New Roman" FontWeight="Bold" FontSize="25"/>
-        <StackPanel HorizontalAlignment="Center" Height="600"
-                    VerticalAlignment="Top" Width="500" Margin="0,40,0,0">
+        <Label Content="Регистрация сотрудника" 
+               HorizontalAlignment="Center"
+               FontFamily="Times New Roman"
+               FontWeight="Bold"
+               FontSize="25"/>
+        <StackPanel HorizontalAlignment="Center"
+                    Height="510"
+                    VerticalAlignment="Top" 
+                    Width="500"
+                    Margin="0 40 0 0">
+            
             <StackPanel Orientation="Horizontal">
-                <Label Content="Фамилия" Style="{StaticResource RegistrationLabel}"
-                       Margin="20 0 90 0"/>
-                <Label Content="Имя" Style="{StaticResource RegistrationLabel}"
-                       Margin="40 0 100 0"/>
-                <Label Content="ИНН" Style="{StaticResource RegistrationLabel}"
-                       Margin="20 0 50 0"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBox Text="{Binding LastName}" Style="{StaticResource RegistrationTextBox}"
-                          Width="180"/>
-                <TextBox Text="{Binding FirstName}" Style="{StaticResource RegistrationTextBox}"
+                <StackPanel>
+                    <Label Content="Фамилия"
+                       Style="{StaticResource RegistrationLabel}"
+                       Margin="10 0 0 0"/>
+                    <TextBox Text="{Binding LastName}"
+                             Style="{StaticResource RegistrationTextBox}"
+                             Width="180"/>
+                    <Border BorderBrush="#534b4f"
+                            BorderThickness="1"
+                            Width="180"/>
+                </StackPanel>
+
+                <StackPanel>
+                    <Label Content="Имя"
+                       Style="{StaticResource RegistrationLabel}"
+                       Margin="10 0 90 0"/>
+                    <TextBox Text="{Binding FirstName}" 
+                         Style="{StaticResource RegistrationTextBox}"
                          Width="150"/>
-                <TextBox Text="{Binding INN}" Style="{StaticResource RegistrationTextBox}"
-                         Width="100" MaxLength="12"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Отчество" Style="{StaticResource RegistrationLabel}"
-                       Margin="20 0 90 0"/>
-                <Label Content="Номер телефона" Style="{StaticResource RegistrationLabel}"
-                       Margin="35 0 0 0"/>
-                <Label Content="СНИЛС" Style="{StaticResource RegistrationLabel}"
-                       Margin="35 0 0 0"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBox Text="{Binding SecondName}" Style="{StaticResource RegistrationTextBox}"
-                         Width="180" Margin="10 0 25 0"/>
-                <Label Content="+7" Margin="0" Style="{StaticResource NumberLabel}"
-                       Width="30" FontSize="15" Height="40"/>
-                <TextBox Text="{Binding PhoneNumber}" Style="{StaticResource RegistrationTextBox}"
-                         Width="110" Margin="1 0 7 0" MaxLength="10"/>
-                <TextBox Text="{Binding SNILS}" Style="{StaticResource RegistrationTextBox}"
-                         Width="105" MaxLength="11"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Адрес регистрации" Style="{StaticResource RegistrationLabel}"
-                       Margin="20 0 120 0"/>
-                <Label Content="Паспорт" Style="{StaticResource RegistrationLabel}"
-                       Margin="100 0 0 0"/>
+                    <Border BorderBrush="#534b4f"
+                            BorderThickness="1"
+                            Width="170"/>
+                </StackPanel>
+
+                <StackPanel>
+                    <Label Content="ИНН" 
+                       Style="{StaticResource RegistrationLabel}"
+                       Margin="10 0 50 0"/>
+                    <TextBox Text="{Binding INN}"
+                         Style="{StaticResource RegistrationTextBox}"
+                         Width="100"
+                         MaxLength="12"/>
+                    <Border BorderBrush="#534b4f"
+                            BorderThickness="1"
+                            Width="100"/>
+                </StackPanel>
                 
             </StackPanel>
+            
             <StackPanel Orientation="Horizontal">
-                <TextBox Text="{Binding Address}" Style="{StaticResource RegistrationTextBox}"
+                <StackPanel>
+                    <Label Content="Отчество"
+                       Style="{StaticResource RegistrationLabel}"
+                       Margin="10 10 90 0"/>
+                    <TextBox Text="{Binding SecondName}" 
+                         Style="{StaticResource RegistrationTextBox}"
+                         Width="180"/>
+                    <Border BorderBrush="#534b4f"
+                            BorderThickness="1"
+                            Width="180"/>
+                </StackPanel>
+                
+                
+                <StackPanel>
+                    <Label Content="Номер телефона" 
+                                   Style="{StaticResource RegistrationLabel}"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="+7"
+                               Style="{StaticResource NumberLabel}"
+                               Width="30" 
+                               FontSize="15"
+                               Height="30"/>
+                        <TextBox Text="{Binding PhoneNumber}" 
+                                 Style="{StaticResource RegistrationTextBox}"
+                                 Width="110" 
+                                 MaxLength="10"/>
+                    </StackPanel>
+                    <Border BorderBrush="#534b4f"
+                            BorderThickness="1"
+                            Width="140"/>
+                </StackPanel>
+
+                <StackPanel>
+                    <Label Content="СНИЛС"
+                       Style="{StaticResource RegistrationLabel}"
+                       Margin="35 10 0 0"/>
+                    <TextBox Text="{Binding SNILS}"
+                         Style="{StaticResource RegistrationTextBox}"
+                         Width="105"
+                         MaxLength="11"/>
+                    <Border BorderBrush="#534b4f"
+                            BorderThickness="1"
+                            Width="105"/>
+                </StackPanel>
+                
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal">
+                <StackPanel>
+                    <Label Content="Адрес регистрации" 
+                       Style="{StaticResource RegistrationLabel}"
+                       Margin="10 0 0 0"/>
+                    <TextBox Text="{Binding Address}" 
+                         Style="{StaticResource RegistrationTextBox}"
                          Width="350"
                          HorizontalAlignment="Left"/>
-                <TextBox Text="{Binding Passport}" Style="{StaticResource RegistrationTextBox}"
-                         Width="105" Margin="5 0 0 0" MaxLength="10"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Где был выдан" Style="{StaticResource RegistrationLabel}"
-                       Margin="20 0 20 0"/>
-                <Label Content="Дата выдачи" Style="{StaticResource RegistrationLabel}"
-                       Margin="40 0 5 0"/>
-                <Label Content="Семейное положение" Style="{StaticResource RegistrationLabel}"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBox Text="{Binding GettingPlace}" Style="{StaticResource RegistrationTextBox}"
-                         Width="230"/>
-                <DatePicker SelectedDate="{Binding GettingDate}" Height="40" Width="85"
-                                Margin="10 0 15 0" FontSize="15" Cursor="Hand" 
-                            DisplayDateEnd="2021-03-12"
-                            DisplayDateStart="1950-03-12"
-                            DisplayDate="2021-03-12"/>
-                <ComboBox ItemsSource="{Binding MaritalStatuses}" Height="40" Width="120"
-                          SelectedIndex="0" VerticalContentAlignment="Center"
-                          SelectedItem="{Binding SelectedMaritalStatus}"
-                          VirtualizingStackPanel.VirtualizationMode="Recycling">
-                    <ComboBox.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <VirtualizingStackPanel/>
-                        </ItemsPanelTemplate>
-                    </ComboBox.ItemsPanel>
-                </ComboBox>
+                    <Border BorderBrush="#534b4f"
+                            BorderThickness="1"
+                            Width="350"/>
+                </StackPanel>
 
+                <StackPanel>
+                    <Label Content="Паспорт"
+                       Style="{StaticResource RegistrationLabel}"
+                       Margin="10 0 0 0"/>
+                    <TextBox Text="{Binding Passport}"
+                         Style="{StaticResource RegistrationTextBox}"
+                         Width="105"
+                         MaxLength="10"/>
+                    <Border BorderBrush="#534b4f"
+                            BorderThickness="1"
+                            Width="105"/>
+                </StackPanel>
+                
             </StackPanel>
+            
             <StackPanel Orientation="Horizontal">
-                <Label Content="Профессия" Style="{StaticResource RegistrationLabel}" 
-                       Margin="20 0 20 0"/>
-                <Label Content="Фотография" Style="{StaticResource RegistrationLabel}" 
-                       Margin="120 0 0 0"/>
-                <Label Content="Дата Рождения" Style="{StaticResource RegistrationLabel}" 
-                       Margin="10 0 40 0"/>
+                <StackPanel>
+                    <Label Content="Где был выдан"
+                       Style="{StaticResource RegistrationLabel}"
+                       Margin="10 0 0 0"/>
+                    <TextBox Text="{Binding GettingPlace}"
+                         Style="{StaticResource RegistrationTextBox}"
+                         Width="230"/>
+                    <Border BorderBrush="#534b4f"
+                            BorderThickness="1"
+                            Width="230"/>
+                </StackPanel>
+                <StackPanel>
+                    <Label Content="Дата выдачи"
+                           Style="{StaticResource RegistrationLabel}"/>
+                    <DatePicker SelectedDate="{Binding GettingDate}"
+                                Height="40" Width="85" 
+                                FontSize="15" 
+                                Cursor="Hand" 
+                                DisplayDateEnd="2021-03-12"
+                                DisplayDateStart="1950-03-12"
+                                DisplayDate="2021-03-12"/>
+                </StackPanel>
+
+                <StackPanel>
+                    <Label Content="Дата Рождения" 
+                           Style="{StaticResource RegistrationLabel}" 
+                           Margin="10 0 0 0"/>
+                    <DatePicker SelectedDate="{Binding BirthDate}"
+                                Height="40"
+                                Width="100" 
+                                FontSize="15"
+                                Cursor="Hand" 
+                                IsTodayHighlighted="True"
+                                DisplayDateEnd="2005-03-12"
+                                DisplayDateStart="1900-03-12"
+                                DisplayDate="2021-03-12"/>
+                </StackPanel>    
             </StackPanel>
+            
             <StackPanel Orientation="Horizontal">
-                <ComboBox ItemsSource="{Binding Professions}" Width="225"
+                <StackPanel>
+                    <Label Content="Профессия"
+                           Style="{StaticResource RegistrationLabel}" 
+                           Margin="10 0 0 0"/>
+                    <ComboBox ItemsSource="{Binding Professions}"
+                          Width="225"
                           SelectedItem="{Binding SelectedProfession}"
-                          Margin="12 0 0 0" FontSize="20"
+                          Margin="10 0 0 0" 
+                          FontSize="20"
                           VerticalContentAlignment="Center"
                           HorizontalContentAlignment="Center"
                           SelectedIndex="0"
                           Background="Yellow"
                           VirtualizingStackPanel.VirtualizationMode="Recycling">
-                    <ComboBox.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <VirtualizingStackPanel/>
-                        </ItemsPanelTemplate>
-                    </ComboBox.ItemsPanel>
-                </ComboBox>
-                <Button Content="...." Height="40" Width="60" Margin="20 0 30 0"
-                        Cursor="Hand" Command="{Binding OpenFileCommand}"/>
-                <DatePicker SelectedDate="{Binding BirthDate}" Height="40" Width="100"
-                                Margin="0 0 0 0" FontSize="15" Cursor="Hand" 
-                            IsTodayHighlighted="True"
-                            DisplayDateEnd="2005-03-12"
-                            DisplayDateStart="1900-03-12"
-                            DisplayDate="2021-03-12"/>
+                        <ComboBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel/>
+                            </ItemsPanelTemplate>
+                        </ComboBox.ItemsPanel>
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel>
+                    <Label Content="Фотография"
+                           Style="{StaticResource RegistrationLabel}"/>
+                    <Button Content="...."
+                            Height="40"
+                            Width="60"
+                            Cursor="Hand"
+                            Command="{Binding OpenFileCommand}"/>
+                </StackPanel>
+
+                <StackPanel HorizontalAlignment="Left">
+                    <Label Content="Семейное положение"
+                           Style="{StaticResource RegistrationLabel}"
+                           FontSize="14"/>
+                    <ComboBox ItemsSource="{Binding MaritalStatuses}"
+                              Height="40"
+                              Width="120"
+                              Margin="10 0 0 0"
+                              SelectedIndex="0"
+                              VerticalContentAlignment="Center"
+                              HorizontalAlignment="Left"
+                              SelectedItem="{Binding SelectedMaritalStatus}"
+                              VirtualizingStackPanel.VirtualizationMode="Recycling">
+                        <ComboBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel/>
+                            </ItemsPanelTemplate>
+                        </ComboBox.ItemsPanel>
+                    </ComboBox>
+                </StackPanel>
+                
+                
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Стаж работы" Style="{StaticResource RegistrationLabel}"
-                       Margin="20 0 5 0"/>
+                       Margin="10 0 5 0"/>
                 <Label Content="Права:" Style="{StaticResource RegistrationLabel}"
-                       Margin="200 0 0 0"/>
+                       Margin="210 0 0 0"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Height="55">
-                <ComboBox Width="115" Margin="10 0 0 0" Height="40"
+            <StackPanel Orientation="Horizontal" 
+                        Height="55">
+                <ComboBox Width="115"
+                          Margin="10 0 0 0" 
+                          Height="40"
                           ItemsSource="{Binding WorkYears}"
                           SelectedItem="{Binding SelectedWorkYearExperience}"
                           FontSize="20"
@@ -145,7 +263,9 @@
                         </ItemsPanelTemplate>
                     </ComboBox.ItemsPanel>
                 </ComboBox>
-                <ComboBox Width="100" Margin="15 0 0 0" Height="40"
+                <ComboBox Width="100" 
+                          Margin="15 0 0 0"
+                          Height="40"
                           ItemsSource="{Binding WorkMonths}"
                           SelectedItem="{Binding SelectedWorkMonthExperience}"
                           FontSize="20"
@@ -159,8 +279,10 @@
                         </ItemsPanelTemplate>
                     </ComboBox.ItemsPanel>
                 </ComboBox>
-                <StackPanel VerticalAlignment="Center" Margin="30 0 0 0">
-                    <RadioButton Content="Да" x:Name="HaveLicense"
+                <StackPanel VerticalAlignment="Center" 
+                            Margin="30 0 0 0">
+                    <RadioButton Content="Да"
+                                 x:Name="HaveLicense"
                                  Command="{Binding RadioButtonCommand}"
                                  CommandParameter="HaveLicense"
                                  FontSize="20"/>
@@ -173,11 +295,14 @@
                                         UpdateSourceTrigger=PropertyChanged,
                                         Mode=TwoWay}"
                           x:Name="DrivingLicensesComboBox"
-                          Height="40" Width="140"
+                          Height="40" 
+                          Width="140"
                           VerticalContentAlignment="Center"
-                          SelectedIndex="0" FontSize="13"
+                          SelectedIndex="0"
+                          FontSize="13"
                           HorizontalContentAlignment="Center"
-                          Margin="10 0 0 0" IsEnabled="True"
+                          Margin="10 0 0 0"
+                          IsEnabled="True"
                           VirtualizingPanel.VirtualizationMode="Recycling">
                     <ComboBox.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -187,7 +312,8 @@
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <CheckBox IsChecked="{Binding IsSelected}" Width="120"
+                                <CheckBox IsChecked="{Binding IsSelected}"
+                                          Width="120"
                                           Content="{Binding Text}"/>
 
                             </StackPanel>
@@ -195,14 +321,29 @@
                     </ComboBox.ItemTemplate>
                 </ComboBox>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
-                        Margin="0 10 10 0">
-                <Button Content="Регистрация" Height="50" Width="100"
-                        Margin="90 0 20 0" Cursor="Hand" FontSize="14"
-                        Command="{Binding RegistrateCommand}"/>
-                <Button Name="CloseWindow" Content="Отмена" Width="60" Background="White"
-                        Foreground="Black" Cursor="Hand" Height="40"
-                        FontSize="15" Click="CloseWindow_Click"/>
+            <StackPanel Orientation="Horizontal"
+                        Margin="0 10 10 0"
+                        HorizontalAlignment="Center">
+                <Button Content="Регистрация"
+                        Height="40" 
+                        Width="100"
+                        Cursor="Hand"
+                        FontSize="15"
+                        Command="{Binding RegistrateCommand}"
+                        Style="{DynamicResource Default}"
+                        BorderBrush="Black"
+                        HorizontalAlignment="Center"/>
+                <Button Name="CloseWindow" 
+                        Content="Отмена" 
+                        Width="70"
+                        Foreground="DarkRed"
+                        Cursor="Hand"
+                        Height="40"
+                        FontSize="15"
+                        Click="CloseWindow_Click"
+                        Style="{DynamicResource Default}"
+                        BorderBrush="Black"
+                        Margin="20 0 0 0"/>
             </StackPanel>
         </StackPanel>
 

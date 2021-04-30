@@ -14,7 +14,7 @@ namespace Employees.ViewModels
     {
         #region fields
         
-        IDialogService dialogService;
+        DefaultDialogService dialogService;
         IFileService fileService;
         private string imagePath;
         public event EventHandler<SecondCheckEventArgs> OnCheckedDriveLicense;
@@ -131,15 +131,6 @@ namespace Employees.ViewModels
             {
                 gettingDate = value;
                 OnPropertyChanged("GettingDate");
-                //if (value <= DateTime.Now)
-                //{
-                   
-                //}
-                //else
-                //{
-                //    //some event
-                //}
-                
             }
         }
         public ObservableCollection<string> Professions { get; private set; }
@@ -150,7 +141,7 @@ namespace Employees.ViewModels
             get => selectedProfession;
             set
             {
-                selectedProfession = value;
+                selectedProfession = value + 1;
                 OnPropertyChanged("SelectedProfession");
             }
         }
@@ -162,15 +153,6 @@ namespace Employees.ViewModels
             {
                 birthDate = value;
                 OnPropertyChanged("BirthDate");
-                //if (value < DateTime.Now)
-                //{
-                   
-                //}
-                //else
-                //{
-                //    //some event
-                //}
-                
             }
         }
         
@@ -246,6 +228,7 @@ namespace Employees.ViewModels
         #region constructor
         public AddEmployeeWindowViewModel()
         {
+            dialogService = new DefaultDialogService();
 
             openFileCommand = new RelayCommand(c => openFile(), c => true);
 
@@ -275,9 +258,7 @@ namespace Employees.ViewModels
             if(maritalStatuses.Count < 1)
             {
                 maritalStatuses.Add("Не замужем/Не женат");
-                maritalStatuses.Add("Разведена/Разведен");
                 maritalStatuses.Add("Замужем/Женат");
-                maritalStatuses.Add("Гражданский брак");
             }
         }
     
@@ -389,7 +370,7 @@ namespace Employees.ViewModels
         /// </summary>
         private void openFile()
         {
-            dialogService = new DefaultDialogService();
+           
             fileService = new StringFileService();
 
             try
@@ -461,39 +442,47 @@ namespace Employees.ViewModels
         /// </summary>
         private void executeEmployeeRegistration()
         {
-            getDrivingLicenses();
+            bool registerChoice = dialogService.ChoosePopup("Берем сотрудника на работу?", "Регистрация");
 
-            connectionString = new ConnectionString();
-
-            string sqlInquiryString = "insert_employee_data";
-            
-            using(MySqlConnection connection = new MySqlConnection(connectionString.StringOfConnection))
+            if(registerChoice)
             {
-                connection.Open();
+                getDrivingLicenses();
 
-                MySqlCommand command = new MySqlCommand(sqlInquiryString, connection);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.Parameters.Add("@last_name", MySqlDbType.VarChar).Value = LastName;
-                command.Parameters.Add("@first_name", MySqlDbType.VarChar).Value = FirstName;
-                command.Parameters.Add("@second_name", MySqlDbType.VarChar).Value = SecondName;
-                command.Parameters.Add("@phone_number", MySqlDbType.VarChar).Value = PhoneNumber;
-                command.Parameters.Add("@inn", MySqlDbType.VarChar).Value = INN;
-                command.Parameters.Add("@snils", MySqlDbType.VarChar).Value = SNILS;
-                command.Parameters.Add("@address", MySqlDbType.VarChar).Value = Address;
-                command.Parameters.Add("@passport", MySqlDbType.VarChar).Value = Passport;
-                command.Parameters.Add("@getting_place", MySqlDbType.VarChar).Value = GettingPlace;
-                command.Parameters.Add("@getting_date", MySqlDbType.Date).Value = GettingDate;
-                command.Parameters.Add("@marital_status", MySqlDbType.VarChar).Value = SelectedMaritalStatus;
-                command.Parameters.Add("@image_path", MySqlDbType.VarChar).Value = imagePath;
-                command.Parameters.Add("@birth_date", MySqlDbType.Date).Value = BirthDate;
-                command.Parameters.Add("@work_year_experience", MySqlDbType.Int32).Value = SelectedWorkYearExperience;
-                command.Parameters.Add("@work_month_experience", MySqlDbType.Int32).Value = SelectedWorkMonthExperience;
-                command.Parameters.Add("@driving_license", MySqlDbType.VarChar).Value = drivingLicense;
+                connectionString = new ConnectionString();
 
-                command.ExecuteNonQuery();
+                string sqlInquiryString = "insert_employee_data";
 
-                dialogService.ShowMessage("Сотрудник был внесен в базу данных", "Уведомление");
+                using (MySqlConnection connection = new MySqlConnection(connectionString.StringOfConnection))
+                {
+                    connection.Open();
+
+                    MySqlCommand command = new MySqlCommand(sqlInquiryString, connection);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.Add("@last_name", MySqlDbType.VarChar).Value = LastName;
+                    command.Parameters.Add("@first_name", MySqlDbType.VarChar).Value = FirstName;
+                    command.Parameters.Add("@second_name", MySqlDbType.VarChar).Value = SecondName;
+                    command.Parameters.Add("@phone_number", MySqlDbType.VarChar).Value = PhoneNumber;
+                    command.Parameters.Add("@inn", MySqlDbType.VarChar).Value = INN;
+                    command.Parameters.Add("@snils", MySqlDbType.VarChar).Value = SNILS;
+                    command.Parameters.Add("@address", MySqlDbType.VarChar).Value = Address;
+                    command.Parameters.Add("@passport", MySqlDbType.VarChar).Value = Passport;
+                    command.Parameters.Add("@getting_place", MySqlDbType.VarChar).Value = GettingPlace;
+                    command.Parameters.Add("@getting_date", MySqlDbType.Date).Value = GettingDate;
+                    command.Parameters.Add("@marital_status", MySqlDbType.VarChar).Value = SelectedMaritalStatus;
+                    command.Parameters.Add("@image_path", MySqlDbType.VarChar).Value = imagePath;
+                    command.Parameters.Add("@birth_date", MySqlDbType.Date).Value = BirthDate;
+                    command.Parameters.Add("@work_year_experience", MySqlDbType.Int32).Value = SelectedWorkYearExperience;
+                    command.Parameters.Add("@work_month_experience", MySqlDbType.Int32).Value = SelectedWorkMonthExperience;
+                    command.Parameters.Add("@driving_license", MySqlDbType.VarChar).Value = drivingLicense;
+                    command.Parameters.Add("@id_profession", MySqlDbType.Int32).Value = SelectedProfession;
+
+                    command.ExecuteNonQuery();
+                    //doesn't work
+
+                    dialogService.ShowMessage("Сотрудник был внесен в базу данных", "Уведомление");
+                }
             }
+            
         }
         #endregion
     }

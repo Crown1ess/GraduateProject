@@ -6,45 +6,63 @@
         xmlns:cmd="clr-namespace:Employees.Commands"
         mc:Ignorable="d"
         MouseLeftButtonDown="DraggableWindow"
-        Height="500" Width="400" ResizeMode="NoResize" WindowStyle="None"
-        WindowStartupLocation="CenterScreen" Style="{DynamicResource WindowStyle}">
+        Height="400" Width="400" ResizeMode="NoResize" 
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        Style="{DynamicResource WindowStyle}">
 
-    <Window.Resources>
-        <ControlTemplate x:Key="ValidationFailed">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Foreground="Red" FontSize="20" 
-                           FontWeight="Bold"
-                           Text="!"/>
-            </StackPanel>
-        </ControlTemplate>
-    </Window.Resources>
-    <Grid>
-        <Button VerticalAlignment="Top" Style="{StaticResource ExitButton}" Name="exit"
+
+    <Grid Background="White">
+        <Button VerticalAlignment="Top"
+                Style="{StaticResource ExitButton}"
+                Name="exit"
                 HorizontalAlignment="Right">
             <Button.Command>
                 <cmd:CloseApplicationCommand/>
             </Button.Command>
             <Image Style="{StaticResource ExitImage}"/>
         </Button>
-        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Label HorizontalAlignment="Center" Content="Авторизация" 
-                   FontFamily="Times New Roman"
-                   FontWeight="Bold" FontSize="40" 
-                   Margin="0,-16,0,250"/>
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,51,0,0">
+            <Label HorizontalAlignment="Center"
+                   Content="Авторизация" 
+                   FontWeight="Bold" FontSize="30" 
+                   Margin="0,20,0,250"
+                   Foreground="#534b4f"/>
 
-            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Label Content="+7" Margin="0" Style="{StaticResource NumberLabel}"/>
+            <StackPanel VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Background="#edeeef">
+                <StackPanel Orientation="Horizontal" 
+                            HorizontalAlignment="Center"
+                            Margin="10 10 10 0">
+                    <Label Content="+7" Margin="0" 
+                           Style="{StaticResource NumberLabel}"/>
                     <TextBox Margin="0" Text="{Binding Path=PhoneNumber}"
-                             MaxLength="10"/>
+                             MaxLength="10"
+                             Padding="0"/>
                 </StackPanel>
-                <PasswordBox x:Name="UserPassword" MaxLength="25" Width="250"/>
+                <Border BorderThickness="1"
+                        BorderBrush="#534b4f"
+                        Width="220"
+                        HorizontalAlignment="Left"
+                        Margin="20 0 0 0"/>
+                <PasswordBox x:Name="UserPassword" 
+                             MaxLength="25" Width="250"
+                             Margin="10 0 10 10"/>
             </StackPanel>
 
-            <Button VerticalAlignment="Bottom" HorizontalAlignment="Center" Content="Войти" 
-                    CommandParameter="{Binding ElementName=UserPassword}" 
-                    Command="{Binding OpenEmployeeWindowCommand}"
-                    Cursor="Hand"/>
+
         </Grid>
+        <Button VerticalAlignment="Center" HorizontalAlignment="Left"
+                Content="Войти" Cursor="Hand"
+                CommandParameter="{Binding ElementName=UserPassword}" 
+                Command="{Binding OpenEmployeeWindowCommand}"
+                Style="{StaticResource CircleMenuButton}"
+                Height="70"
+                Width="70"
+                BorderBrush="White"
+                BorderThickness="10" Margin="305,0,0,0"
+                Background="#edeeef"
+                FontFamily="Times New Roman"/>
     </Grid>
 </Window>
