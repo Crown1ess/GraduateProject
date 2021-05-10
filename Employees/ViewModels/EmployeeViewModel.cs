@@ -3,7 +3,6 @@ using Employees.Services.ChangeContent;
 using Employees.Services.DialogService;
 using Employees.ViewModels.Base;
 using System;
-using System.Threading.Tasks;
 
 namespace Employees.ViewModels
 {

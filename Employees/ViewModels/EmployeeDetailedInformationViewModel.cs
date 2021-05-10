@@ -4,6 +4,7 @@ using MySqlConnector;
 using DataBase;
 using System.Collections.ObjectModel;
 using System;
+using System.Windows.Input;
 
 namespace Employees.ViewModels
 {
@@ -12,40 +13,22 @@ namespace Employees.ViewModels
         #region fields
         private int selectedEmployee;
         private ConnectionString connectionString;
+
+        private string lastName;
+        private string firstName;
+        private string secondName;
         #endregion
 
         #region properties
 
-        private string lastName;
-        public string LastName
+        private string fullName;
+        public string FullName
         {
-            get => lastName;
+            get => fullName;
             set
             {
-                lastName = value;
-                OnPropertyChanged(nameof(LastName));
-            }
-        }
-
-        private string firstName;
-        public string FirstName
-        {
-            get => firstName;
-            set
-            {
-                firstName = value;
-                OnPropertyChanged(nameof(FirstName));
-            }
-        }
-
-        private string secondName;
-        public string SecondName
-        {
-            get => secondName;
-            set
-            {
-                secondName = value;
-                OnPropertyChanged(nameof(secondName));
+                fullName = value;
+                OnPropertyChanged(nameof(FullName));
             }
         }
 
@@ -160,6 +143,13 @@ namespace Employees.ViewModels
         }
         #endregion
 
+        #region commands
+
+        private readonly ICommand saveScheduleCommand;
+        public ICommand SaveScheduleCommand => saveScheduleCommand;
+
+        #endregion
+
         #region constructor
         public EmployeeDetailedInformationViewModel(int selectedEmployee)
         {
@@ -169,26 +159,81 @@ namespace Employees.ViewModels
 
             fillSchedule();
 
-            //Days = new List<int>(Enumerable.Range(1, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month)).ToList());
-
             Month = DateTime.Now.ToString("MMM");
+
+            saveScheduleCommand = new RelayCommand(saveSchedule, p => true);
         }
         #endregion
 
         #region methods
+
+        private void saveSchedule(object parameter)
+        {
+            string sqlInquiryString = "insert_or_update_employee_schedule";
+
+            using(MySqlConnection connection = new MySqlConnection(connectionString.StringOfConnection))
+            {
+                connection.Open();
+
+                
+
+                for (int i = 0; i <= employeeSchedules.Count-1; i++)
+                {
+                    if (employeeSchedules[i].ActionOnDay != "")
+                    {
+                        MySqlCommand command = new MySqlCommand(sqlInquiryString, connection);
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
+                        command.Parameters.Add("@employee_id", MySqlDbType.Int32).Value = selectedEmployee;
+                        command.Parameters.Add("@employee_date", MySqlDbType.Date).Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, employeeSchedules[i].Days);
+                        command.Parameters.Add("@action_on_day", MySqlDbType.VarChar).Value = employeeSchedules[i].ActionOnDay;
+                        command.ExecuteNonQuery();
+                    }
+                    else
+                        break;           
+                }
+                
+            }
+        }
         private void fillSchedule()
         {
             EmployeeSchedules = new ObservableCollection<EmployeeSchedule>();
 
+            string sqlInquiryString = "employee_action_on_day";
+
             int daysInMonth = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
-            for (int i = 1; i <= daysInMonth; i++)
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString.StringOfConnection))
             {
-                EmployeeSchedules.Add(new EmployeeSchedule
+                connection.Open();
+
+                MySqlCommand command = new MySqlCommand(sqlInquiryString, connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.Parameters.Add("@employee_id", MySqlDbType.Int32).Value = selectedEmployee;
+
+                using (MySqlDataReader reader = command.ExecuteReader())
                 {
-                    Days = i,
-                    ActionOnDay = i.ToString()
-                });
-            }
+                    for (int i = 1; i <= daysInMonth; i++)
+                    {
+                        if(reader.Read())
+                        {
+                            EmployeeSchedules.Add(new EmployeeSchedule
+                            {
+                                Days = i,
+                                ActionOnDay = reader["action_on_day"].ToString()
+                            });
+                        }
+                        else
+                        {
+                            EmployeeSchedules.Add(new EmployeeSchedule
+                            {
+                                Days = i,
+                                ActionOnDay = ""
+                            });
+                        }
+                        
+                    }
+                }
+            }   
         }
 
         private void gettingEmployeeInformation()
@@ -208,9 +253,9 @@ namespace Employees.ViewModels
                 {
                     while (reader.Read())
                     {
-                        LastName = reader["last_name"].ToString();
-                        FirstName = reader["first_name"].ToString();
-                        SecondName = reader["patronymic"].ToString();
+                        lastName = reader["last_name"].ToString();
+                        firstName = reader["first_name"].ToString();
+                        secondName = reader["patronymic"].ToString();
                         PhoneNumber = reader["phone_number"].ToString();
                         Passport = reader["passport"].ToString();
                         ImagePath = reader["image_path"].ToString();
@@ -222,6 +267,7 @@ namespace Employees.ViewModels
                     }
                 }
             }
+            fullName = lastName + " " + firstName + " " + secondName;
         }
         #endregion
     }

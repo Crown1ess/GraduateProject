@@ -25,7 +25,7 @@ namespace Employees.ViewModels
             get => selectedEmployee;
             set
             {
-                selectedEmployee = value + 1;
+                selectedEmployee = value;
                 OnPropertyChanged(nameof(SelectedEmployee));
             }
         }
@@ -81,7 +81,7 @@ namespace Employees.ViewModels
 
                     MySqlCommand command = new MySqlCommand(sqlInquiryString, connection);
                     command.CommandType = System.Data.CommandType.StoredProcedure;
-                    command.Parameters.Add("@employee_id", MySqlDbType.Int32).Value = SelectedEmployee;
+                    command.Parameters.Add("@employee_id", MySqlDbType.Int32).Value = SelectedEmployee + 1;
                     
                     using(MySqlDataReader reader = command.ExecuteReader())
                     {

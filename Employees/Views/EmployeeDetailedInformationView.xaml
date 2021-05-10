@@ -21,92 +21,103 @@
     <Grid>
         <StackPanel>
             <StackPanel Orientation="Horizontal">
-                <StackPanel Width="150"
-                            Height="100"
+                <StackPanel Width="170"
+                            Height="140"
                             VerticalAlignment="Top"
-                            Margin="20 0 20 0">
+                            Margin="20 0 10 0">
                     <Image Source="{Binding ImagePath}"
                            Height="80"
                            Width="80"/>
+                    <TextBlock Text="{Binding FullName}"
+                               Width="150"
+                               Background="Transparent"
+                               FontSize="13"
+                               FontWeight="Bold"
+                               Margin="0 17 0 0"
+                               TextWrapping="WrapWithOverflow"/>
+                    <Border BorderBrush="#534b4f"
+                            BorderThickness="1"
+                            Width="150"/>
 
                 </StackPanel>
                 <StackPanel Width="240"
-                        Height="100"
-                        HorizontalAlignment="Right">
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="Фамилия"
-                               HorizontalAlignment="Center"
-                               Margin="20 0 0 0"/>
-                        <Label Content="Имя"
-                       HorizontalAlignment="Center"
-                               Margin="70 0 0 0"/>
-                    </StackPanel>
-                    
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding LastName}"
-                               Width="100"
-                               Height="20"
-                               Background="Gray"
+                            Height="140"
+                            HorizontalAlignment="Right">
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Center"
+                                Height="30">
+                        <Label Content="+7"
+                               Style="{StaticResource NumberLabel}"
+                               Height="35"
+                               Width="30"
                                FontSize="12"
-                               Margin="20 0 0 0"/>
-
-                        <TextBlock Text="{Binding FirstName}"
-                           Width="70"
-                           Height="20"
-                           Background="Gray"
-                           Margin="20 0 20 0"
-                           FontSize="12"/>
+                               FontFamily="Segoue UI"
+                               FontWeight="Bold"
+                               Foreground="Black"
+                               Margin="0 0 0 0"
+                               Padding="10 12.8 0 0"/>
+                        <TextBlock Text="{Binding PhoneNumber}"
+                                   Height="30"
+                                   Width="120"
+                                   Background="Transparent"
+                                   HorizontalAlignment="Center"
+                                   FontSize="12"
+                                   FontWeight="Bold"
+                                   Padding="0 15 0 0"/>
                     </StackPanel>
-                    
-                    <Label Content="Отчество"
-                           HorizontalAlignment="Center"/>
-                    <TextBlock Text="{Binding SecondName}"
-                           Width="100"
-                           Height="20"
-                           Background="Gray"
-                           FontSize="12"/>
+
+                    <Border BorderBrush="#534b4f"
+                            BorderThickness="1"
+                            Width="150"/>
+                    <TextBlock Text="{Binding Profession}"
+                               Height="30"
+                               Width="150"
+                               Background="Transparent"
+                               HorizontalAlignment="Center"
+                               FontSize="12"
+                               FontWeight="Bold"
+                               Padding="15"
+                               Margin="0 10 0 0"/>
+                    <Border BorderBrush="#534b4f"
+                            BorderThickness="1"
+                            Width="150"/>
+                    <TextBlock Text="{Binding Passport}"
+                               Height="30"
+                               Width="150"
+                               Background="Transparent"
+                               HorizontalAlignment="Center"
+                               FontSize="12"
+                               FontWeight="Bold"
+                               Padding="15"
+                               Margin="0 10 0 0"/>
+                    <Border BorderBrush="#534b4f"
+                            BorderThickness="1"
+                            Width="150"/>
+
 
                 </StackPanel>
             </StackPanel>
-            
-            
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Паспорт"
-                       Margin="50 0 0 0"/>
-                <Label Content="Номер телефона"
-                       Margin="40 0 0 0"/>
-                <Label Content="Профессия"
-                       Margin="50 0 0 0"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="{Binding Passport}"
-                           Width="100"
-                           Height="20"
-                           Background="Gray"
-                           Margin="35 0 10 0"
-                           FontSize="12"/>                
-                <TextBlock Text="{Binding PhoneNumber}"
-                           Width="100"
-                           Height="20"
-                           Background="Gray"
-                           FontSize="12"/>
-                <TextBlock Text="{Binding Profession}"
-                         Width="150"
-                         Height="20"
-                         Background="Gray"
-                         FontSize="12"
-                         Margin="10 0 0 0"/>
-            </StackPanel>
+
             <StackPanel Orientation="Horizontal"
-                        Margin="0 10 0 0">
+                        Margin="0 5 0 0">
                 <Label Content="Месяц : "/>
                 <TextBlock Text="{Binding Month}"
                            Height="24"
                            Width="100"
                            Padding="4"/>
+
+                <Button Background="Transparent"
+                        Height="24"
+                        Width="70"
+                        Content="Сохранить"
+                        HorizontalAlignment="Right"
+                        Margin="210 0 0 0"
+                        Command="{Binding SaveScheduleCommand}"
+                        Cursor="Hand"
+                        Style="{DynamicResource Default}"
+                        BorderBrush="Black"/>
             </StackPanel>
-            <StackPanel Height="250"
-                        Margin="0 5 0 0">
+            <StackPanel Margin="0 5 0 0">
 
                 <ListBox IsSynchronizedWithCurrentItem="True"
                          ItemsSource="{Binding EmployeeSchedules}"
@@ -129,14 +140,15 @@
                                                    Background="Transparent"
                                                    FontWeight="Bold"/>
                                         <TextBox Text="{Binding ActionOnDay}"
-                                                 Foreground="#AEA04B"
+                                                 Foreground="#534b4f"
                                                  Height="30"
                                                  Width="30"
                                                  FontSize="13"
                                                  Margin="0"
                                                  Padding="0"
                                                  HorizontalContentAlignment="Center"
-                                                 FontStyle="Normal"/>
+                                                 FontStyle="Normal"
+                                                 MaxLength="3"/>
 
                                     </StackPanel>
                                 </Grid>
@@ -145,48 +157,82 @@
                     </ListBox.ItemTemplate>
                 </ListBox>
                 <StackPanel Orientation="Horizontal"
-                            Margin="0 10 0 0">
-                    <TextBlock Text="Отработанных часов"
+                            Margin="0 5 0 0">
+                    <TextBlock Text="Отработанных часов:"
                                TextWrapping="WrapWithOverflow" 
                                Width="100"
                                Margin="5 0 0 0"/>
-                    <TextBlock Text="Командировочных дней"
+                    <TextBlock Text="Командировочных дней:"
                                TextWrapping="Wrap"
                                Width="107"
                                Margin="10 0 0 0"/>
-                    <TextBlock Text="Больничных дней"
+                    <TextBlock Text="Больничных дней:"
                            Margin="10 0 0 0"
                            TextWrapping="Wrap"/>
-                    <TextBlock Text="Отпускных дней"
+                    <TextBlock Text="Отпускных дней:"
                            Margin="10 0 0 0"
                            TextWrapping="Wrap"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
                             Margin="0 10 0 0">
-                    <TextBlock x:Name="WorkingHours"
-                               Text="{Binding WorkingHours}"
-                               Height="30"
-                               Width="100"
-                               Background="Gray"
-                               Margin="5 0 0 0"/>
-                    <TextBlock x:Name="BusinessTravelDays"
-                               Text="{Binding BusinessTravelDays}"
-                               Height="30"
-                               Width="100"
-                               Background="Gray"
-                               Margin="10 0 0 0"/>
-                    <TextBlock x:Name="SickLeave"
-                               Text="{Binding SickLeave}"
-                               Height="30"
-                               Width="100"
-                               Background="Gray"
-                               Margin="10 0 0 0"/>
-                    <TextBlock x:Name="VacationLeave"
-                               Text="{Binding VacationLeave}"
-                               Height="30"
-                               Width="100"
-                               Background="Gray"
-                               Margin="10 0 0 0"/>
+                    <StackPanel>
+                        <TextBlock x:Name="WorkingHours"
+                                   Text="{Binding WorkingHours}"
+                                   Height="20"
+                                   Width="100"
+                                   Background="Transparent"
+                                   FontSize="12"
+                                   Margin="5 0 0 0"
+                                   Padding="10 0 0 0"/>
+                        <Border Width="100"
+                                BorderBrush="#534b4f"
+                                BorderThickness="1"
+                                Margin="5 0 0 0"/>
+                    </StackPanel>
+
+                    <StackPanel>
+                        <TextBlock x:Name="BusinessTravelDays"
+                                   Text="{Binding BusinessTravelDays}"
+                                   Height="20"
+                                   Width="100"
+                                   Background="Transparent"
+                                   FontSize="10"
+                                   Margin="10 0 0 0"
+                                   Padding="10 0 0 0"/>
+                        <Border Width="100"
+                                BorderBrush="#534b4f"
+                                BorderThickness="1"
+                                Margin="10 0 0 0"/>
+                    </StackPanel>
+
+                    <StackPanel>
+                        <TextBlock x:Name="SickLeave"
+                                   Text="{Binding SickLeave}"
+                                   Height="20"
+                                   Width="100"
+                                   Background="Transparent"
+                                   Margin="10 0 0 0"
+                                   Padding="10 0 0 0"/>
+                        <Border Width="100"
+                                BorderBrush="#534b4f"
+                                BorderThickness="1"
+                                Margin="10 0 0 0"/>
+                    </StackPanel>
+
+                    <StackPanel>
+                        <TextBlock x:Name="VacationLeave"
+                                   Text="{Binding VacationLeave}"
+                                   Height="20"
+                                   Width="100"
+                                   Background="Transparent"
+                                   Margin="10 0 0 0"
+                                   Padding="10 0 0 0"/>
+                        <Border Width="100"
+                                BorderBrush="#534b4f"
+                                BorderThickness="1"
+                                Margin="10 0 0 0"/>
+                    </StackPanel>
+                    
 
                 </StackPanel>
             </StackPanel>

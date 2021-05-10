@@ -67,7 +67,7 @@ namespace Employees.ViewModels
             get => workingHours;
             set
             {
-                workingHours = value;
+                workingHours = value + " часов";
                 OnPropertyChanged(nameof(workingHours));
             }
         }

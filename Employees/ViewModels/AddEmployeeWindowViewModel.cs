@@ -478,6 +478,7 @@ namespace Employees.ViewModels
 
                     command.ExecuteNonQuery();
                     //doesn't work
+                    //не проверяет были ли внесены данные, надо добавить
 
                     dialogService.ShowMessage("Сотрудник был внесен в базу данных", "Уведомление");
                 }

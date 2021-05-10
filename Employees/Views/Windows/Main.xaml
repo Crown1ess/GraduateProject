@@ -8,8 +8,10 @@
         xmlns:v="clr-namespace:Employees.Views"
         mc:Ignorable="d"
         MouseLeftButtonDown="DraggableWindow"
-        Title="Main" Height="500" Width="440" WindowStartupLocation="CenterScreen"
-        WindowStyle="None" ResizeMode="NoResize" Style="{DynamicResource WindowStyle}">
+        Title="Main" Height="500" Width="440"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None" ResizeMode="NoResize"
+        Style="{DynamicResource WindowStyle}">
 
     <Window.Resources>
         <Storyboard x:Key="MenuOpen">
@@ -21,7 +23,7 @@
         </Storyboard>
         <Storyboard x:Key="MenuClose">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Opacity)"
-                                            Storyboard.TargetName="GridMenu">
+                                           Storyboard.TargetName="GridMenu">
                 <EasingDoubleKeyFrame KeyTime="0" Value="0.5"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
@@ -49,7 +51,7 @@
                 <v:EmployeeDetailedInformationView/>
             </DataTemplate>
         </Grid.Resources>
-
+        
         <StackPanel Height="450"
                     HorizontalAlignment="Center" 
                     VerticalAlignment="Bottom"
