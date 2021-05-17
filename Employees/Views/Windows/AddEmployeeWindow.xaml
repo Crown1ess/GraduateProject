@@ -20,7 +20,8 @@
                HorizontalAlignment="Center"
                FontFamily="Times New Roman"
                FontWeight="Bold"
-               FontSize="25"/>
+               FontSize="25"
+               Style="{DynamicResource DefaultLabel}"/>
         <StackPanel HorizontalAlignment="Center"
                     Height="510"
                     VerticalAlignment="Top" 
@@ -30,10 +31,10 @@
             <StackPanel Orientation="Horizontal">
                 <StackPanel>
                     <Label Content="Фамилия"
-                       Style="{StaticResource RegistrationLabel}"
+                       Style="{DynamicResource RegistrationLabel}"
                        Margin="10 0 0 0"/>
                     <TextBox Text="{Binding LastName}"
-                             Style="{StaticResource RegistrationTextBox}"
+                             Style="{DynamicResource RegistrationTextBox}"
                              Width="180"/>
                     <Border BorderBrush="#534b4f"
                             BorderThickness="1"
@@ -42,10 +43,10 @@
 
                 <StackPanel>
                     <Label Content="Имя"
-                       Style="{StaticResource RegistrationLabel}"
+                       Style="{DynamicResource RegistrationLabel}"
                        Margin="10 0 90 0"/>
                     <TextBox Text="{Binding FirstName}" 
-                         Style="{StaticResource RegistrationTextBox}"
+                         Style="{DynamicResource RegistrationTextBox}"
                          Width="150"/>
                     <Border BorderBrush="#534b4f"
                             BorderThickness="1"
@@ -54,12 +55,12 @@
 
                 <StackPanel>
                     <Label Content="ИНН" 
-                       Style="{StaticResource RegistrationLabel}"
-                       Margin="10 0 50 0"/>
+                           Style="{DynamicResource RegistrationLabel}"
+                           Margin="10 0 50 0"/>
                     <TextBox Text="{Binding INN}"
-                         Style="{StaticResource RegistrationTextBox}"
-                         Width="100"
-                         MaxLength="12"/>
+                             Style="{DynamicResource RegistrationTextBox}"
+                             Width="100"
+                             MaxLength="12"/>
                     <Border BorderBrush="#534b4f"
                             BorderThickness="1"
                             Width="100"/>
@@ -70,46 +71,45 @@
             <StackPanel Orientation="Horizontal">
                 <StackPanel>
                     <Label Content="Отчество"
-                       Style="{StaticResource RegistrationLabel}"
+                       Style="{DynamicResource RegistrationLabel}"
                        Margin="10 10 90 0"/>
                     <TextBox Text="{Binding SecondName}" 
-                         Style="{StaticResource RegistrationTextBox}"
+                         Style="{DynamicResource RegistrationTextBox}"
                          Width="180"/>
-                    <Border BorderBrush="#534b4f"
-                            BorderThickness="1"
+                    <Border Style="{DynamicResource DefaultBorder}"
                             Width="180"/>
                 </StackPanel>
                 
                 
                 <StackPanel>
                     <Label Content="Номер телефона" 
-                                   Style="{StaticResource RegistrationLabel}"/>
+                           Style="{DynamicResource RegistrationLabel}"/>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="+7"
-                               Style="{StaticResource NumberLabel}"
+                               Style="{DynamicResource NumberLabel}"
                                Width="30" 
                                FontSize="15"
-                               Height="30"/>
+                               Height="30"
+                               Margin="10 13 0 0"/>
                         <TextBox Text="{Binding PhoneNumber}" 
-                                 Style="{StaticResource RegistrationTextBox}"
+                                 Style="{DynamicResource RegistrationTextBox}"
                                  Width="110" 
-                                 MaxLength="10"/>
+                                 MaxLength="10"
+                                 Margin="0 10 0 0"/>
                     </StackPanel>
-                    <Border BorderBrush="#534b4f"
-                            BorderThickness="1"
+                    <Border Style="{DynamicResource DefaultBorder}"
                             Width="140"/>
                 </StackPanel>
 
                 <StackPanel>
                     <Label Content="СНИЛС"
-                       Style="{StaticResource RegistrationLabel}"
-                       Margin="35 10 0 0"/>
+                           Style="{DynamicResource RegistrationLabel}"
+                           Margin="35 10 0 0"/>
                     <TextBox Text="{Binding SNILS}"
-                         Style="{StaticResource RegistrationTextBox}"
-                         Width="105"
-                         MaxLength="11"/>
-                    <Border BorderBrush="#534b4f"
-                            BorderThickness="1"
+                             Style="{DynamicResource RegistrationTextBox}"
+                             Width="105"
+                             MaxLength="11"/>
+                    <Border Style="{DynamicResource DefaultBorder}"
                             Width="105"/>
                 </StackPanel>
                 
@@ -118,27 +118,25 @@
             <StackPanel Orientation="Horizontal">
                 <StackPanel>
                     <Label Content="Адрес регистрации" 
-                       Style="{StaticResource RegistrationLabel}"
-                       Margin="10 0 0 0"/>
+                           Style="{DynamicResource RegistrationLabel}"
+                           Margin="10 0 0 0"/>
                     <TextBox Text="{Binding Address}" 
-                         Style="{StaticResource RegistrationTextBox}"
-                         Width="350"
-                         HorizontalAlignment="Left"/>
-                    <Border BorderBrush="#534b4f"
-                            BorderThickness="1"
+                             Style="{DynamicResource RegistrationTextBox}"
+                             Width="350"
+                             HorizontalAlignment="Left"/>
+                    <Border Style="{DynamicResource DefaultBorder}"
                             Width="350"/>
                 </StackPanel>
 
                 <StackPanel>
                     <Label Content="Паспорт"
-                       Style="{StaticResource RegistrationLabel}"
-                       Margin="10 0 0 0"/>
+                           Style="{DynamicResource RegistrationLabel}"
+                           Margin="10 0 0 0"/>
                     <TextBox Text="{Binding Passport}"
-                         Style="{StaticResource RegistrationTextBox}"
-                         Width="105"
-                         MaxLength="10"/>
-                    <Border BorderBrush="#534b4f"
-                            BorderThickness="1"
+                             Style="{DynamicResource RegistrationTextBox}"
+                             Width="105"
+                             MaxLength="10"/>
+                    <Border Style="{DynamicResource DefaultBorder}"
                             Width="105"/>
                 </StackPanel>
                 
@@ -147,18 +145,17 @@
             <StackPanel Orientation="Horizontal">
                 <StackPanel>
                     <Label Content="Где был выдан"
-                       Style="{StaticResource RegistrationLabel}"
-                       Margin="10 0 0 0"/>
+                           Style="{DynamicResource RegistrationLabel}"
+                           Margin="10 0 0 0"/>
                     <TextBox Text="{Binding GettingPlace}"
-                         Style="{StaticResource RegistrationTextBox}"
-                         Width="230"/>
-                    <Border BorderBrush="#534b4f"
-                            BorderThickness="1"
+                             Style="{DynamicResource RegistrationTextBox}"
+                             Width="230"/>
+                    <Border Style="{DynamicResource DefaultBorder}"
                             Width="230"/>
                 </StackPanel>
                 <StackPanel>
                     <Label Content="Дата выдачи"
-                           Style="{StaticResource RegistrationLabel}"/>
+                           Style="{DynamicResource RegistrationLabel}"/>
                     <DatePicker SelectedDate="{Binding GettingDate}"
                                 Height="40" Width="85" 
                                 FontSize="15" 
@@ -170,7 +167,7 @@
 
                 <StackPanel>
                     <Label Content="Дата Рождения" 
-                           Style="{StaticResource RegistrationLabel}" 
+                           Style="{DynamicResource RegistrationLabel}" 
                            Margin="10 0 0 0"/>
                     <DatePicker SelectedDate="{Binding BirthDate}"
                                 Height="40"
@@ -180,25 +177,23 @@
                                 IsTodayHighlighted="True"
                                 DisplayDateEnd="2005-03-12"
                                 DisplayDateStart="1900-03-12"
-                                DisplayDate="2021-03-12"/>
+                                DisplayDate="2005-03-12"/>
                 </StackPanel>    
             </StackPanel>
             
             <StackPanel Orientation="Horizontal">
                 <StackPanel>
                     <Label Content="Профессия"
-                           Style="{StaticResource RegistrationLabel}" 
+                           Style="{DynamicResource RegistrationLabel}" 
                            Margin="10 0 0 0"/>
                     <ComboBox ItemsSource="{Binding Professions}"
-                          Width="225"
-                          SelectedItem="{Binding SelectedProfession}"
-                          Margin="10 0 0 0" 
-                          FontSize="20"
-                          VerticalContentAlignment="Center"
-                          HorizontalContentAlignment="Center"
-                          SelectedIndex="0"
-                          Background="Yellow"
-                          VirtualizingStackPanel.VirtualizationMode="Recycling">
+                              Width="225"
+                              SelectedIndex="{Binding SelectedProfession}"
+                              Margin="10 0 0 0" 
+                              FontSize="20"
+                              VerticalContentAlignment="Center"
+                              HorizontalContentAlignment="Center"
+                              VirtualizingStackPanel.VirtualizationMode="Recycling">
                         <ComboBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <VirtualizingStackPanel/>
@@ -208,7 +203,7 @@
                 </StackPanel>
                 <StackPanel>
                     <Label Content="Фотография"
-                           Style="{StaticResource RegistrationLabel}"/>
+                           Style="{DynamicResource RegistrationLabel}"/>
                     <Button Content="...."
                             Height="40"
                             Width="60"
@@ -218,7 +213,7 @@
 
                 <StackPanel HorizontalAlignment="Left">
                     <Label Content="Семейное положение"
-                           Style="{StaticResource RegistrationLabel}"
+                           Style="{DynamicResource RegistrationLabel}"
                            FontSize="14"/>
                     <ComboBox ItemsSource="{Binding MaritalStatuses}"
                               Height="40"
@@ -240,9 +235,11 @@
                 
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Label Content="Стаж работы" Style="{StaticResource RegistrationLabel}"
+                <Label Content="Стаж работы" 
+                       Style="{DynamicResource RegistrationLabel}"
                        Margin="10 0 5 0"/>
-                <Label Content="Права:" Style="{StaticResource RegistrationLabel}"
+                <Label Content="Права:"
+                       Style="{DynamicResource RegistrationLabel}"
                        Margin="210 0 0 0"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" 
@@ -330,19 +327,17 @@
                         Cursor="Hand"
                         FontSize="15"
                         Command="{Binding RegistrateCommand}"
-                        Style="{DynamicResource Default}"
-                        BorderBrush="Black"
+                        Style="{DynamicResource DefaultButton}"
                         HorizontalAlignment="Center"/>
                 <Button Name="CloseWindow" 
                         Content="Отмена" 
                         Width="70"
-                        Foreground="DarkRed"
+                        Foreground="#800000"
                         Cursor="Hand"
                         Height="40"
                         FontSize="15"
                         Click="CloseWindow_Click"
-                        Style="{DynamicResource Default}"
-                        BorderBrush="Black"
+                        Style="{DynamicResource DefaultButton}"
                         Margin="20 0 0 0"/>
             </StackPanel>
         </StackPanel>

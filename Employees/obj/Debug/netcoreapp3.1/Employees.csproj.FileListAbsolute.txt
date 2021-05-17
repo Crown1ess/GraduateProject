@@ -16,7 +16,6 @@ C:\Users\davae\source\repos\Employees\Employees\obj\Debug\netcoreapp3.1\Employee
 C:\Users\davae\source\repos\Employees\Employees\obj\Debug\netcoreapp3.1\Employees.pdb
 C:\Users\davae\source\repos\Employees\Employees\obj\Debug\netcoreapp3.1\Employees.genruntimeconfig.cache
 C:\Users\davae\source\repos\Employees\Employees\obj\Debug\netcoreapp3.1\Employees.csproj.CopyComplete
-C:\Users\davae\source\repos\Employees\Employees\obj\Debug\netcoreapp3.1\App.baml
 C:\Users\davae\source\repos\Employees\Employees\obj\Debug\netcoreapp3.1\GeneratedInternalTypeHelper.g.cs
 C:\Users\davae\source\repos\Employees\Employees\bin\Debug\netcoreapp3.1\MySqlConnector.dll
 C:\Users\davae\source\repos\Employees\Employees\bin\Debug\netcoreapp3.1\DataBase.dll
@@ -35,5 +34,6 @@ C:\Users\davae\source\repos\Employees\Employees\obj\Debug\netcoreapp3.1\Views\Wi
 C:\Users\davae\source\repos\Employees\Employees\obj\Debug\netcoreapp3.1\Views\Windows\AddEmployeeWindow.baml
 C:\Users\davae\source\repos\Employees\Employees\obj\Debug\netcoreapp3.1\Views\EmployeeDetailedInformationView.g.cs
 C:\Users\davae\source\repos\Employees\Employees\obj\Debug\netcoreapp3.1\Views\EmployeeDetailedInformationView.baml
-C:\Users\davae\source\repos\Employees\Employees\obj\Debug\netcoreapp3.1\Services\Styles\Style.baml
 C:\Users\davae\source\repos\Employees\Employees\obj\Debug\netcoreapp3.1\Services\Styles\Dark.baml
+C:\Users\davae\source\repos\Employees\Employees\obj\Debug\netcoreapp3.1\Services\Styles\Light.baml
+C:\Users\davae\source\repos\Employees\Employees\obj\Debug\netcoreapp3.1\App.baml

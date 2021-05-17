@@ -17,7 +17,7 @@
         <Storyboard x:Key="MenuOpen">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Opacity)"
                                            Storyboard.TargetName="GridMenu">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>   
                 <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0.5"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
@@ -82,14 +82,14 @@
                     Height="25" Width="25" 
                     Cursor="Hand" Margin="76,110,48,14" 
                     Command="{Binding JumpToManageEmployeeView}">
-                <Image Source="pack://application:,,,/Services/images/gear.png"/>
+                <Image Style="{DynamicResource SettingMenu}"/>
             </Button>
             <Button x:Name="LogOut" 
                     Style="{StaticResource CircleMenuButton}" 
                     Height="25" Width="25" 
                     Cursor="Hand" Margin="34,126,90,-2"
                     Command="{Binding LogOut}">
-                <Image Source="pack://application:,,,/Services/images/logout.png"/>
+                <Image Style="{DynamicResource LogOutMenu}"/>
             </Button>
             <Button x:Name="Profile"
                     Style="{StaticResource CircleMenuButton}"
@@ -97,7 +97,7 @@
                     Cursor="Hand"
                     Margin="90,70,34,54" 
                     Command="{Binding JumpToMainView}">
-                <Image Source="pack://application:,,,/Services/images/Profile.png"/>
+                <Image Style="{DynamicResource ProfileMenu}"/>
             </Button>
         </Grid>
 
@@ -110,7 +110,7 @@
                 HorizontalAlignment="Left"
                 BorderBrush="{x:Null}"
                 Click="ButtonShowMenu_Click">
-            <Image Source="pack://application:,,,/Services/images/menu.png"/>
+            <Image Style="{DynamicResource MenuImage}"/>
         </Button>
 
         <Button x:Name="ButtonHideMenu"
@@ -123,7 +123,7 @@
                 BorderBrush="{x:Null}"
                 Click="ButtonHideMenu_Click"
                 Visibility="Collapsed">
-            <Image Source="pack://application:,,,/Services/images/menu.png"
+            <Image Style="{DynamicResource MenuImage}"
                    Height="auto" Width="auto"/>
         </Button>
 

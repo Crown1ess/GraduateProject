@@ -1,8 +1,8 @@
 ﻿using Employees.Services;
 using Employees.Services.ChangeContent;
 using Employees.ViewModels;
-using Employees.Views.Windows;
 using System;
+using System.IO;
 using System.Windows;
 
 namespace Employees
@@ -19,16 +19,45 @@ namespace Employees
         private MainWindow mainWindow;
         private Main employeeWindow;
         private MainWindowViewModel mainWindowViewModel;
+        private string projectPath = Directory.GetCurrentDirectory();
         #endregion
 
-        protected override void OnStartup(StartupEventArgs e)
+        protected async override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
 
-            mainWindowViewModel = new MainWindowViewModel();  
+            using (FileStream fileStream = new FileStream($"{projectPath}/UsingStyle.txt", FileMode.OpenOrCreate))
+            {
+                byte[] usingStyleNameBytes = new byte[fileStream.Length];
+                string usingStyleName = null;
+
+                await fileStream.ReadAsync(usingStyleNameBytes, 0, usingStyleNameBytes.Length);
+
+                if(usingStyleNameBytes.Length < 1)
+                {
+                    usingStyleName = "Light";
+                }
+                else
+                {
+                    usingStyleName = System.Text.Encoding.Default.GetString(usingStyleNameBytes);
+                }
+                var uri = new Uri("/Services/Styles/" + usingStyleName + ".xaml", UriKind.Relative);
+                //get resource dictionary 
+                ResourceDictionary resourceDictionary = Application.LoadComponent(uri) as ResourceDictionary;
+
+                //clear application resource collection
+                Application.Current.Resources.Clear();
+
+                //add got resource dictionary
+                Application.Current.Resources.MergedDictionaries.Add(resourceDictionary);
+            }
+
+            mainWindowViewModel = new MainWindowViewModel();
             mainWindowViewModel.OnAuthorize += LoginViewModelOnOnAuthorize;
             mainWindow = new MainWindow() { DataContext = mainWindowViewModel };
             mainWindow.Show();
+
+
 
             changeContent = new ChangeContent();
 
@@ -41,8 +70,8 @@ namespace Employees
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void LoginViewModelOnOnAuthorize(object sender, LoginEventArgs e)
-        {
-            if(e.IsAuthorized)
+        { 
+            if (e.IsAuthorized)
             {
                 employeeViewModel = new EmployeeViewModel(e.User, changeContent, e.IsAuthorized);
                 employeeWindow = new Main()
@@ -50,24 +79,51 @@ namespace Employees
                     DataContext = employeeViewModel
                 };
                 employeeViewModel.OnLogOut += LogingOut;
+                employeeViewModel.OnSwitchTheme += ChangeTheme;
                 employeeWindow.Show();
                 mainWindow.Close();
+
+
                 return;
             }
         }
 
         private void LogingOut(object sender, CheckEventArgs e)
         {
-            if(e.IsChecked)
+            if (e.IsChecked)
             {
                 mainWindow = new MainWindow() { DataContext = mainWindowViewModel };
                 mainWindow.Show();
                 employeeWindow.Close();
                 return;
             }
-            
+
         }
-        
+
+        private async void ChangeTheme(object sender, ChangeThemeEventArgs e)
+        {
+            if(e.IsSelected)
+            {
+                //set file path
+                var uri = new Uri("/Services/Styles/" + e.SelectedTheme + ".xaml", UriKind.Relative);
+
+                //get resource dictionary 
+                ResourceDictionary resourceDictionary = Application.LoadComponent(uri) as ResourceDictionary;
+
+                //clear application resource collection
+                Application.Current.Resources.Clear();
+
+                //add got resource dictionary
+                Application.Current.Resources.MergedDictionaries.Add(resourceDictionary);
+
+                using(FileStream fileStream = new FileStream($"{projectPath}/UsingStyle.txt", FileMode.Truncate))
+                {
+                    byte[] usingStyleNameBytes = System.Text.Encoding.Default.GetBytes(e.SelectedTheme);
+
+                    await fileStream.WriteAsync(usingStyleNameBytes, 0, usingStyleNameBytes.Length);
+                }
+            }
+        }
         #endregion
     }
 }

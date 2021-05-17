@@ -13,6 +13,32 @@
         </Style.Triggers>-->
     </Style>
 
+    <Style x:Key="SettingMenu" TargetType="Image">
+        <Setter Property="Image.Source" Value="pack://application:,,,/Services/images/gear.png"/>
+    </Style>
+
+    <Style x:Key="LogOutMenu" TargetType="Image">
+        <Setter Property="Image.Source" Value="pack://application:,,,/Services/images/logout.png"/>
+    </Style>
+
+    <Style x:Key="ProfileMenu" TargetType="Image">
+        <Setter Property="Image.Source" Value="pack://application:,,,/Services/images/Profile.png"/>
+    </Style>
+    
+    <Style x:Key="AuthorizationLabel" TargetType="Label">
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="FontSize" Value="30"/>
+        <Setter Property="Foreground" Value="#534b4f"/>
+    </Style>
+
+    <Style x:Key="AuthorizationPanel" TargetType="StackPanel">
+        <Setter Property="Background" Value="#dcdcdc"/>
+    </Style>
+
+    <Style x:Key="WindowStyle" TargetType="Window">
+        <Setter Property="Background" Value="White"/>
+    </Style>
+    
     <Style x:Key="MyFocusVisual">
         <Setter Property="ItemsControl.Template">
             <Setter.Value>
@@ -88,7 +114,17 @@
         </Setter>
     </Style>
 
-    <Style TargetType="TextBox">
+    <Style x:Key="DefaultTextBlock" TargetType="TextBlock">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="#534b4f"/>
+    </Style>
+
+    <Style x:Key="DefaultLabel" TargetType="Label">
+        <Setter Property="Foreground" Value="#534b4f"/>
+        
+    </Style>
+
+    <Style x:Key="DefaultTextBox" TargetType="TextBox">
         <Setter Property="Height" Value="50" />
         <Setter Property="Width" Value="200" />
         <Setter Property="Background" Value="Transparent"/>
@@ -149,18 +185,65 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+    <Style x:Key="DefaultBorder" TargetType="Border">
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderBrush" Value="#534b4f"/>
+        
+    </Style>
+    
+    <Style x:Key="AuthorizationButton" TargetType="Button">
+        <Setter Property="Control.SnapsToDevicePixels" Value="True"/>
+        <Setter Property="Control.OverridesDefaultStyle" Value="True" />
+        <Setter Property="Control.MinHeight" Value="20"/>
+        <Setter Property="Control.MinWidth" Value="20"/>
+        <Setter Property="Control.Background" Value="#dcdcdc"/>
+        <Setter Property="Control.BorderBrush" Value="White"/>
+        <Setter Property="Control.BorderThickness" Value="10"/>
+        <Setter Property="FontFamily" Value="Times New Roman"/>
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border 
+                      x:Name="Border"  
+                      CornerRadius="30" 
+                      BorderThickness="{TemplateBinding BorderThickness}"
+                      Background="{TemplateBinding Background}"
+                      BorderBrush="{TemplateBinding BorderBrush}">
+                        <ContentPresenter 
+                            Margin="2"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            RecognizesAccessKey="True"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="Foreground" Value="Red"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 <!--check it-->
     <Style x:Key="EmployeeListBoxItems" TargetType="ListBoxItem">
         
     </Style>
 <!--check it-->
+
+    <Style x:Key="MenuImage" TargetType="Image">
+        <Setter Property="Image.Source" Value="pack://application:,,,/Services/images/menu.png"/>
+    </Style>
+    
     <Style x:Key="RegistrationLabel" TargetType="Label">
         <Setter Property="FontSize" Value="15"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="#534b4f"/>
         <Setter Property="FontWeight" Value="Bold"/>
     </Style>
     
-    <Style x:Key="NumberLabel">
+    <Style x:Key="NumberLabel" TargetType="Label">
         <Setter Property="Control.Height" Value="50" />
         <Setter Property="Control.Width" Value="50" />
         <Setter Property="Control.Background" Value="Transparent"/>
@@ -176,7 +259,7 @@
 
     </Style>
 
-    <Style TargetType="PasswordBox">
+    <Style x:Key="DefaultPasswordBox" TargetType="PasswordBox">
         <Setter Property="Height" Value="50" />
         <Setter Property="Width" Value="200" />
         <Setter Property="Background" Value="Transparent"/>
@@ -192,13 +275,14 @@
         <Setter Property="BorderThickness" Value="0"/>
     </Style>
 
-    <Style x:Key="Default" TargetType="Button">
+    <Style x:Key="DefaultButton" TargetType="Button">
         <Setter Property="Control.SnapsToDevicePixels" Value="True"/>
         <Setter Property="Control.OverridesDefaultStyle" Value="True" />
         <Setter Property="Control.MinHeight" Value="20"/>
         <Setter Property="Control.MinWidth" Value="20"/>
         <Setter Property="Control.Background" Value="Transparent"/>
-        <Setter Property="Control.BorderBrush" Value="Transparent"/>
+        <Setter Property="Control.BorderBrush" Value="Black"/>
+        <Setter Property="Foreground" Value="#534b4f"/>
         <Setter Property="Control.BorderThickness" Value="1"/>
         <Setter Property="Control.Template">
             <Setter.Value>
@@ -219,15 +303,13 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="White"/>
                 <Setter Property="BorderThickness" Value="1.5"/>
-                <Setter Property="BorderBrush" Value="Transparent"/>
                 <Setter Property="FontWeight" Value="Bold"/>
             </Trigger>
         </Style.Triggers>
     </Style>
     
-    <Style x:Key="ExitButton">
+    <Style x:Key="ExitButton" TargetType="Button">
         <Setter Property="Control.Background" Value="Transparent"/>
         <Setter Property="Control.Cursor" Value="Hand" />
         <Setter Property="Control.MinHeight" Value="30"/>
@@ -251,7 +333,7 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="ExitImage">
+    <Style x:Key="ExitImage" TargetType="Image">
         <Setter Property="Image.Source" Value="pack://application:,,,/Services/images/exit.png"/>
         <Setter Property="Control.Height" Value="20"/>
         <Setter Property="Control.Width" Value="20"/>

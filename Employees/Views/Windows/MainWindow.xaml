@@ -12,7 +12,7 @@
         Style="{DynamicResource WindowStyle}">
 
 
-    <Grid Background="White">
+    <Grid>
         <Button VerticalAlignment="Top"
                 Style="{StaticResource ExitButton}"
                 Name="exit"
@@ -22,47 +22,50 @@
             </Button.Command>
             <Image Style="{StaticResource ExitImage}"/>
         </Button>
-        <Grid HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,51,0,0">
+        <Grid HorizontalAlignment="Center"
+              VerticalAlignment="Top" 
+              Margin="0,51,0,0">
             <Label HorizontalAlignment="Center"
                    Content="Авторизация" 
-                   FontWeight="Bold" FontSize="30" 
-                   Margin="0,20,0,250"
-                   Foreground="#534b4f"/>
+                   Margin="0,19,0,251"
+                   Style="{DynamicResource AuthorizationLabel}"/>
 
             <StackPanel VerticalAlignment="Center"
                         HorizontalAlignment="Center"
-                        Background="#edeeef">
+                        Style="{DynamicResource AuthorizationPanel}">
                 <StackPanel Orientation="Horizontal" 
                             HorizontalAlignment="Center"
                             Margin="10 10 10 0">
                     <Label Content="+7" Margin="0" 
-                           Style="{StaticResource NumberLabel}"/>
-                    <TextBox Margin="0" Text="{Binding Path=PhoneNumber}"
+                           Style="{DynamicResource NumberLabel}"/>
+                    <TextBox Margin="0" 
+                             Text="{Binding Path=PhoneNumber}"
                              MaxLength="10"
-                             Padding="0"/>
+                             Padding="0"
+                             Style="{DynamicResource DefaultTextBox}"/>
                 </StackPanel>
-                <Border BorderThickness="1"
-                        BorderBrush="#534b4f"
-                        Width="220"
+                <Border Width="220"
                         HorizontalAlignment="Left"
-                        Margin="20 0 0 0"/>
+                        Margin="20 0 0 0"
+                        Style="{DynamicResource DefaultBorder}"/>
                 <PasswordBox x:Name="UserPassword" 
-                             MaxLength="25" Width="250"
-                             Margin="10 0 10 10"/>
+                             MaxLength="25"
+                             Width="250"
+                             Margin="10 0 10 10"
+                             Style="{DynamicResource DefaultPasswordBox}"/>
             </StackPanel>
 
 
         </Grid>
-        <Button VerticalAlignment="Center" HorizontalAlignment="Left"
-                Content="Войти" Cursor="Hand"
+        <Button VerticalAlignment="Center"
+                HorizontalAlignment="Left"
+                Content="Войти" 
+                Cursor="Hand"
                 CommandParameter="{Binding ElementName=UserPassword}" 
                 Command="{Binding OpenEmployeeWindowCommand}"
-                Style="{StaticResource CircleMenuButton}"
+                Style="{DynamicResource AuthorizationButton}"
                 Height="70"
                 Width="70"
-                BorderBrush="White"
-                BorderThickness="10" Margin="305,0,0,0"
-                Background="#edeeef"
-                FontFamily="Times New Roman"/>
+                Margin="305,0,0,0"/>
     </Grid>
 </Window>

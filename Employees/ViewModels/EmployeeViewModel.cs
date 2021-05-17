@@ -12,7 +12,9 @@ namespace Employees.ViewModels
         private EmployeeListViewModel employeeListViewModel;
         private IChangeContent changeContent;
         public event EventHandler<CheckEventArgs> OnLogOut;
+        public event EventHandler<ChangeThemeEventArgs> OnSwitchTheme;
         private DefaultDialogService dialogService;
+        private ManageEmployeeViewModel manageEmployeeViewModel;
         #endregion
 
         #region properties
@@ -45,8 +47,11 @@ namespace Employees.ViewModels
 
         public EmployeeViewModel(object user, ChangeContent changeContent, bool isAuthorized)
         {
-            
-            jumpToManageEmployeeView = new RelayCommand(p => changeViewModel(new ManageEmployeeViewModel(user)));
+            manageEmployeeViewModel = new ManageEmployeeViewModel(user);
+            manageEmployeeViewModel.OnSelectedTheme += checkSelectedTheme;
+
+
+            jumpToManageEmployeeView = new RelayCommand(p => changeViewModel(manageEmployeeViewModel));
 
             this.changeContent = changeContent;
             currentContent = new EmployeeListViewModel(changeContent);
@@ -59,10 +64,20 @@ namespace Employees.ViewModels
             changeContent.OnSelectedEmployee += OnJumpToEmployeeDetailedInformation;
 
             logOut = new RelayCommand(p => executeLogOut(), p => true);
+
+            
         }
         #endregion
 
         #region methods 
+
+        private void checkSelectedTheme(object sender, ChangeThemeEventArgs e)
+        {
+            if(e.IsSelected)
+            {
+                OnSwitchTheme?.Invoke(this, new ChangeThemeEventArgs(true, e.SelectedTheme));
+            }
+        }
 
         private void executeLogOut()
         {

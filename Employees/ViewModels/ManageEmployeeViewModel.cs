@@ -3,6 +3,8 @@ using System.Windows.Input;
 using DataBase;
 using MySqlConnector;
 using Employees.Services.DialogService;
+using System;
+using Employees.Services;
 
 namespace Employees.ViewModels
 {
@@ -11,6 +13,7 @@ namespace Employees.ViewModels
         #region fields
         private ConnectionString connectionString;
         private DefaultDialogService dialogService;
+        public event EventHandler<ChangeThemeEventArgs> OnSelectedTheme;
         #endregion
 
         #region properties
@@ -78,21 +81,33 @@ namespace Employees.ViewModels
         private readonly ICommand aboutCommand;
         public ICommand AboutCommand => aboutCommand;
 
+        private readonly ICommand darkThemeCommand;
+        public ICommand DarkThemeCommand => darkThemeCommand;
+
+        private readonly ICommand lightThemeCommand;
+        public ICommand LightThemeCommand => lightThemeCommand;
+
         #endregion
 
         #region constructor
         public ManageEmployeeViewModel(object user)
         {
             aboutCommand = new RelayCommand(p => showAboutInformation());
-            getUserInformation(user);
+            getUserInformation(user);  
             dialogService = new DefaultDialogService();
+
+            darkThemeCommand = new RelayCommand(p => changeTheme("Dark"), p => true);
+            lightThemeCommand = new RelayCommand(p => changeTheme("Light"), p => true);
         }
 
         #endregion
 
         #region methods
-        
-        
+        private void changeTheme(string theme)
+        {
+            OnSelectedTheme?.Invoke(this, new ChangeThemeEventArgs(true, theme));
+            //если можно менять по параметру из названия кнопки
+        }
         /// <summary>
         /// getting user information for application settings.
         /// </summary>

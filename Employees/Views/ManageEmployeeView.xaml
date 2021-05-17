@@ -21,30 +21,29 @@
                     <TextBlock Text="{Binding FullName}"
                                Height="50"
                                Width="200"
-                               Background="Transparent"
+                               Style="{DynamicResource DefaultTextBlock}"
                                HorizontalAlignment="Center"
                                FontSize="15"
                                FontWeight="Bold"
                                Padding="15 25 0 0"/>
-                    <Border BorderBrush="#534b4f"
-                            BorderThickness="1"
+                    <Border Style="{DynamicResource DefaultBorder}"
                             Width="170"/>
                 </StackPanel>
                 <StackPanel Width="230">
                     <StackPanel Orientation="Horizontal"
                                 HorizontalAlignment="Center">
-                        <Label Content="+7" Margin="10 32 0 0" 
-                               Style="{StaticResource NumberLabel}"
+                        <Label Content="+7" 
+                               Margin="10 32 0 0" 
+                               Style="{DynamicResource NumberLabel}"
                                Height="30"
                                Width="30"
                                FontSize="15"
                                FontFamily="Segoue UI"
-                               FontWeight="Bold"
-                               Foreground="Black"/>
+                               FontWeight="Bold"/>
                         <TextBlock Text="{Binding PhoneNumber}"
                                    Height="40"
                                    Width="120"
-                                   Background="Transparent"
+                                   Style="{DynamicResource DefaultTextBlock}"
                                    HorizontalAlignment="Center"
                                    FontSize="15"
                                    FontWeight="Bold"
@@ -52,32 +51,29 @@
                                    Margin="0 20 0 0"/>
                     </StackPanel>
 
-                    <Border BorderBrush="#534b4f"
-                            BorderThickness="1"
+                    <Border Style="{DynamicResource DefaultBorder}"
                             Width="150"/>
                     <TextBlock Text="{Binding Profession}"
                                Height="40"
                                Width="150"
-                               Background="Transparent"
+                               Style="{DynamicResource DefaultTextBlock}"
                                HorizontalAlignment="Center"
                                FontSize="15"
                                FontWeight="Bold"
                                Padding="15"
                                Margin="0 20 0 0"/>
-                    <Border BorderBrush="#534b4f"
-                            BorderThickness="1"
+                    <Border Style="{DynamicResource DefaultBorder}"
                             Width="150"/>
                     <TextBlock Text="{Binding WorkingHours}"
                                Height="40"
                                Width="150"
-                               Background="Transparent"
+                               Style="{DynamicResource DefaultTextBlock}"
                                HorizontalAlignment="Center"
                                FontSize="15"
                                FontWeight="Bold"
                                Padding="15"
                                Margin="0 20 0 0"/>
-                    <Border BorderBrush="#534b4f"
-                            BorderThickness="1"
+                    <Border Style="{DynamicResource DefaultBorder}"
                             Width="150"/>
 
 
@@ -90,9 +86,7 @@
                 <Button Content="+ Новый сотрудник" 
                         Height="50" Width="300"
                         Cursor="Hand"
-                        Foreground="Black"
-                        BorderBrush="Black"
-                        Style="{DynamicResource Default}"
+                        Style="{DynamicResource DefaultButton}"
                         FontSize="15">
 
                     <Button.Command>
@@ -124,13 +118,13 @@
    
             </StackPanel>
             <StackPanel Margin="0 50 0 0">
-                <Button Height="40" Width="100"
+                <Button Height="40"
+                        Width="100"
                         Content="About"
                         Name="About"
                         Command="{Binding AboutCommand}"
                         Cursor="Hand"
-                        Style="{DynamicResource Default}"
-                        BorderBrush="Black"/>
+                        Style="{DynamicResource DefaultButton}"/>
                 
             </StackPanel>
             

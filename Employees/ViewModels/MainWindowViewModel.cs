@@ -34,7 +34,7 @@ namespace Employees.ViewModels
 
         #region Converter to unsecure string
         /// <summary>
-        /// Convering secure password from password box
+        /// Convering secure password from password box  
         /// to unsecure string
         /// </summary>
         /// <param name="securePassword"></param>

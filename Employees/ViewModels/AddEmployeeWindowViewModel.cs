@@ -17,7 +17,7 @@ namespace Employees.ViewModels
         DefaultDialogService dialogService;
         IFileService fileService;
         private string imagePath;
-        public event EventHandler<SecondCheckEventArgs> OnCheckedDriveLicense;
+        public event EventHandler<ChangeThemeEventArgs> OnCheckedDriveLicense;
         private ConnectionString connectionString;
         private string drivingLicense;
         #endregion
@@ -30,7 +30,14 @@ namespace Employees.ViewModels
             get => lastName;
             set 
             {
-                lastName = value;
+                if (value.Length <= 100)
+                {
+                    lastName = value;
+                }
+                else if (value.Length > 100)
+                    dialogService.ShowMessage("Длина Фамилии не должна превышать 100 символов!", "Ошибка");
+                else if (value.Equals(null))
+                    dialogService.ShowMessage("Поле 'Фамилия' должно быть заполнено", "Ошибка");
                 OnPropertyChanged("LastName");
             }
         }
@@ -41,7 +48,14 @@ namespace Employees.ViewModels
             get => firstName;
             set
             {
-                firstName = value;
+                if (value.Length <= 70)
+                {
+                    firstName = value;
+                }
+                else if (value.Length > 70)
+                    dialogService.ShowMessage("Длина Имени не должна превышать 70 символов!", "Ошибка");
+                else if (value.Equals(null))
+                    dialogService.ShowMessage("Поле 'Имя' должно быть заполнено", "Ошибка");
                 OnPropertyChanged("FirstName");
             }
         }
@@ -52,7 +66,12 @@ namespace Employees.ViewModels
             get => secondName;
             set
             {
-                secondName = value;
+                if (value.Length <= 100)
+                {
+                    secondName = value;
+                }
+                else if (value.Length > 100)
+                    dialogService.ShowMessage("Длина Отчества не должна превышать 100 символов!", "Ошибка");
                 OnPropertyChanged("SecondName");
             }
         }
@@ -63,7 +82,19 @@ namespace Employees.ViewModels
             get => _SNILS;
             set
             {
-                _SNILS = value;
+                if (value.Length == 11)
+                {
+                    bool checkValue = ulong.TryParse(value, out ulong result);
+
+                    if (checkValue)
+                        _SNILS = value;
+                    else
+                        dialogService.ShowMessage("СНИЛС должен содержать только цифры ", "Ошибка");
+                }
+                else if (value.Length < 11)
+                    dialogService.ShowMessage("Длина СНИЛС должна составлять 11 символов", "Ошибка");
+                else if (value.Equals(null))
+                    dialogService.ShowMessage("Поле 'СНИЛС' должно быть заполнено", "Ошибка");
                 OnPropertyChanged("SNILS");
             }
         }
@@ -74,7 +105,18 @@ namespace Employees.ViewModels
             get => _INN;
             set
             {
-                _INN = value;
+                if (value.Length == 12)
+                {
+                    bool checkValue = ulong.TryParse(value, out ulong result);
+                    if (checkValue)
+                        _INN = value;
+                    else
+                        dialogService.ShowMessage("ИНН должен содержать только цифры", "Ошибка");
+                }
+                else if (value.Length < 12)
+                    dialogService.ShowMessage("Длина ИНН должна составлять 12 символов", "Ошибка");
+                else if (value.Equals(null))
+                    dialogService.ShowMessage("Поле 'ИНН' должно быть заполнено", "Ошибка");
                 OnPropertyChanged("INN");
             }
         }
@@ -85,7 +127,19 @@ namespace Employees.ViewModels
             get => phoneNumber;
             set
             {
-                phoneNumber = value;
+
+                if (value.Length == 10)
+                {
+                    bool checkValue = Int32.TryParse(value, out int result);
+                    if (checkValue)
+                        phoneNumber = value;
+                    else
+                        dialogService.ShowMessage("Номер телефона должен содержать только цифры", "Ошибка");
+                }
+                else if (value.Length < 10)
+                    dialogService.ShowMessage("Длина Номера телефона должна составлять 10 символов", "Ошибка");
+                else if (value.Equals(null))
+                    dialogService.ShowMessage("Поле 'Номер телефона' должно быть заполнено", "Ошибка");
                 OnPropertyChanged("PhoneNumber");
             }
         }
@@ -96,7 +150,14 @@ namespace Employees.ViewModels
             get => address;
             set
             {
-                address = value;
+                if (value.Length <= 200)
+                {
+                    address = value;
+                }
+                else if (value.Length > 200)
+                    dialogService.ShowMessage("Длина Адресса не должна превышать 200 символов", "Ошибка");
+                else if (value.Equals(null))
+                    dialogService.ShowMessage("Поле 'Адресс регистрации' должно быть заполнено", "Ошибка");
                 OnPropertyChanged("Address");
             }
         }
@@ -107,7 +168,19 @@ namespace Employees.ViewModels
             get => passport;
             set
             {
-                passport = value;
+                if (value.Length == 10)
+                {
+                    bool checkValue = Int32.TryParse(value, out Int32 result);
+
+                    if (checkValue)
+                        passport = value;
+                    else
+                        dialogService.ShowMessage("Паспорт должен содержать только цифры", "Ошибка");
+                }
+                else if (value.Length < 10)
+                    dialogService.ShowMessage("Длина Паспорта должна составлять 10 символов", "Ошибка");
+                else if (value.Equals(null))
+                    dialogService.ShowMessage("Поле 'Паспор' должно быть заполнено", "Ошибка");
                 OnPropertyChanged("Passport");
             }
         }
@@ -118,7 +191,12 @@ namespace Employees.ViewModels
             get => gettingPlace;
             set
             {
-                gettingPlace = value;
+                if (value.Length <= 200)
+                {
+                    gettingPlace = value;
+                }
+                else if (value.Equals(null))
+                    dialogService.ShowMessage("Поле 'Где был выдан' должно быть заполнено");
                 OnPropertyChanged("GettingPlace");
             }
         }
@@ -135,13 +213,18 @@ namespace Employees.ViewModels
         }
         public ObservableCollection<string> Professions { get; private set; }
 
-        private string selectedProfession;
-        public string SelectedProfession
+        private int selectedProfession;
+        public int SelectedProfession
         {
             get => selectedProfession;
             set
             {
-                selectedProfession = value + 1;
+                if(!value.Equals(null))
+                {
+                    selectedProfession = value + 1;
+                    dialogService.ShowMessage("Выбранная профессия: " + selectedProfession, "Смотри");
+                }
+                
                 OnPropertyChanged("SelectedProfession");
             }
         }
@@ -288,7 +371,7 @@ namespace Employees.ViewModels
                         IsSelected = false
                     });
                 }
-                OnCheckedDriveLicense?.Invoke(this, new SecondCheckEventArgs(true));
+                //OnCheckedDriveLicense?.Invoke(this, new ChangeThemeEventArgs(true));
             }
             else if((string)parameter == "HaveLicense")
             {
@@ -361,7 +444,7 @@ namespace Employees.ViewModels
                     });
                 }
 
-                OnCheckedDriveLicense?.Invoke(this, new SecondCheckEventArgs(true));
+               // OnCheckedDriveLicense?.Invoke(this, new ChangeThemeEventArgs(true));
             }
         }
 
@@ -476,11 +559,28 @@ namespace Employees.ViewModels
                     command.Parameters.Add("@driving_license", MySqlDbType.VarChar).Value = drivingLicense;
                     command.Parameters.Add("@id_profession", MySqlDbType.Int32).Value = SelectedProfession;
 
-                    command.ExecuteNonQuery();
+                    
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        if(reader.Read())
+                        {
+                            if (reader["result"].ToString() == LastName)
+                                dialogService.ShowMessage("Сотрудник был внесен в базу данных", "Уведомление");
+                            else if (reader["result"].ToString() == INN)
+                                dialogService.ShowMessage("Сотрудник с таким инн : " + reader["result"].ToString() + " уже существует!", "Ошибка");
+                            else if (reader["result"].ToString() == SNILS)
+                                dialogService.ShowMessage("Сотрудник с таким СНИЛС : " + reader["result"].ToString() + " уже существует!", "Ошибка");
+                            else if (reader["result"].ToString() == passport)
+                                dialogService.ShowMessage("Сотрудник с таким паспортом : "+ reader["result"].ToString() +" уже существует", "Ошибка");
+                            else if (reader["result"].ToString() == PhoneNumber)
+                                dialogService.ShowMessage("Сотрудник с таким номером телефона : " + reader["result"].ToString() + " уже существует", "Ошибка");
+
+                        }
+                    }
                     //doesn't work
                     //не проверяет были ли внесены данные, надо добавить
 
-                    dialogService.ShowMessage("Сотрудник был внесен в базу данных", "Уведомление");
+                    
                 }
             }
             
