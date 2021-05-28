@@ -60,7 +60,7 @@ namespace Employees.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Employees;component/views/employeelistview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Employees;V1.0.0.0;component/views/employeelistview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Views\EmployeeListView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

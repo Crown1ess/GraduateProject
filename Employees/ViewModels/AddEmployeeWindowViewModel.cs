@@ -442,9 +442,7 @@ namespace Employees.ViewModels
                         Text = "DE",
                         IsSelected = false
                     });
-                }
-
-               // OnCheckedDriveLicense?.Invoke(this, new ChangeThemeEventArgs(true));
+                } 
             }
         }
 
