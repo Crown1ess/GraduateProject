@@ -5,12 +5,14 @@ using DataBase;
 using System.Collections.ObjectModel;
 using System;
 using System.Windows.Input;
+using System.Windows;
 
 namespace Employees.ViewModels
 {
     public class EmployeeDetailedInformationViewModel : BaseViewModel
     {
         #region fields
+
         private int selectedEmployee;
         private ConnectionString connectionString;
 
@@ -202,6 +204,8 @@ namespace Employees.ViewModels
 
             int daysInMonth = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
 
+            string checkMonthAndYear = DateTime.Now.Year.ToString()+ "-" + DateTime.Now.Month.ToString("d2") + "%";
+
             using (MySqlConnection connection = new MySqlConnection(connectionString.StringOfConnection))
             {
                 connection.Open();
@@ -209,6 +213,7 @@ namespace Employees.ViewModels
                 MySqlCommand command = new MySqlCommand(sqlInquiryString, connection);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
                 command.Parameters.Add("@employee_id", MySqlDbType.Int32).Value = selectedEmployee;
+                command.Parameters.Add("@check_date", MySqlDbType.VarChar).Value = checkMonthAndYear;
 
                 using (MySqlDataReader reader = command.ExecuteReader())
                 {
@@ -241,6 +246,9 @@ namespace Employees.ViewModels
             connectionString = new ConnectionString();
 
             string sqlInquiryString = "get_employee_information";
+
+            string checkMonthAndYear = DateTime.Now.Year.ToString() + "-" + DateTime.Now.Month.ToString("d2") + "%";
+
             using (MySqlConnection connection = new MySqlConnection(connectionString.StringOfConnection))
             {
                 connection.Open();
@@ -248,6 +256,7 @@ namespace Employees.ViewModels
                 MySqlCommand command = new MySqlCommand(sqlInquiryString, connection);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
                 command.Parameters.Add("@employee_id", MySqlDbType.Int32).Value = selectedEmployee;
+                command.Parameters.Add("@check_date", MySqlDbType.VarChar).Value = checkMonthAndYear;
 
                 using (MySqlDataReader reader = command.ExecuteReader())
                 {

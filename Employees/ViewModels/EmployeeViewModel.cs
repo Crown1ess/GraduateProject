@@ -89,9 +89,6 @@ namespace Employees.ViewModels
             {
                 OnLogOut?.Invoke(this, new CheckEventArgs(true));
             }
-
-            //вызов popup или же можно будет обойтись messagebox
-            //проверка результатов выбора
         }
         private void OnJumpToEmployeeDetailedInformation(object sender, CheckEmployeeSelected e)
         {

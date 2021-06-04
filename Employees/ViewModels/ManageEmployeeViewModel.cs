@@ -115,7 +115,8 @@ namespace Employees.ViewModels
         private void getUserInformation(object user)
         {
             connectionString = new ConnectionString();
-            
+
+            string checkMonthAndYear = DateTime.Now.Year.ToString() + "-" + DateTime.Now.Month.ToString("d2") + "%";
 
             using (MySqlConnection connection = new MySqlConnection(connectionString.StringOfConnection))
             {
@@ -125,6 +126,7 @@ namespace Employees.ViewModels
                 MySqlCommand command = new MySqlCommand(sqlInquiryString, connection);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
                 command.Parameters.Add("@login", MySqlDbType.VarChar).Value = (string)user;
+                command.Parameters.Add("@check_date", MySqlDbType.VarChar).Value = checkMonthAndYear;
 
                 using(MySqlDataReader reader = command.ExecuteReader())
                 {
