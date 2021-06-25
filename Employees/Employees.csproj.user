@@ -7,18 +7,45 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Main.xaml.cs">
+    <Compile Update="Views\EmployeeDetailedInformationView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\EmployeeListView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ManageEmployeeView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Windows\Main.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Windows\AddEmployeeWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="MainWindow.xaml">
+    <Page Update="Services\Styles\Dark.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Main.xaml">
+    <Page Update="Views\EmployeeDetailedInformationView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Style.xaml">
+    <Page Update="Views\EmployeeListView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ManageEmployeeView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Windows\MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Windows\Main.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Services\Styles\Light.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Windows\AddEmployeeWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

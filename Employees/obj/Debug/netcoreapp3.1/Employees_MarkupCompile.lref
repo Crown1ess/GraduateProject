@@ -1,6 +1,9 @@
 ﻿
 FC:\Users\davae\source\repos\Employees\Employees\App.xaml;;
-FC:\Users\davae\source\repos\Employees\Employees\Main.xaml;;
-FC:\Users\davae\source\repos\Employees\Employees\MainWindow.xaml;;
-FC:\Users\davae\source\repos\Employees\Employees\Style.xaml;;
+FC:\Users\davae\source\repos\Employees\Employees\Services\Styles\Light.xaml;;
+FC:\Users\davae\source\repos\Employees\Employees\Views\EmployeeDetailedInformationView.xaml;;
+FC:\Users\davae\source\repos\Employees\Employees\Views\ManageEmployeeView.xaml;;
+FC:\Users\davae\source\repos\Employees\Employees\Views\Windows\AddEmployeeWindow.xaml;;
+FC:\Users\davae\source\repos\Employees\Employees\Views\Windows\Main.xaml;;
+FC:\Users\davae\source\repos\Employees\Employees\Views\Windows\MainWindow.xaml;;
 

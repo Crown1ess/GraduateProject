@@ -1,46 +1,22 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
-
+﻿using System;
+using System.ComponentModel;
 
 namespace Models
 {
-    public class User : NotifyPropertyChange
+    public class User
     {
         private string phoneNumber;
         public string PhoneNumber
         {
             get { return phoneNumber; }
-            set 
-            { 
-                phoneNumber = value;
-                OnPropertyChanged("PhoneNumber");
-            }
+            set => phoneNumber = value;
         }
 
         private string password;
         public string Password
         {
             get { return password; }
-            set 
-            { 
-                password = value;
-                OnPropertyChanged("Password");
-            }
+            set => password = value;
         }
-
-        private string rank;
-        public string Rank
-        {
-            get { return rank; }
-            set { rank = value; }
-        }
-
-        //public event PropertyChangedEventHandler PropertyChanged;
-        //public void OnPropertyChanged([CallerMemberName]string properties = null)
-        //{
-        //    if (PropertyChanged != null)
-        //        PropertyChanged(this, new PropertyChangedEventArgs(properties));
-        //}
-
     }
 }
